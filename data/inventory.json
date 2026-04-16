@@ -1,0 +1,136 @@
+{
+  "hotItems": [
+    {
+      "id": 1,
+      "name": "Hennessy VS",
+      "category": "Cognac",
+      "price": 38.99,
+      "image": "https://images.unsplash.com/photo-1569529465841-dfecdab7503b?w=400&h=500&fit=crop",
+      "tag": "Best Seller"
+    },
+    {
+      "id": 2,
+      "name": "Casamigos Reposado",
+      "category": "Tequila",
+      "price": 49.99,
+      "image": "https://images.unsplash.com/photo-1613063050781-eaf7a4466648?w=400&h=500&fit=crop",
+      "tag": "Popular"
+    },
+    {
+      "id": 3,
+      "name": "Don Julio 1942",
+      "category": "Tequila",
+      "price": 154.99,
+      "image": "https://images.unsplash.com/photo-1614313511387-1436a4480ebb?w=400&h=500&fit=crop",
+      "tag": "Premium"
+    },
+    {
+      "id": 4,
+      "name": "Rémy Martin VSOP",
+      "category": "Cognac",
+      "price": 45.99,
+      "image": "https://images.unsplash.com/photo-1602081115068-1e8f0d8c2e6b?w=400&h=500&fit=crop",
+      "tag": "Staff Pick"
+    }
+  ],
+  "newListings": [
+    {
+      "id": 5,
+      "name": "Clase Azul Reposado",
+      "category": "Tequila",
+      "price": 169.99,
+      "image": "https://images.unsplash.com/photo-1614313511387-1436a4480ebb?w=400&h=500&fit=crop",
+      "dateAdded": "2026-04-14"
+    },
+    {
+      "id": 6,
+      "name": "Dusse VSOP",
+      "category": "Cognac",
+      "price": 54.99,
+      "image": "https://images.unsplash.com/photo-1569529465841-dfecdab7503b?w=400&h=500&fit=crop",
+      "dateAdded": "2026-04-12"
+    },
+    {
+      "id": 7,
+      "name": "Buchanan's 18yr",
+      "category": "Whiskey",
+      "price": 79.99,
+      "image": "https://images.unsplash.com/photo-1527281400683-1aae777175f8?w=400&h=500&fit=crop",
+      "dateAdded": "2026-04-10"
+    },
+    {
+      "id": 8,
+      "name": "Ciroc Summer Colada",
+      "category": "Vodka",
+      "price": 32.99,
+      "image": "https://images.unsplash.com/photo-1602081115068-1e8f0d8c2e6b?w=400&h=500&fit=crop",
+      "dateAdded": "2026-04-08"
+    }
+  ],
+  "deals": [
+    {
+      "id": 9,
+      "name": "Amsterdam Vodka 1.75L",
+      "category": "Vodka",
+      "originalPrice": 19.99,
+      "salePrice": 14.99,
+      "image": "https://images.unsplash.com/photo-1602081115068-1e8f0d8c2e6b?w=400&h=500&fit=crop",
+      "discount": "25% OFF"
+    },
+    {
+      "id": 10,
+      "name": "Patron Silver",
+      "category": "Tequila",
+      "originalPrice": 44.99,
+      "salePrice": 37.99,
+      "image": "https://images.unsplash.com/photo-1613063050781-eaf7a4466648?w=400&h=500&fit=crop",
+      "discount": "15% OFF"
+    },
+    {
+      "id": 11,
+      "name": "Jack Daniel's 1L",
+      "category": "Whiskey",
+      "originalPrice": 29.99,
+      "salePrice": 23.99,
+      "image": "https://images.unsplash.com/photo-1527281400683-1aae777175f8?w=400&h=500&fit=crop",
+      "discount": "20% OFF"
+    }
+  ],
+  "fullInventory": [
+    { "id": 1, "name": "Hennessy VS", "category": "Cognac", "size": "750ml", "price": 38.99 },
+    { "id": 2, "name": "Hennessy VSOP", "category": "Cognac", "size": "750ml", "price": 54.99 },
+    { "id": 3, "name": "Rémy Martin VSOP", "category": "Cognac", "size": "750ml", "price": 45.99 },
+    { "id": 4, "name": "Dusse VSOP", "category": "Cognac", "size": "750ml", "price": 54.99 },
+    { "id": 5, "name": "Casamigos Blanco", "category": "Tequila", "size": "750ml", "price": 44.99 },
+    { "id": 6, "name": "Casamigos Reposado", "category": "Tequila", "size": "750ml", "price": 49.99 },
+    { "id": 7, "name": "Don Julio 1942", "category": "Tequila", "size": "750ml", "price": 154.99 },
+    { "id": 8, "name": "Patron Silver", "category": "Tequila", "size": "750ml", "price": 44.99 },
+    { "id": 9, "name": "Clase Azul Reposado", "category": "Tequila", "size": "750ml", "price": 169.99 },
+    { "id": 10, "name": "Jack Daniel's", "category": "Whiskey", "size": "1L", "price": 29.99 },
+    { "id": 11, "name": "Buchanan's 18yr", "category": "Whiskey", "size": "750ml", "price": 79.99 },
+    { "id": 12, "name": "Crown Royal", "category": "Whiskey", "size": "750ml", "price": 27.99 },
+    { "id": 13, "name": "Ciroc", "category": "Vodka", "size": "750ml", "price": 29.99 },
+    { "id": 14, "name": "Ciroc Summer Colada", "category": "Vodka", "size": "750ml", "price": 32.99 },
+    { "id": 15, "name": "Amsterdam Vodka", "category": "Vodka", "size": "1.75L", "price": 14.99 },
+    { "id": 16, "name": "Grey Goose", "category": "Vodka", "size": "750ml", "price": 29.99 },
+    { "id": 17, "name": "Tito's Handmade", "category": "Vodka", "size": "1.75L", "price": 32.99 },
+    { "id": 18, "name": "Bacardi Superior", "category": "Rum", "size": "750ml", "price": 14.99 },
+    { "id": 19, "name": "Captain Morgan", "category": "Rum", "size": "1.75L", "price": 24.99 },
+    { "id": 20, "name": "Malibu Coconut", "category": "Rum", "size": "750ml", "price": 18.99 }
+  ],
+  "storeInfo": {
+    "name": "JP Food & Liquor",
+    "address": "6859 N Teutonia Ave, Milwaukee, WI",
+    "phone": "(312) 555-0199",
+    "hours": {
+      "monday": "9:00 AM - 11:00 PM",
+      "tuesday": "9:00 AM - 11:00 PM",
+      "wednesday": "9:00 AM - 11:00 PM",
+      "thursday": "9:00 AM - 11:00 PM",
+      "friday": "9:00 AM - 12:00 AM",
+      "saturday": "9:00 AM - 12:00 AM",
+      "sunday": "10:00 AM - 10:00 PM"
+    },
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2970.123456789!2d-87.6500!3d41.8800!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDUyJzQ4LjAiTiA4N8KwMzknMDAuMCJX!5e0!3m2!1sen!1sus!4v1234567890"
+  }
+}
