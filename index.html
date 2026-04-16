@@ -4,149 +4,752 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JP Food & Liquor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: '#030014',
+            surface: '#0a0a1a',
+            'surface-light': '#111127',
+            'border-subtle': 'rgba(255,255,255,0.06)',
+            'border-hover': 'rgba(255,255,255,0.12)',
+            'text-primary': '#ffffff',
+            'text-secondary': 'rgba(239, 237, 253, 0.7)',
+            'text-dim': 'rgba(239, 237, 253, 0.4)',
+            'purple-accent': '#9382ff',
+            'purple-glow': 'rgba(147, 130, 255, 0.5)',
+          },
+          fontFamily: {
+            inter: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    ::selection {
+      background: rgba(147, 130, 255, 0.5);
+      color: #fff;
+      -webkit-text-fill-color: #fff;
+    }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.05); border-radius: 99px; }
+    ::-webkit-scrollbar-track { background: inherit; }
+    body {
+      font-feature-settings: "ss01" on, "cv10" on, "calt" off, "liga" off;
+    }
 
-  <!-- Navigation -->
-  <nav class="navbar">
-    <a href="#" class="nav-logo">JP<span>Food & Liquor</span></a>
-    <ul class="nav-links">
-      <li><a href="#hot-items">Hot Items</a></li>
-      <li><a href="#new-listings">New</a></li>
-      <li><a href="#deals">Deals</a></li>
-      <li><a href="#inventory">Inventory</a></li>
-      <li><a href="#find-us">Find Us</a></li>
-    </ul>
-    <button class="nav-toggle" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
+    /* Hero purple glow — concentrated aurora ribbon */
+    .hero-glow {
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1100px;
+      height: 500px;
+      background:
+        radial-gradient(ellipse 70% 20% at 50% 30%, rgba(160, 80, 255, 0.7) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 50% 35%, rgba(120, 50, 240, 0.4) 0%, transparent 65%),
+        radial-gradient(ellipse 80% 50% at 50% 40%, rgba(80, 30, 180, 0.2) 0%, transparent 70%);
+      filter: blur(50px);
+      pointer-events: none;
+    }
+    /* Warm pink highlight at the center of the aurora */
+    .hero-glow::after {
+      content: '';
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      height: 100px;
+      background: radial-gradient(ellipse, rgba(255, 130, 220, 0.25) 0%, transparent 70%);
+      filter: blur(30px);
+    }
+
+    /* Horizontal glowing line below hero */
+    .hero-line {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(147, 130, 255, 0.4) 30%, rgba(200, 160, 255, 0.6) 50%, rgba(147, 130, 255, 0.4) 70%, transparent);
+    }
+
+    /* Feature card glow borders */
+    .feature-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      transition: border-color 0.3s;
+    }
+    .feature-card:hover {
+      border-color: rgba(255,255,255,0.12);
+    }
+
+    /* FAQ items */
+    .faq-item {
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .faq-item:hover {
+      background: rgba(255,255,255,0.02);
+    }
+
+    /* Bottom CTA glow */
+    .cta-glow {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 300px;
+      background: radial-gradient(ellipse, rgba(120, 60, 255, 0.25) 0%, transparent 70%);
+      filter: blur(80px);
+      pointer-events: none;
+    }
+
+    /* ===== Scroll reveal animations ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Staggered children — each child delays slightly more */
+    .reveal-stagger > * {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-stagger.visible > *:nth-child(1) { transition-delay: 0s; }
+    .reveal-stagger.visible > *:nth-child(2) { transition-delay: 0.1s; }
+    .reveal-stagger.visible > *:nth-child(3) { transition-delay: 0.2s; }
+    .reveal-stagger.visible > *:nth-child(4) { transition-delay: 0.3s; }
+    .reveal-stagger.visible > *:nth-child(5) { transition-delay: 0.4s; }
+    .reveal-stagger.visible > *:nth-child(6) { transition-delay: 0.5s; }
+    .reveal-stagger.visible > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Only apply visible styles when parent has .visible */
+    .reveal-stagger:not(.visible) > * {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    /* ===== Category bar & dropdowns ===== */
+    .category-bar {
+      position: fixed;
+      top: 56px;
+      left: 0;
+      width: 100%;
+      z-index: 49;
+      background: rgba(3, 0, 20, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .cat-item {
+      position: relative;
+    }
+    .cat-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      min-width: 200px;
+      background: #0c0c22;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 8px 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s, transform 0.25s, visibility 0.25s;
+      transform: translateX(-50%) translateY(16px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .cat-item:hover .cat-dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(8px);
+    }
+    .cat-dropdown a {
+      display: block;
+      padding: 8px 20px;
+      font-size: 13px;
+      color: rgba(239, 237, 253, 0.7);
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+    .cat-dropdown a:hover {
+      background: rgba(147, 130, 255, 0.1);
+      color: #fff;
+    }
+  </style>
+</head>
+<body class="bg-bg text-text-primary font-inter overflow-x-hidden">
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-8 py-4" style="background: rgba(3, 0, 20, 0.7); backdrop-filter: blur(20px);">
+    <div class="flex items-center gap-2">
+      <div class="w-7 h-7 rounded-lg bg-purple-accent/20 flex items-center justify-center">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <rect width="16" height="16" rx="3" fill="#9382ff" fill-opacity="0.3"/>
+          <text x="3" y="12" font-size="10" font-weight="bold" fill="#9382ff" font-family="Inter, sans-serif">JP</text>
+        </svg>
+      </div>
+      <span class="text-white font-semibold text-lg tracking-tight">JP <span class="text-text-secondary font-normal text-sm">Food & Liquor</span></span>
+    </div>
+    <div class="flex items-center gap-8">
+      <a href="#hot-items" class="text-text-secondary text-sm font-medium hover:text-white transition-colors">Hot Items</a>
+      <a href="#new-listings" class="text-text-secondary text-sm font-medium hover:text-white transition-colors">New Arrivals</a>
+      <a href="#deals" class="text-text-secondary text-sm font-medium hover:text-white transition-colors">Deals</a>
+      <a href="#inventory" class="text-text-secondary text-sm font-medium hover:text-white transition-colors">Inventory</a>
+    </div>
+    <div class="flex items-center gap-4">
+      <a href="#find-us" class="bg-white text-bg text-sm font-semibold px-4 py-2 rounded-lg hover:bg-white/90 transition-colors">Find Us</a>
+    </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="hero">
+  <!-- Category Bar -->
+  <div class="category-bar">
+    <div class="max-w-6xl mx-auto flex items-center justify-center gap-1 px-4 py-2">
+      <div class="cat-item">
+        <button class="px-4 py-2 text-sm font-medium text-text-secondary hover:text-white transition-colors rounded-lg hover:bg-white/5 flex items-center gap-1.5">
+          Cognac
+          <svg class="w-3 h-3 opacity-50" viewBox="0 0 12 12" fill="none"><path d="M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="cat-dropdown">
+          <a href="#inventory" onclick="quickFilter('Cognac')">View All Cognac</a>
+          <a href="#inventory" onclick="quickFilter('Cognac', 'Hennessy')">Hennessy</a>
+          <a href="#inventory" onclick="quickFilter('Cognac', 'Remy')">Remy Martin</a>
+          <a href="#inventory" onclick="quickFilter('Cognac', 'Dusse')">Dusse</a>
+        </div>
+      </div>
+      <div class="cat-item">
+        <button class="px-4 py-2 text-sm font-medium text-text-secondary hover:text-white transition-colors rounded-lg hover:bg-white/5 flex items-center gap-1.5">
+          Tequila
+          <svg class="w-3 h-3 opacity-50" viewBox="0 0 12 12" fill="none"><path d="M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="cat-dropdown">
+          <a href="#inventory" onclick="quickFilter('Tequila')">View All Tequila</a>
+          <a href="#inventory" onclick="quickFilter('Tequila', 'Casamigos')">Casamigos</a>
+          <a href="#inventory" onclick="quickFilter('Tequila', 'Don Julio')">Don Julio</a>
+          <a href="#inventory" onclick="quickFilter('Tequila', 'Patron')">Patron</a>
+          <a href="#inventory" onclick="quickFilter('Tequila', 'Clase Azul')">Clase Azul</a>
+        </div>
+      </div>
+      <div class="cat-item">
+        <button class="px-4 py-2 text-sm font-medium text-text-secondary hover:text-white transition-colors rounded-lg hover:bg-white/5 flex items-center gap-1.5">
+          Whiskey
+          <svg class="w-3 h-3 opacity-50" viewBox="0 0 12 12" fill="none"><path d="M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="cat-dropdown">
+          <a href="#inventory" onclick="quickFilter('Whiskey')">View All Whiskey</a>
+          <a href="#inventory" onclick="quickFilter('Whiskey', 'Jack')">Jack Daniel's</a>
+          <a href="#inventory" onclick="quickFilter('Whiskey', 'Buchanan')">Buchanan's</a>
+          <a href="#inventory" onclick="quickFilter('Whiskey', 'Crown')">Crown Royal</a>
+        </div>
+      </div>
+      <div class="cat-item">
+        <button class="px-4 py-2 text-sm font-medium text-text-secondary hover:text-white transition-colors rounded-lg hover:bg-white/5 flex items-center gap-1.5">
+          Vodka
+          <svg class="w-3 h-3 opacity-50" viewBox="0 0 12 12" fill="none"><path d="M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="cat-dropdown">
+          <a href="#inventory" onclick="quickFilter('Vodka')">View All Vodka</a>
+          <a href="#inventory" onclick="quickFilter('Vodka', 'Ciroc')">Ciroc</a>
+          <a href="#inventory" onclick="quickFilter('Vodka', 'Grey Goose')">Grey Goose</a>
+          <a href="#inventory" onclick="quickFilter('Vodka', 'Tito')">Tito's</a>
+          <a href="#inventory" onclick="quickFilter('Vodka', 'Amsterdam')">Amsterdam</a>
+        </div>
+      </div>
+      <div class="cat-item">
+        <button class="px-4 py-2 text-sm font-medium text-text-secondary hover:text-white transition-colors rounded-lg hover:bg-white/5 flex items-center gap-1.5">
+          Rum
+          <svg class="w-3 h-3 opacity-50" viewBox="0 0 12 12" fill="none"><path d="M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="cat-dropdown">
+          <a href="#inventory" onclick="quickFilter('Rum')">View All Rum</a>
+          <a href="#inventory" onclick="quickFilter('Rum', 'Bacardi')">Bacardi</a>
+          <a href="#inventory" onclick="quickFilter('Rum', 'Captain')">Captain Morgan</a>
+          <a href="#inventory" onclick="quickFilter('Rum', 'Malibu')">Malibu</a>
+        </div>
+      </div>
+      <a href="#deals" class="px-4 py-2 text-sm font-semibold text-purple-accent hover:text-white transition-colors rounded-lg hover:bg-purple-accent/10 flex items-center gap-1.5">
+        Best Deals
+        <svg class="w-3 h-3" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="relative min-h-screen flex flex-col items-center justify-center text-center pt-32 pb-16 px-6 overflow-hidden">
     <div class="hero-glow"></div>
-    <div class="hero-content">
-      <p class="hero-badge">Your Neighborhood Spot</p>
-      <h1>JP Food <span class="accent">&</span> Liquor</h1>
-      <p class="hero-tagline">Premium spirits, everyday prices. Stop by and see what's new.</p>
-      <div class="hero-buttons">
-        <a href="#deals" class="btn btn-primary">See Today's Deals</a>
-        <a href="#inventory" class="btn btn-outline">Browse Inventory</a>
+
+    <div class="relative z-10 max-w-3xl mx-auto reveal">
+      <h1 class="text-[56px] font-bold leading-[64px] tracking-[-0.02em] mb-5">
+        JP Food <span class="text-purple-accent">&</span> Liquor
+      </h1>
+      <p class="text-text-secondary text-lg leading-7 max-w-xl mx-auto mb-8">
+        Premium spirits, everyday prices. Your neighborhood spot for the best selection of liquor, beer, wine, and more in Milwaukee.
+      </p>
+      <div class="flex items-center justify-center gap-4">
+        <a href="#deals" class="inline-flex items-center gap-2 bg-white text-bg text-sm font-semibold px-6 py-3 rounded-lg hover:bg-white/90 transition-colors">
+          See Today's Deals
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 12l4-4-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#inventory" class="inline-flex items-center gap-2 text-text-secondary text-sm font-semibold px-6 py-3 rounded-lg border border-border-subtle hover:border-border-hover transition-colors">
+          Browse Inventory
+        </a>
       </div>
     </div>
-    <!-- Scrolling marquee of categories -->
-    <div class="hero-marquee">
-      <div class="marquee-track">
-        <span>Tequila</span><span>Cognac</span><span>Whiskey</span><span>Vodka</span><span>Rum</span><span>Wine</span><span>Beer</span><span>Mixers</span>
-        <span>Tequila</span><span>Cognac</span><span>Whiskey</span><span>Vodka</span><span>Rum</span><span>Wine</span><span>Beer</span><span>Mixers</span>
+
+    <!-- Featured products preview table -->
+    <div class="relative z-10 mt-16 w-full max-w-4xl mx-auto reveal">
+      <div class="rounded-xl overflow-hidden border border-border-subtle" style="box-shadow: 0 0 80px rgba(120, 60, 255, 0.2), 0 0 160px rgba(100, 40, 200, 0.08); background: #08081a;">
+        <div class="p-4">
+          <div class="flex items-center gap-3 mb-4 px-2">
+            <div class="w-2 h-2 rounded-full bg-red-500/60"></div>
+            <div class="w-2 h-2 rounded-full bg-yellow-500/60"></div>
+            <div class="w-2 h-2 rounded-full bg-green-500/60"></div>
+            <div class="flex-1"></div>
+            <div class="h-6 px-3 rounded bg-white/5 flex items-center">
+              <span class="text-text-dim text-[10px]">Featured This Week</span>
+            </div>
+          </div>
+          <table class="w-full text-left text-xs">
+            <thead>
+              <tr class="border-b border-white/5">
+                <th class="py-2.5 px-3 text-text-dim font-medium">Product</th>
+                <th class="py-2.5 px-3 text-text-dim font-medium">Category</th>
+                <th class="py-2.5 px-3 text-text-dim font-medium">Size</th>
+                <th class="py-2.5 px-3 text-text-dim font-medium">Price</th>
+                <th class="py-2.5 px-3 text-text-dim font-medium">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-white/[0.03]"><td class="py-2.5 px-3 text-text-secondary">Hennessy VS</td><td class="py-2.5 px-3 text-text-secondary">Cognac</td><td class="py-2.5 px-3 text-text-secondary">750ml</td><td class="py-2.5 px-3"><span class="text-purple-accent">$38.99</span></td><td class="py-2.5 px-3 text-green-400">In Stock</td></tr>
+              <tr class="border-b border-white/[0.03]"><td class="py-2.5 px-3 text-text-secondary">Casamigos Reposado</td><td class="py-2.5 px-3 text-text-secondary">Tequila</td><td class="py-2.5 px-3 text-text-secondary">750ml</td><td class="py-2.5 px-3"><span class="text-purple-accent">$49.99</span></td><td class="py-2.5 px-3 text-green-400">In Stock</td></tr>
+              <tr class="border-b border-white/[0.03]"><td class="py-2.5 px-3 text-text-secondary">Don Julio 1942</td><td class="py-2.5 px-3 text-text-secondary">Tequila</td><td class="py-2.5 px-3 text-text-secondary">750ml</td><td class="py-2.5 px-3"><span class="text-orange-400">$154.99</span></td><td class="py-2.5 px-3 text-green-400">In Stock</td></tr>
+              <tr class="border-b border-white/[0.03]"><td class="py-2.5 px-3 text-text-secondary">Remy Martin VSOP</td><td class="py-2.5 px-3 text-text-secondary">Cognac</td><td class="py-2.5 px-3 text-text-secondary">750ml</td><td class="py-2.5 px-3"><span class="text-purple-accent">$45.99</span></td><td class="py-2.5 px-3 text-green-400">In Stock</td></tr>
+              <tr class="border-b border-white/[0.03]"><td class="py-2.5 px-3 text-text-secondary">Patron Silver</td><td class="py-2.5 px-3 text-text-secondary">Tequila</td><td class="py-2.5 px-3 text-text-secondary">750ml</td><td class="py-2.5 px-3"><span class="text-purple-accent">$44.99</span></td><td class="py-2.5 px-3 text-yellow-400">Low Stock</td></tr>
+              <tr class="border-b border-white/[0.03]"><td class="py-2.5 px-3 text-text-secondary">Jack Daniel's</td><td class="py-2.5 px-3 text-text-secondary">Whiskey</td><td class="py-2.5 px-3 text-text-secondary">1L</td><td class="py-2.5 px-3"><span class="text-purple-accent">$29.99</span></td><td class="py-2.5 px-3 text-green-400">In Stock</td></tr>
+              <tr class="border-b border-white/[0.03]"><td class="py-2.5 px-3 text-text-secondary">Ciroc Summer Colada</td><td class="py-2.5 px-3 text-text-secondary">Vodka</td><td class="py-2.5 px-3 text-text-secondary">750ml</td><td class="py-2.5 px-3"><span class="text-purple-accent">$32.99</span></td><td class="py-2.5 px-3 text-green-400">In Stock</td></tr>
+              <tr><td class="py-2.5 px-3 text-text-secondary">Buchanan's 18yr</td><td class="py-2.5 px-3 text-text-secondary">Whiskey</td><td class="py-2.5 px-3 text-text-secondary">750ml</td><td class="py-2.5 px-3"><span class="text-orange-400">$79.99</span></td><td class="py-2.5 px-3 text-green-400">In Stock</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category badges -->
+    <div class="relative z-10 mt-16 flex items-center justify-center gap-14 opacity-40 reveal">
+      <div class="flex items-center gap-2.5">
+        <div class="w-6 h-6 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-[8px] text-text-dim">T</div>
+        <span class="text-text-secondary text-[13px] font-medium">Tequila</span>
+      </div>
+      <div class="flex items-center gap-2.5">
+        <div class="w-6 h-6 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-[8px] text-text-dim">C</div>
+        <span class="text-text-secondary text-[13px] font-medium">Cognac</span>
+      </div>
+      <div class="flex items-center gap-2.5">
+        <div class="w-6 h-6 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-[8px] text-text-dim">W</div>
+        <span class="text-text-secondary text-[13px] font-medium">Whiskey</span>
+      </div>
+      <div class="flex items-center gap-2.5">
+        <div class="w-6 h-6 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-[8px] text-text-dim">V</div>
+        <span class="text-text-secondary text-[13px] font-medium">Vodka</span>
+      </div>
+    </div>
+
+    <!-- Glowing line -->
+    <div class="absolute bottom-0 left-0 w-full">
+      <div class="hero-line"></div>
+    </div>
+  </section>
+
+  <!-- Hot Items Section -->
+  <section id="hot-items" class="relative py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-4 reveal">
+        <span class="inline-block text-purple-accent text-xs font-semibold uppercase tracking-[0.15em] mb-4 px-3 py-1 rounded-full border border-purple-accent/20 bg-purple-accent/5">What's Moving</span>
+      </div>
+      <h2 class="text-center text-[40px] leading-[48px] tracking-[-0.02em] mb-1 reveal" style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400;">Hot Items</h2>
+      <h2 class="text-center text-[40px] leading-[48px] tracking-[-0.02em] mb-16 reveal" style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400;">This Week</h2>
+
+      <div class="space-y-8">
+        <!-- Hot Item 1 - Hennessy -->
+        <div class="feature-card p-8 grid grid-cols-2 gap-8 items-center reveal">
+          <div>
+            <h3 class="text-xl font-bold mb-2">Hennessy VS</h3>
+            <h3 class="text-xl font-bold mb-4 text-purple-accent">· Best Seller</h3>
+            <p class="text-text-secondary text-sm leading-6 max-w-sm">
+              The classic cognac that needs no introduction. Smooth, versatile, and always in demand. 750ml bottle at an unbeatable price.
+            </p>
+            <p class="mt-4 text-2xl font-bold">$38.99</p>
+          </div>
+          <div class="rounded-xl overflow-hidden border border-border-subtle">
+            <div class="w-full h-[300px] bg-[#08081a] rounded-lg" style="background: linear-gradient(135deg, #0a0a2e 0%, #0d0d24 50%, #08081a 100%);"></div>
+          </div>
+        </div>
+
+        <!-- Hot Item 2 - Casamigos -->
+        <div class="feature-card p-8 grid grid-cols-2 gap-8 items-center reveal">
+          <div class="rounded-xl overflow-hidden border border-border-subtle">
+            <div class="w-full h-[300px] bg-[#08081a] rounded-lg" style="background: linear-gradient(135deg, #0a0a2e 0%, #0d0d24 50%, #08081a 100%);"></div>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-2">Casamigos Reposado</h3>
+            <h3 class="text-xl font-bold mb-4 text-purple-accent">· Fan Favorite</h3>
+            <p class="text-text-secondary text-sm leading-6 max-w-sm">
+              Ultra-smooth reposado with notes of caramel and cocoa. Perfect for sipping or mixing. One of our most requested bottles.
+            </p>
+            <p class="mt-4 text-2xl font-bold">$49.99</p>
+          </div>
+        </div>
+
+        <!-- Hot Item 3 - Don Julio -->
+        <div class="feature-card p-8 grid grid-cols-2 gap-8 items-center reveal">
+          <div>
+            <h3 class="text-xl font-bold mb-2">Don Julio 1942</h3>
+            <h3 class="text-xl font-bold mb-4 text-purple-accent">· Premium Pick</h3>
+            <p class="text-text-secondary text-sm leading-6 max-w-sm">
+              The gold standard of premium tequila. Rich, warm, and luxurious. Celebrate right with the best on the shelf.
+            </p>
+            <p class="mt-4 text-2xl font-bold">$154.99</p>
+          </div>
+          <div class="rounded-xl overflow-hidden border border-border-subtle">
+            <div class="w-full h-[300px] bg-[#08081a] rounded-lg" style="background: linear-gradient(135deg, #0a0a2e 0%, #0d0d24 50%, #08081a 100%);"></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Hot Items -->
-  <section id="hot-items" class="section">
-    <div class="section-header">
-      <p class="section-label">What's Moving</p>
-      <h2>Hot Items</h2>
-      <p class="section-desc">Our most popular picks this week.</p>
-    </div>
-    <div class="product-grid" id="hot-items-grid">
-      <!-- Populated by JS -->
-    </div>
-  </section>
+  <!-- New Listings / Deals combined -->
+  <section id="deals" class="relative py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-4 reveal">
+        <span class="inline-block text-purple-accent text-xs font-semibold uppercase tracking-[0.15em] mb-4 px-3 py-1 rounded-full border border-purple-accent/20 bg-purple-accent/5">Save Big</span>
+      </div>
+      <h2 class="text-center text-[40px] leading-[48px] tracking-[-0.02em] mb-1 reveal" style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400;">Today's Deals</h2>
+      <h2 class="text-center text-[40px] leading-[48px] tracking-[-0.02em] mb-16 reveal" style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400;">& New Arrivals</h2>
 
-  <!-- New Listings -->
-  <section id="new-listings" class="section">
-    <div class="section-header">
-      <p class="section-label">Just Arrived</p>
-      <h2>New Listings</h2>
-      <p class="section-desc">Fresh additions to our shelves.</p>
-    </div>
-    <div class="product-grid" id="new-listings-grid">
-      <!-- Populated by JS -->
-    </div>
-  </section>
-
-  <!-- Deals -->
-  <section id="deals" class="section">
-    <div class="section-header">
-      <p class="section-label">Save Big</p>
-      <h2>Today's Deals</h2>
-      <p class="section-desc">Limited time offers you don't want to miss.</p>
-    </div>
-    <div class="product-grid" id="deals-grid">
-      <!-- Populated by JS -->
+      <!-- Deals table -->
+      <div class="rounded-xl overflow-hidden border border-border-subtle reveal" style="background: #08081a;">
+        <div class="p-6">
+          <table class="w-full text-left text-sm">
+            <thead>
+              <tr class="border-b border-white/5">
+                <th class="py-3 px-4 text-text-dim font-medium text-xs uppercase tracking-wider">Product</th>
+                <th class="py-3 px-4 text-text-dim font-medium text-xs uppercase tracking-wider">Category</th>
+                <th class="py-3 px-4 text-text-dim font-medium text-xs uppercase tracking-wider">Was</th>
+                <th class="py-3 px-4 text-text-dim font-medium text-xs uppercase tracking-wider">Now</th>
+                <th class="py-3 px-4 text-text-dim font-medium text-xs uppercase tracking-wider">Savings</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-white/[0.03]">
+                <td class="py-3 px-4 text-text-secondary font-medium">Amsterdam Vodka 1.75L</td>
+                <td class="py-3 px-4 text-text-secondary">Vodka</td>
+                <td class="py-3 px-4 text-text-dim line-through">$19.99</td>
+                <td class="py-3 px-4 text-green-400 font-bold">$14.99</td>
+                <td class="py-3 px-4"><span class="bg-green-400/10 text-green-400 text-xs font-bold px-2 py-1 rounded-full">25% OFF</span></td>
+              </tr>
+              <tr class="border-b border-white/[0.03]">
+                <td class="py-3 px-4 text-text-secondary font-medium">Patron Silver</td>
+                <td class="py-3 px-4 text-text-secondary">Tequila</td>
+                <td class="py-3 px-4 text-text-dim line-through">$44.99</td>
+                <td class="py-3 px-4 text-green-400 font-bold">$37.99</td>
+                <td class="py-3 px-4"><span class="bg-green-400/10 text-green-400 text-xs font-bold px-2 py-1 rounded-full">15% OFF</span></td>
+              </tr>
+              <tr class="border-b border-white/[0.03]">
+                <td class="py-3 px-4 text-text-secondary font-medium">Jack Daniel's 1L</td>
+                <td class="py-3 px-4 text-text-secondary">Whiskey</td>
+                <td class="py-3 px-4 text-text-dim line-through">$29.99</td>
+                <td class="py-3 px-4 text-green-400 font-bold">$23.99</td>
+                <td class="py-3 px-4"><span class="bg-green-400/10 text-green-400 text-xs font-bold px-2 py-1 rounded-full">20% OFF</span></td>
+              </tr>
+              <tr>
+                <td class="py-3 px-4 text-text-secondary font-medium">Crown Royal</td>
+                <td class="py-3 px-4 text-text-secondary">Whiskey</td>
+                <td class="py-3 px-4 text-text-dim line-through">$27.99</td>
+                <td class="py-3 px-4 text-green-400 font-bold">$22.99</td>
+                <td class="py-3 px-4"><span class="bg-green-400/10 text-green-400 text-xs font-bold px-2 py-1 rounded-full">18% OFF</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Full Inventory -->
-  <section id="inventory" class="section">
-    <div class="section-header">
-      <p class="section-label">Full Selection</p>
-      <h2>Browse Inventory</h2>
-      <p class="section-desc">Search or filter to find exactly what you need.</p>
-    </div>
-    <div class="inventory-controls">
-      <input type="text" id="search-input" placeholder="Search products..." class="search-input" />
-      <div class="filter-buttons" id="filter-buttons">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <!-- Category buttons generated by JS -->
+  <section id="inventory" class="relative py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-4 reveal">
+        <span class="inline-block text-purple-accent text-xs font-semibold uppercase tracking-[0.15em] mb-4 px-3 py-1 rounded-full border border-purple-accent/20 bg-purple-accent/5">Full Selection</span>
       </div>
-    </div>
-    <div class="inventory-table-wrapper">
-      <table class="inventory-table">
-        <thead>
-          <tr>
-            <th>Product</th>
-            <th>Category</th>
-            <th>Size</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody id="inventory-body">
-          <!-- Populated by JS -->
-        </tbody>
-      </table>
+      <h2 class="text-center text-[40px] leading-[48px] tracking-[-0.02em] mb-16 reveal" style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400;">Browse Inventory</h2>
+
+      <!-- Search & Filter -->
+      <div class="flex flex-wrap gap-3 mb-6 reveal">
+        <input type="text" id="search-input" placeholder="Search products..." class="flex-1 min-w-[200px] px-4 py-2.5 bg-surface border border-border-subtle rounded-lg text-text-primary text-sm font-inter outline-none focus:border-purple-accent transition-colors" />
+        <div class="flex gap-2 flex-wrap" id="filter-buttons">
+          <button class="filter-btn active px-4 py-2 rounded-full border border-border-subtle text-sm font-medium transition-all cursor-pointer" data-filter="all" onclick="filterInventory(this)">All</button>
+          <button class="filter-btn px-4 py-2 rounded-full border border-border-subtle text-text-secondary text-sm font-medium transition-all cursor-pointer" data-filter="Cognac" onclick="filterInventory(this)">Cognac</button>
+          <button class="filter-btn px-4 py-2 rounded-full border border-border-subtle text-text-secondary text-sm font-medium transition-all cursor-pointer" data-filter="Tequila" onclick="filterInventory(this)">Tequila</button>
+          <button class="filter-btn px-4 py-2 rounded-full border border-border-subtle text-text-secondary text-sm font-medium transition-all cursor-pointer" data-filter="Whiskey" onclick="filterInventory(this)">Whiskey</button>
+          <button class="filter-btn px-4 py-2 rounded-full border border-border-subtle text-text-secondary text-sm font-medium transition-all cursor-pointer" data-filter="Vodka" onclick="filterInventory(this)">Vodka</button>
+          <button class="filter-btn px-4 py-2 rounded-full border border-border-subtle text-text-secondary text-sm font-medium transition-all cursor-pointer" data-filter="Rum" onclick="filterInventory(this)">Rum</button>
+        </div>
+      </div>
+
+      <!-- Inventory table -->
+      <div class="rounded-xl overflow-hidden border border-border-subtle reveal" style="background: #08081a;">
+        <table class="w-full text-left text-sm">
+          <thead>
+            <tr class="border-b border-white/5">
+              <th class="py-3 px-5 text-text-dim font-medium text-xs uppercase tracking-wider bg-surface">Product</th>
+              <th class="py-3 px-5 text-text-dim font-medium text-xs uppercase tracking-wider bg-surface">Category</th>
+              <th class="py-3 px-5 text-text-dim font-medium text-xs uppercase tracking-wider bg-surface">Size</th>
+              <th class="py-3 px-5 text-text-dim font-medium text-xs uppercase tracking-wider bg-surface">Price</th>
+            </tr>
+          </thead>
+          <tbody id="inventory-body">
+            <!-- Populated by JS -->
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 
-  <!-- Find Us -->
-  <section id="find-us" class="section section-findus">
-    <div class="section-header">
-      <p class="section-label">Visit Us</p>
-      <h2>Find Us</h2>
+  <!-- FAQ Section -->
+  <section class="relative py-24 px-6">
+    <div class="max-w-2xl mx-auto">
+      <div class="text-center mb-4 reveal">
+        <span class="inline-block text-purple-accent text-xs font-semibold uppercase tracking-[0.15em] mb-4 px-3 py-1 rounded-full border border-purple-accent/20 bg-purple-accent/5">FAQ</span>
+      </div>
+      <h2 class="text-center text-[36px] leading-[44px] tracking-[-0.02em] mb-2 reveal" style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400;">Frequently asked questions</h2>
+      <p class="text-center text-text-secondary text-sm mb-12 reveal">
+        Have a question? <a href="tel:4145550199" class="text-purple-accent hover:underline">Give us a call</a>
+      </p>
+
+      <div class="border-t border-border-subtle reveal-stagger reveal">
+        <div class="faq-item py-5 px-2 flex items-center justify-between" onclick="toggleFaq(this)">
+          <span class="text-[15px] font-medium">What are your store hours?</span>
+          <svg class="faq-chevron w-4 h-4 text-text-dim transition-transform" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="faq-item py-5 px-2 flex items-center justify-between" onclick="toggleFaq(this)">
+          <span class="text-[15px] font-medium">Do you offer delivery?</span>
+          <svg class="faq-chevron w-4 h-4 text-text-dim transition-transform" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="faq-item py-5 px-2 flex items-center justify-between" onclick="toggleFaq(this)">
+          <span class="text-[15px] font-medium">Can I place a special order for a product you don't carry?</span>
+          <svg class="faq-chevron w-4 h-4 text-text-dim transition-transform" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="faq-item py-5 px-2 flex items-center justify-between" onclick="toggleFaq(this)">
+          <span class="text-[15px] font-medium">Do you price match with other stores?</span>
+          <svg class="faq-chevron w-4 h-4 text-text-dim transition-transform" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="faq-item py-5 px-2 flex items-center justify-between" onclick="toggleFaq(this)">
+          <span class="text-[15px] font-medium">What payment methods do you accept?</span>
+          <svg class="faq-chevron w-4 h-4 text-text-dim transition-transform" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
     </div>
-    <div class="findus-content">
-      <div class="findus-info" id="store-info">
-        <!-- Populated by JS -->
+  </section>
+
+  <!-- Find Us / CTA -->
+  <section id="find-us" class="relative py-24 px-6 overflow-hidden">
+    <div class="cta-glow"></div>
+    <div class="relative z-10 max-w-2xl mx-auto text-center reveal">
+      <!-- Icon with glow ring -->
+      <div class="relative mx-auto mb-8 w-20 h-20">
+        <div class="absolute inset-0 rounded-2xl" style="background: conic-gradient(from 180deg, rgba(147,130,255,0.3), rgba(200,160,255,0.1), rgba(147,130,255,0.3)); filter: blur(12px);"></div>
+        <div class="relative w-full h-full rounded-2xl border border-purple-accent/30 bg-bg flex items-center justify-center" style="box-shadow: 0 0 50px rgba(147, 130, 255, 0.2), inset 0 0 30px rgba(147, 130, 255, 0.05);">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <path d="M16 4C11.58 4 8 7.58 8 12c0 6 8 16 8 16s8-10 8-16c0-4.42-3.58-8-8-8zm0 11a3 3 0 110-6 3 3 0 010 6z" stroke="url(#pinGrad)" stroke-width="1.5" fill="none"/>
+            <defs><linearGradient id="pinGrad" x1="8" y1="4" x2="24" y2="28"><stop stop-color="#b8a4ff"/><stop offset="1" stop-color="#7c6adf"/></linearGradient></defs>
+          </svg>
+        </div>
       </div>
-      <div class="findus-map">
-        <iframe
-          id="store-map"
-          src=""
-          width="100%"
-          height="400"
-          style="border:0; border-radius: 16px;"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-      </div>
+      <h2 class="text-[40px] font-bold leading-[48px] tracking-[-0.02em] mb-4">
+        Come Through. We're Open.
+      </h2>
+      <p class="text-text-secondary text-base leading-7 mb-2">
+        6859 N Teutonia Ave, Milwaukee, WI
+      </p>
+      <p class="text-text-secondary text-base leading-7 mb-8">
+        Mon–Thu 9am–11pm &middot; Fri–Sat 9am–12am &middot; Sun 10am–10pm
+      </p>
+      <a href="https://maps.google.com/?q=6859+N+Teutonia+Ave+Milwaukee+WI" target="_blank" class="inline-flex items-center gap-2 bg-white text-bg text-sm font-semibold px-6 py-3 rounded-lg hover:bg-white/90 transition-colors">
+        Get Directions
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 12l4-4-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-content">
-      <a href="#" class="nav-logo">JP<span>Food & Liquor</span></a>
-      <p class="footer-copy">&copy; 2026 JP Food & Liquor. All rights reserved.</p>
+  <footer class="border-t border-border-subtle py-8 px-8">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-6 h-6 rounded-md bg-purple-accent/20 flex items-center justify-center">
+          <span class="text-purple-accent text-[8px] font-bold">JP</span>
+        </div>
+        <span class="text-white font-semibold text-sm">JP Food & Liquor</span>
+      </div>
+      <p class="text-text-dim text-xs">&copy; 2026 JP Food & Liquor. All rights reserved.</p>
+      <div class="flex items-center gap-2">
+        <span class="text-text-dim text-xs">Get in touch</span>
+        <a href="tel:4145550199" class="text-purple-accent text-xs hover:underline">(414) 555-0199</a>
+      </div>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    // ===== Smooth scroll for all anchor links =====
+    document.addEventListener('click', function(e) {
+      const anchor = e.target.closest('a[href^="#"]');
+      if (!anchor) return;
+      const targetId = anchor.getAttribute('href');
+      if (targetId === '#') return;
+      const target = document.querySelector(targetId);
+      if (!target) return;
+      e.preventDefault();
+      const navHeight = 100; // navbar + category bar
+      const targetPosition = target.getBoundingClientRect().top + window.scrollY - navHeight;
+      window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+    });
+
+    // ===== Scroll reveal with IntersectionObserver =====
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ===== Quick filter from dropdown menu =====
+    function quickFilter(category, search) {
+      // Set the filter button active
+      activeFilter = category;
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.classList.remove('active');
+        if (b.dataset.filter === category) b.classList.add('active');
+      });
+      // Set the search input if a specific product was chosen
+      const searchInput = document.getElementById('search-input');
+      searchInput.value = search || '';
+      applyFilters();
+    }
+
+    // Inventory data — kept separate for easy updates
+    const inventory = [
+      { name: "Hennessy VS", category: "Cognac", size: "750ml", price: 38.99 },
+      { name: "Hennessy VSOP", category: "Cognac", size: "750ml", price: 54.99 },
+      { name: "Remy Martin VSOP", category: "Cognac", size: "750ml", price: 45.99 },
+      { name: "Dusse VSOP", category: "Cognac", size: "750ml", price: 54.99 },
+      { name: "Casamigos Blanco", category: "Tequila", size: "750ml", price: 44.99 },
+      { name: "Casamigos Reposado", category: "Tequila", size: "750ml", price: 49.99 },
+      { name: "Don Julio 1942", category: "Tequila", size: "750ml", price: 154.99 },
+      { name: "Patron Silver", category: "Tequila", size: "750ml", price: 44.99 },
+      { name: "Clase Azul Reposado", category: "Tequila", size: "750ml", price: 169.99 },
+      { name: "Jack Daniel's", category: "Whiskey", size: "1L", price: 29.99 },
+      { name: "Buchanan's 18yr", category: "Whiskey", size: "750ml", price: 79.99 },
+      { name: "Crown Royal", category: "Whiskey", size: "750ml", price: 27.99 },
+      { name: "Ciroc", category: "Vodka", size: "750ml", price: 29.99 },
+      { name: "Ciroc Summer Colada", category: "Vodka", size: "750ml", price: 32.99 },
+      { name: "Amsterdam Vodka", category: "Vodka", size: "1.75L", price: 14.99 },
+      { name: "Grey Goose", category: "Vodka", size: "750ml", price: 29.99 },
+      { name: "Tito's Handmade", category: "Vodka", size: "1.75L", price: 32.99 },
+      { name: "Bacardi Superior", category: "Rum", size: "750ml", price: 14.99 },
+      { name: "Captain Morgan", category: "Rum", size: "1.75L", price: 24.99 },
+      { name: "Malibu Coconut", category: "Rum", size: "750ml", price: 18.99 },
+    ];
+
+    let activeFilter = 'all';
+
+    function renderInventory(items) {
+      const tbody = document.getElementById('inventory-body');
+      if (items.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="4" class="py-8 px-5 text-center text-text-dim">No products found.</td></tr>';
+        return;
+      }
+      tbody.innerHTML = items.map(item => `
+        <tr class="border-b border-white/[0.03] hover:bg-white/[0.02] transition-colors">
+          <td class="py-3 px-5 text-text-secondary font-medium">${item.name}</td>
+          <td class="py-3 px-5 text-text-dim">${item.category}</td>
+          <td class="py-3 px-5 text-text-secondary">${item.size}</td>
+          <td class="py-3 px-5 text-purple-accent font-bold">$${item.price.toFixed(2)}</td>
+        </tr>
+      `).join('');
+    }
+
+    function filterInventory(btn) {
+      // Update active button styles
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.classList.remove('active');
+        b.style.background = '';
+        b.style.color = '';
+        b.style.borderColor = '';
+      });
+      btn.classList.add('active');
+
+      activeFilter = btn.dataset.filter;
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const query = document.getElementById('search-input').value.toLowerCase().trim();
+      const filtered = inventory.filter(item => {
+        const matchesFilter = activeFilter === 'all' || item.category === activeFilter;
+        const matchesSearch = item.name.toLowerCase().includes(query) || item.category.toLowerCase().includes(query);
+        return matchesFilter && matchesSearch;
+      });
+      renderInventory(filtered);
+    }
+
+    // Search listener
+    document.getElementById('search-input').addEventListener('input', applyFilters);
+
+    // Initial render
+    renderInventory(inventory);
+
+    // FAQ toggle
+    function toggleFaq(el) {
+      const chevron = el.querySelector('.faq-chevron');
+      const isOpen = chevron.style.transform === 'rotate(180deg)';
+      document.querySelectorAll('.faq-chevron').forEach(c => c.style.transform = '');
+      if (!isOpen) {
+        chevron.style.transform = 'rotate(180deg)';
+      }
+    }
+  </script>
+
+  <style>
+    .filter-btn.active {
+      background: #9382ff !important;
+      color: #030014 !important;
+      border-color: #9382ff !important;
+      font-weight: 700;
+    }
+  </style>
 </body>
 </html>
