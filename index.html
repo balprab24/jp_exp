@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JP Food & Liquor</title>
+  <title>Express Liquor & Tobacco</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@1&display=swap"
+    rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {
@@ -37,14 +40,26 @@
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
+
     ::selection {
       background: rgba(147, 130, 255, 0.5);
       color: #fff;
       -webkit-text-fill-color: #fff;
     }
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.05); border-radius: 99px; }
-    ::-webkit-scrollbar-track { background: inherit; }
+
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 99px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: inherit;
+    }
+
     body {
       font-feature-settings: "ss01" on, "cv10" on, "calt" off, "liga" off;
     }
@@ -64,6 +79,7 @@
       filter: blur(50px);
       pointer-events: none;
     }
+
     /* Warm pink highlight at the center of the aurora */
     .hero-glow::after {
       content: '';
@@ -86,23 +102,25 @@
 
     /* Feature card glow borders */
     .feature-card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
-      border: 1px solid rgba(255,255,255,0.06);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.06);
       border-radius: 16px;
       transition: border-color 0.3s;
     }
+
     .feature-card:hover {
-      border-color: rgba(255,255,255,0.12);
+      border-color: rgba(255, 255, 255, 0.12);
     }
 
     /* FAQ items */
     .faq-item {
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
       cursor: pointer;
       transition: background 0.2s;
     }
+
     .faq-item:hover {
-      background: rgba(255,255,255,0.02);
+      background: rgba(255, 255, 255, 0.02);
     }
 
     /* Bottom CTA glow */
@@ -124,28 +142,50 @@
       transform: translateY(40px);
       transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
+
     .reveal.visible {
       opacity: 1;
       transform: translateY(0);
     }
+
     /* Staggered children — each child delays slightly more */
-    .reveal-stagger > * {
+    .reveal-stagger>* {
       opacity: 0;
       transform: translateY(30px);
       transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .reveal-stagger.visible > *:nth-child(1) { transition-delay: 0s; }
-    .reveal-stagger.visible > *:nth-child(2) { transition-delay: 0.1s; }
-    .reveal-stagger.visible > *:nth-child(3) { transition-delay: 0.2s; }
-    .reveal-stagger.visible > *:nth-child(4) { transition-delay: 0.3s; }
-    .reveal-stagger.visible > *:nth-child(5) { transition-delay: 0.4s; }
-    .reveal-stagger.visible > *:nth-child(6) { transition-delay: 0.5s; }
-    .reveal-stagger.visible > * {
+
+    .reveal-stagger.visible>*:nth-child(1) {
+      transition-delay: 0s;
+    }
+
+    .reveal-stagger.visible>*:nth-child(2) {
+      transition-delay: 0.1s;
+    }
+
+    .reveal-stagger.visible>*:nth-child(3) {
+      transition-delay: 0.2s;
+    }
+
+    .reveal-stagger.visible>*:nth-child(4) {
+      transition-delay: 0.3s;
+    }
+
+    .reveal-stagger.visible>*:nth-child(5) {
+      transition-delay: 0.4s;
+    }
+
+    .reveal-stagger.visible>*:nth-child(6) {
+      transition-delay: 0.5s;
+    }
+
+    .reveal-stagger.visible>* {
       opacity: 1;
       transform: translateY(0);
     }
+
     /* Only apply visible styles when parent has .visible */
-    .reveal-stagger:not(.visible) > * {
+    .reveal-stagger:not(.visible)>* {
       opacity: 0;
       transform: translateY(30px);
     }
@@ -159,11 +199,13 @@
       z-index: 49;
       background: rgba(3, 0, 20, 0.85);
       backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
+
     .cat-item {
       position: relative;
     }
+
     .cat-dropdown {
       position: absolute;
       top: 100%;
@@ -171,20 +213,22 @@
       transform: translateX(-50%) translateY(8px);
       min-width: 200px;
       background: #0c0c22;
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 12px;
       padding: 8px 0;
       opacity: 0;
       visibility: hidden;
       transition: opacity 0.25s, transform 0.25s, visibility 0.25s;
       transform: translateX(-50%) translateY(16px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
     }
+
     .cat-item:hover .cat-dropdown {
       opacity: 1;
       visibility: visible;
       transform: translateX(-50%) translateY(8px);
     }
+
     .cat-dropdown a {
       display: block;
       padding: 8px 20px;
@@ -193,33 +237,219 @@
       text-decoration: none;
       transition: background 0.15s, color 0.15s;
     }
+
     .cat-dropdown a:hover {
       background: rgba(147, 130, 255, 0.1);
       color: #fff;
     }
+
+    /* ===== Category carousel ===== */
+    .carousel-mask {
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .carousel-shell {
+      position: relative;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      background: #08081a;
+      padding: 6rem 0;
+      box-shadow:
+        0 0 80px rgba(120, 60, 255, 0.2),
+        0 0 160px rgba(100, 40, 200, 0.08);
+      overflow: hidden;
+    }
+
+    /* Aurora glow ON the rectangle */
+    .carousel-shell::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 30% 70% at 25% 50%, rgba(147, 130, 255, 0.28), transparent 60%),
+        radial-gradient(ellipse 35% 75% at 75% 50%, rgba(180, 100, 255, 0.20), transparent 60%),
+        radial-gradient(ellipse 45% 60% at 50% 50%, rgba(255, 130, 220, 0.12), transparent 70%);
+      pointer-events: none;
+      z-index: 1;
+      filter: blur(20px);
+    }
+
+    .carousel-shell::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 30% at 50% 50%, rgba(200, 180, 255, 0.10), transparent 70%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 3rem;
+      align-items: center;
+      width: max-content;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 2;
+      will-change: transform;
+    }
+
+    .cat-circle {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .cat-orb {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.92);
+      background:
+        radial-gradient(circle at 30% 28%, rgba(220, 200, 255, 0.22), transparent 60%),
+        linear-gradient(135deg, rgba(147, 130, 255, 0.22), rgba(120, 60, 255, 0.05));
+      border: 1px solid rgba(147, 130, 255, 0.28);
+      box-shadow:
+        0 0 40px rgba(147, 130, 255, 0.35),
+        0 0 90px rgba(120, 60, 255, 0.15),
+        inset 0 0 28px rgba(147, 130, 255, 0.10);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.4s,
+        border-color 0.4s;
+    }
+
+    .cat-orb svg {
+      width: 72px;
+      height: 72px;
+    }
+
+    .cat-circle:hover .cat-orb {
+      transform: translateY(-6px) scale(1.05);
+      border-color: rgba(200, 180, 255, 0.6);
+      box-shadow:
+        0 0 60px rgba(147, 130, 255, 0.6),
+        0 0 130px rgba(120, 60, 255, 0.35),
+        inset 0 0 30px rgba(200, 180, 255, 0.2);
+    }
+
+    .cat-orb-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(239, 237, 253, 0.8);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .cat-circle:hover .cat-orb-label {
+      color: #fff;
+    }
+
+    /* Edge fades so circles dissolve into the bg */
+    .carousel-fade {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 160px;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .carousel-fade.left {
+      left: 0;
+      background: linear-gradient(to right, #030014 0%, rgba(8, 8, 26, 0) 100%);
+    }
+
+    .carousel-fade.right {
+      right: 0;
+      background: linear-gradient(to left, #030014 0%, rgba(8, 8, 26, 0) 100%);
+    }
   </style>
 </head>
+
 <body class="bg-bg text-text-primary font-inter overflow-x-hidden">
 
   <!-- Navbar -->
-  <nav class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-8 py-4" style="background: rgba(3, 0, 20, 0.7); backdrop-filter: blur(20px);">
-    <div class="flex items-center gap-2">
+  <nav class="fixed top-0 left-0 w-full z-50 grid grid-cols-3 items-center px-6 py-3 gap-4"
+    style="background: rgba(3, 0, 20, 0.7); backdrop-filter: blur(20px);">
+
+    <!-- Left: Logo -->
+    <div class="flex items-center gap-2 justify-self-start">
       <div class="w-7 h-7 rounded-lg bg-purple-accent/20 flex items-center justify-center">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <rect width="16" height="16" rx="3" fill="#9382ff" fill-opacity="0.3"/>
-          <text x="3" y="12" font-size="10" font-weight="bold" fill="#9382ff" font-family="Inter, sans-serif">JP</text>
+          <rect width="16" height="16" rx="3" fill="#9382ff" fill-opacity="0.3" />
+          <text x="3" y="12" font-size="10" font-weight="bold" fill="#9382ff" font-family="Inter, sans-serif">EL</text>
         </svg>
       </div>
-      <span class="text-white font-semibold text-lg tracking-tight">JP <span class="text-text-secondary font-normal text-sm">Food & Liquor</span></span>
+      <span class="text-white font-semibold text-lg tracking-tight whitespace-nowrap">Express <span
+          class="text-text-secondary font-normal text-sm">Liquor & Tobacco</span></span>
     </div>
-    <div class="flex items-center gap-8">
-      <a href="#hot-items" class="text-text-secondary text-sm font-medium hover:text-white transition-colors">Hot Items</a>
-      <a href="#new-listings" class="text-text-secondary text-sm font-medium hover:text-white transition-colors">New Arrivals</a>
+
+    <!-- Center: Primary nav links (sit directly above the category bar) -->
+    <div class="flex items-center gap-8 justify-self-center">
+      <a href="#hot-items" class="text-text-secondary text-sm font-medium hover:text-white transition-colors">Hot
+        Items</a>
       <a href="#deals" class="text-text-secondary text-sm font-medium hover:text-white transition-colors">Deals</a>
-      <a href="#inventory" class="text-text-secondary text-sm font-medium hover:text-white transition-colors">Inventory</a>
+      <a href="#inventory"
+        class="text-text-secondary text-sm font-medium hover:text-white transition-colors">Inventory</a>
     </div>
-    <div class="flex items-center gap-4">
-      <a href="#find-us" class="bg-white text-bg text-sm font-semibold px-4 py-2 rounded-lg hover:bg-white/90 transition-colors">Find Us</a>
+
+    <!-- Right: Categories dropdown | Live search | Find Us -->
+    <div class="flex items-center gap-2 justify-self-end">
+
+      <!-- Categories quick-jump dropdown -->
+      <div class="cat-item">
+        <button
+          class="px-3 py-2 text-sm font-medium text-text-secondary hover:text-white transition-colors rounded-lg hover:bg-white/5 flex items-center gap-1.5 whitespace-nowrap">
+          Categories
+          <svg class="w-3 h-3 opacity-60" viewBox="0 0 12 12" fill="none">
+            <path d="M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
+        <div class="cat-dropdown">
+          <a href="#inventory" onclick="quickFilter('Cognac')">Cognac</a>
+          <a href="#inventory" onclick="quickFilter('Tequila')">Tequila</a>
+          <a href="#inventory" onclick="quickFilter('Whiskey')">Whiskey</a>
+          <a href="#inventory" onclick="quickFilter('Bourbon')">Bourbon</a>
+          <a href="#inventory" onclick="quickFilter('Vodka')">Vodka</a>
+          <a href="#inventory" onclick="quickFilter('Rum')">Rum</a>
+          <a href="#inventory" onclick="quickFilter('Wine')">Wine</a>
+          <a href="#inventory" onclick="quickFilter('Champagne')">Champagne</a>
+          <a href="#inventory" onclick="quickFilter('Gin')">Gin</a>
+          <a href="#inventory" onclick="quickFilter('Beer')">Beer</a>
+          <a href="#inventory" onclick="quickFilter('Smokes')">Smokes &amp; Cigars</a>
+        </div>
+      </div>
+
+      <!-- Live search with autocomplete -->
+      <div id="nav-search-wrap" class="relative">
+        <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-dim pointer-events-none"
+          viewBox="0 0 16 16" fill="none">
+          <circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5" />
+          <path d="M11 11 L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+        </svg>
+        <input id="nav-search" type="text" placeholder="Search products..." autocomplete="off"
+          class="w-52 pl-9 pr-3 py-2 bg-white/5 border border-white/10 rounded-lg text-sm text-white placeholder:text-text-dim focus:border-purple-accent outline-none transition-colors" />
+        <div id="nav-search-results"
+          class="absolute top-full right-0 mt-2 w-80 max-h-80 overflow-y-auto rounded-xl border border-white/10 hidden"
+          style="background: #0c0c22; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5); z-index: 60;"></div>
+      </div>
+
+      <!-- Find Us -->
+      <a href="#find-us"
+        class="bg-white text-bg text-sm font-semibold px-4 py-2 rounded-lg hover:bg-white/90 transition-colors whitespace-nowrap">Find
+        Us</a>
     </div>
   </nav>
 
@@ -227,9 +457,13 @@
   <div class="category-bar">
     <div class="max-w-6xl mx-auto flex items-center justify-center gap-1 px-4 py-2">
       <div class="cat-item">
-        <button class="px-4 py-2 text-sm font-medium text-text-secondary hover:text-white transition-colors rounded-lg hover:bg-white/5 flex items-center gap-1.5">
+        <button
+          class="px-4 py-2 text-sm font-medium text-text-secondary hover:text-white transition-colors rounded-lg hover:bg-white/5 flex items-center gap-1.5">
           Cognac
-          <svg class="w-3 h-3 opacity-50" viewBox="0 0 12 12" fill="none"><path d="M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="w-3 h-3 opacity-50" viewBox="0 0 12 12" fill="none">
+            <path d="M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
         </button>
         <div class="cat-dropdown">
           <a href="#inventory" onclick="quickFilter('Cognac')">View All Cognac</a>
@@ -239,9 +473,13 @@
         </div>
       </div>
       <div class="cat-item">
-        <button class="px-4 py-2 text-sm font-medium text-text-secondary hover:text-white transition-colors rounded-lg hover:bg-white/5 flex items-center gap-1.5">
+        <button
+          class="px-4 py-2 text-sm font-medium text-text-secondary hover:text-white transition-colors rounded-lg hover:bg-white/5 flex items-center gap-1.5">
           Tequila
-          <svg class="w-3 h-3 opacity-50" viewBox="0 0 12 12" fill="none"><path d="M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="w-3 h-3 opacity-50" viewBox="0 0 12 12" fill="none">
+            <path d="M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
         </button>
         <div class="cat-dropdown">
           <a href="#inventory" onclick="quickFilter('Tequila')">View All Tequila</a>
@@ -252,9 +490,13 @@
         </div>
       </div>
       <div class="cat-item">
-        <button class="px-4 py-2 text-sm font-medium text-text-secondary hover:text-white transition-colors rounded-lg hover:bg-white/5 flex items-center gap-1.5">
+        <button
+          class="px-4 py-2 text-sm font-medium text-text-secondary hover:text-white transition-colors rounded-lg hover:bg-white/5 flex items-center gap-1.5">
           Whiskey
-          <svg class="w-3 h-3 opacity-50" viewBox="0 0 12 12" fill="none"><path d="M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="w-3 h-3 opacity-50" viewBox="0 0 12 12" fill="none">
+            <path d="M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
         </button>
         <div class="cat-dropdown">
           <a href="#inventory" onclick="quickFilter('Whiskey')">View All Whiskey</a>
@@ -264,9 +506,13 @@
         </div>
       </div>
       <div class="cat-item">
-        <button class="px-4 py-2 text-sm font-medium text-text-secondary hover:text-white transition-colors rounded-lg hover:bg-white/5 flex items-center gap-1.5">
+        <button
+          class="px-4 py-2 text-sm font-medium text-text-secondary hover:text-white transition-colors rounded-lg hover:bg-white/5 flex items-center gap-1.5">
           Vodka
-          <svg class="w-3 h-3 opacity-50" viewBox="0 0 12 12" fill="none"><path d="M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="w-3 h-3 opacity-50" viewBox="0 0 12 12" fill="none">
+            <path d="M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
         </button>
         <div class="cat-dropdown">
           <a href="#inventory" onclick="quickFilter('Vodka')">View All Vodka</a>
@@ -277,9 +523,13 @@
         </div>
       </div>
       <div class="cat-item">
-        <button class="px-4 py-2 text-sm font-medium text-text-secondary hover:text-white transition-colors rounded-lg hover:bg-white/5 flex items-center gap-1.5">
+        <button
+          class="px-4 py-2 text-sm font-medium text-text-secondary hover:text-white transition-colors rounded-lg hover:bg-white/5 flex items-center gap-1.5">
           Rum
-          <svg class="w-3 h-3 opacity-50" viewBox="0 0 12 12" fill="none"><path d="M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="w-3 h-3 opacity-50" viewBox="0 0 12 12" fill="none">
+            <path d="M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
         </button>
         <div class="cat-dropdown">
           <a href="#inventory" onclick="quickFilter('Rum')">View All Rum</a>
@@ -288,90 +538,392 @@
           <a href="#inventory" onclick="quickFilter('Rum', 'Malibu')">Malibu</a>
         </div>
       </div>
-      <a href="#deals" class="px-4 py-2 text-sm font-semibold text-purple-accent hover:text-white transition-colors rounded-lg hover:bg-purple-accent/10 flex items-center gap-1.5">
+      <div class="cat-item">
+        <button
+          class="px-4 py-2 text-sm font-medium text-text-secondary hover:text-white transition-colors rounded-lg hover:bg-white/5 flex items-center gap-1.5">
+          Smokes
+          <svg class="w-3 h-3 opacity-50" viewBox="0 0 12 12" fill="none">
+            <path d="M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
+        <div class="cat-dropdown">
+          <a href="#inventory" onclick="quickFilter('Smokes')">View All Smokes</a>
+          <a href="#inventory" onclick="quickFilter('Smokes', 'Newport')">Newport</a>
+          <a href="#inventory" onclick="quickFilter('Smokes', 'Marlboro')">Marlboro</a>
+          <a href="#inventory" onclick="quickFilter('Smokes', 'Black')">Black &amp; Mild</a>
+          <a href="#inventory" onclick="quickFilter('Smokes', 'Swisher')">Swisher Sweets</a>
+          <a href="#inventory" onclick="quickFilter('Smokes', 'Backwoods')">Backwoods</a>
+        </div>
+      </div>
+      <a href="#deals"
+        class="px-4 py-2 text-sm font-semibold text-purple-accent hover:text-white transition-colors rounded-lg hover:bg-purple-accent/10 flex items-center gap-1.5">
         Best Deals
-        <svg class="w-3 h-3" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg class="w-3 h-3" viewBox="0 0 12 12" fill="none">
+          <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
       </a>
     </div>
   </div>
 
   <!-- Hero -->
-  <section class="relative min-h-screen flex flex-col items-center justify-center text-center pt-32 pb-16 px-6 overflow-hidden">
+  <section
+    class="relative min-h-screen flex flex-col items-center justify-center text-center pt-32 pb-16 px-6 overflow-hidden">
     <div class="hero-glow"></div>
 
     <div class="relative z-10 max-w-3xl mx-auto reveal">
       <h1 class="text-[56px] font-bold leading-[64px] tracking-[-0.02em] mb-5">
-        JP Food <span class="text-purple-accent">&</span> Liquor
+        Express Liquor <span class="text-purple-accent">&</span> Tobacco
       </h1>
       <p class="text-text-secondary text-lg leading-7 max-w-xl mx-auto mb-8">
-        Premium spirits, everyday prices. Your neighborhood spot for the best selection of liquor, beer, wine, and more in Milwaukee.
+        Premium spirits, everyday prices. Your neighborhood spot for the best selection of liquor, beer, wine, and more
+        in Milwaukee.
       </p>
       <div class="flex items-center justify-center gap-4">
-        <a href="#deals" class="inline-flex items-center gap-2 bg-white text-bg text-sm font-semibold px-6 py-3 rounded-lg hover:bg-white/90 transition-colors">
+        <a href="#deals"
+          class="inline-flex items-center gap-2 bg-white text-bg text-sm font-semibold px-6 py-3 rounded-lg hover:bg-white/90 transition-colors">
           See Today's Deals
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 12l4-4-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M6 12l4-4-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
         </a>
-        <a href="#inventory" class="inline-flex items-center gap-2 text-text-secondary text-sm font-semibold px-6 py-3 rounded-lg border border-border-subtle hover:border-border-hover transition-colors">
+        <a href="#inventory"
+          class="inline-flex items-center gap-2 text-text-secondary text-sm font-semibold px-6 py-3 rounded-lg border border-border-subtle hover:border-border-hover transition-colors">
           Browse Inventory
         </a>
       </div>
     </div>
 
-    <!-- Featured products preview table -->
-    <div class="relative z-10 mt-16 w-full max-w-4xl mx-auto reveal">
-      <div class="rounded-xl overflow-hidden border border-border-subtle" style="box-shadow: 0 0 80px rgba(120, 60, 255, 0.2), 0 0 160px rgba(100, 40, 200, 0.08); background: #08081a;">
-        <div class="p-4">
-          <div class="flex items-center gap-3 mb-4 px-2">
-            <div class="w-2 h-2 rounded-full bg-red-500/60"></div>
-            <div class="w-2 h-2 rounded-full bg-yellow-500/60"></div>
-            <div class="w-2 h-2 rounded-full bg-green-500/60"></div>
-            <div class="flex-1"></div>
-            <div class="h-6 px-3 rounded bg-white/5 flex items-center">
-              <span class="text-text-dim text-[10px]">Featured This Week</span>
+    <!-- Category carousel — full-width, slowly looping right→left -->
+    <div class="relative z-10 mt-16 reveal carousel-mask">
+      <div class="carousel-shell">
+        <div class="carousel-fade left"></div>
+        <div class="carousel-fade right"></div>
+        <div class="carousel-track">
+          <!-- Set A -->
+          <a href="#inventory" onclick="quickFilter('Tequila')" class="cat-circle">
+            <div class="cat-orb">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M24 42 L24 26" />
+                <path d="M24 26 L13 14" />
+                <path d="M24 26 L35 14" />
+                <path d="M24 26 L19 8" />
+                <path d="M24 26 L29 8" />
+                <path d="M24 26 L8 22" />
+                <path d="M24 26 L40 22" />
+                <path d="M24 26 L11 30" />
+                <path d="M24 26 L37 30" />
+              </svg>
             </div>
-          </div>
-          <table class="w-full text-left text-xs">
-            <thead>
-              <tr class="border-b border-white/5">
-                <th class="py-2.5 px-3 text-text-dim font-medium">Product</th>
-                <th class="py-2.5 px-3 text-text-dim font-medium">Category</th>
-                <th class="py-2.5 px-3 text-text-dim font-medium">Size</th>
-                <th class="py-2.5 px-3 text-text-dim font-medium">Price</th>
-                <th class="py-2.5 px-3 text-text-dim font-medium">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="border-b border-white/[0.03]"><td class="py-2.5 px-3 text-text-secondary">Hennessy VS</td><td class="py-2.5 px-3 text-text-secondary">Cognac</td><td class="py-2.5 px-3 text-text-secondary">750ml</td><td class="py-2.5 px-3"><span class="text-purple-accent">$38.99</span></td><td class="py-2.5 px-3 text-green-400">In Stock</td></tr>
-              <tr class="border-b border-white/[0.03]"><td class="py-2.5 px-3 text-text-secondary">Casamigos Reposado</td><td class="py-2.5 px-3 text-text-secondary">Tequila</td><td class="py-2.5 px-3 text-text-secondary">750ml</td><td class="py-2.5 px-3"><span class="text-purple-accent">$49.99</span></td><td class="py-2.5 px-3 text-green-400">In Stock</td></tr>
-              <tr class="border-b border-white/[0.03]"><td class="py-2.5 px-3 text-text-secondary">Don Julio 1942</td><td class="py-2.5 px-3 text-text-secondary">Tequila</td><td class="py-2.5 px-3 text-text-secondary">750ml</td><td class="py-2.5 px-3"><span class="text-orange-400">$154.99</span></td><td class="py-2.5 px-3 text-green-400">In Stock</td></tr>
-              <tr class="border-b border-white/[0.03]"><td class="py-2.5 px-3 text-text-secondary">Remy Martin VSOP</td><td class="py-2.5 px-3 text-text-secondary">Cognac</td><td class="py-2.5 px-3 text-text-secondary">750ml</td><td class="py-2.5 px-3"><span class="text-purple-accent">$45.99</span></td><td class="py-2.5 px-3 text-green-400">In Stock</td></tr>
-              <tr class="border-b border-white/[0.03]"><td class="py-2.5 px-3 text-text-secondary">Patron Silver</td><td class="py-2.5 px-3 text-text-secondary">Tequila</td><td class="py-2.5 px-3 text-text-secondary">750ml</td><td class="py-2.5 px-3"><span class="text-purple-accent">$44.99</span></td><td class="py-2.5 px-3 text-yellow-400">Low Stock</td></tr>
-              <tr class="border-b border-white/[0.03]"><td class="py-2.5 px-3 text-text-secondary">Jack Daniel's</td><td class="py-2.5 px-3 text-text-secondary">Whiskey</td><td class="py-2.5 px-3 text-text-secondary">1L</td><td class="py-2.5 px-3"><span class="text-purple-accent">$29.99</span></td><td class="py-2.5 px-3 text-green-400">In Stock</td></tr>
-              <tr class="border-b border-white/[0.03]"><td class="py-2.5 px-3 text-text-secondary">Ciroc Summer Colada</td><td class="py-2.5 px-3 text-text-secondary">Vodka</td><td class="py-2.5 px-3 text-text-secondary">750ml</td><td class="py-2.5 px-3"><span class="text-purple-accent">$32.99</span></td><td class="py-2.5 px-3 text-green-400">In Stock</td></tr>
-              <tr><td class="py-2.5 px-3 text-text-secondary">Buchanan's 18yr</td><td class="py-2.5 px-3 text-text-secondary">Whiskey</td><td class="py-2.5 px-3 text-text-secondary">750ml</td><td class="py-2.5 px-3"><span class="text-orange-400">$79.99</span></td><td class="py-2.5 px-3 text-green-400">In Stock</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+            <span class="cat-orb-label">Tequila</span>
+          </a>
+          <a href="#inventory" onclick="quickFilter('Wine')" class="cat-circle">
+            <div class="cat-orb">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M16 6 L32 6 L31 20 C31 25 28 29 24 29 C20 29 17 25 17 20 Z" />
+                <path d="M17 13 C20 15 24 13 27 14 C29 14 31 13 31 13" />
+                <path d="M24 29 L24 40" />
+                <path d="M18 41 L30 41" />
+              </svg>
+            </div>
+            <span class="cat-orb-label">Wine</span>
+          </a>
+          <a href="#inventory" onclick="quickFilter('Whiskey', 'Bourbon')" class="cat-circle">
+            <div class="cat-orb">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round">
+                <ellipse cx="24" cy="24" rx="13" ry="18" />
+                <path d="M11 16 L37 16" />
+                <path d="M11 32 L37 32" />
+                <path d="M24 6 L24 42" />
+              </svg>
+            </div>
+            <span class="cat-orb-label">Bourbon</span>
+          </a>
+          <a href="#inventory" onclick="quickFilter('Whiskey')" class="cat-circle">
+            <div class="cat-orb">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M14 12 L34 12 L32 40 L16 40 Z" />
+                <path d="M14 22 L34 22" />
+                <circle cx="20" cy="30" r="2.5" />
+                <circle cx="27" cy="33" r="2" />
+              </svg>
+            </div>
+            <span class="cat-orb-label">Whiskey</span>
+          </a>
+          <a href="#inventory" onclick="quickFilter('Vodka')" class="cat-circle">
+            <div class="cat-orb">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M24 6 L24 42" />
+                <path d="M9 14 L39 34" />
+                <path d="M9 34 L39 14" />
+                <path d="M20 10 L24 14 L28 10" />
+                <path d="M20 38 L24 34 L28 38" />
+                <path d="M11 18 L15 16 L13 12" />
+                <path d="M37 18 L33 16 L35 12" />
+                <path d="M11 30 L15 32 L13 36" />
+                <path d="M37 30 L33 32 L35 36" />
+              </svg>
+            </div>
+            <span class="cat-orb-label">Vodka</span>
+          </a>
+          <a href="#inventory" onclick="quickFilter('Cognac')" class="cat-circle">
+            <div class="cat-orb">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M13 13 C13 24 18 32 24 32 C30 32 35 24 35 13 Z" />
+                <path d="M14 20 C18 22 22 20 24 21 C28 22 32 20 34 19" />
+                <path d="M24 32 L24 40" />
+                <path d="M18 41 L30 41" />
+              </svg>
+            </div>
+            <span class="cat-orb-label">Cognac</span>
+          </a>
+          <a href="#inventory" onclick="quickFilter('Rum')" class="cat-circle">
+            <div class="cat-orb">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="24" cy="9" r="3" />
+                <path d="M24 12 L24 40" />
+                <path d="M18 18 L30 18" />
+                <path d="M12 30 C12 36 17 41 24 41 C31 41 36 36 36 30" />
+                <path d="M12 30 L8 28 L8 33" />
+                <path d="M36 30 L40 28 L40 33" />
+              </svg>
+            </div>
+            <span class="cat-orb-label">Rum</span>
+          </a>
+          <a href="#inventory" onclick="quickFilter('Champagne')" class="cat-circle">
+            <div class="cat-orb">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M19 6 L29 6 L28 28 C28 31 26 33 24 33 C22 33 20 31 20 28 Z" />
+                <path d="M24 33 L24 41" />
+                <path d="M19 42 L29 42" />
+                <circle cx="22" cy="14" r="0.9" fill="currentColor" />
+                <circle cx="26" cy="18" r="0.9" fill="currentColor" />
+                <circle cx="23" cy="22" r="0.9" fill="currentColor" />
+                <circle cx="25" cy="10" r="0.7" fill="currentColor" />
+              </svg>
+            </div>
+            <span class="cat-orb-label">Champagne</span>
+          </a>
+          <a href="#inventory" onclick="quickFilter('Gin')" class="cat-circle">
+            <div class="cat-orb">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M24 8 L24 42" />
+                <path d="M24 14 C20 14 17 16 16 19" />
+                <path d="M24 14 C28 14 31 16 32 19" />
+                <path d="M24 24 C19 24 15 26 14 30" />
+                <path d="M24 24 C29 24 33 26 34 30" />
+                <circle cx="16" cy="20" r="1.5" fill="currentColor" />
+                <circle cx="32" cy="20" r="1.5" fill="currentColor" />
+                <circle cx="14" cy="31" r="1.5" fill="currentColor" />
+                <circle cx="34" cy="31" r="1.5" fill="currentColor" />
+              </svg>
+            </div>
+            <span class="cat-orb-label">Gin</span>
+          </a>
+          <a href="#inventory" onclick="quickFilter('Beer')" class="cat-circle">
+            <div class="cat-orb">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M14 14 L32 14 L30 41 L16 41 Z" />
+                <path d="M32 18 L37 18 L37 30 L32 30" />
+                <path d="M14 14 C14 10 17 8 20 10" />
+                <path d="M20 10 C20 7 24 6 26 9" />
+                <path d="M26 9 C28 7 32 8 32 14" />
+                <path d="M19 22 L19 36" />
+                <path d="M24 22 L24 36" />
+                <path d="M28 22 L28 36" />
+              </svg>
+            </div>
+            <span class="cat-orb-label">Beer</span>
+          </a>
+          <a href="#inventory" onclick="quickFilter('Smokes')" class="cat-circle">
+            <div class="cat-orb">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect x="6" y="22" width="28" height="6" rx="3" />
+                <path d="M12 22 L12 28" />
+                <path d="M18 22 L18 28" />
+                <circle cx="37" cy="25" r="2.5" fill="currentColor" />
+                <path d="M39 17 C41 14 40 12 42 9" />
+                <path d="M35 16 C36 13 34 11 36 8" />
+                <path d="M32 15 C33 12 31 10 33 7" />
+              </svg>
+            </div>
+            <span class="cat-orb-label">Smokes</span>
+          </a>
 
-    <!-- Category badges -->
-    <div class="relative z-10 mt-16 flex items-center justify-center gap-14 opacity-40 reveal">
-      <div class="flex items-center gap-2.5">
-        <div class="w-6 h-6 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-[8px] text-text-dim">T</div>
-        <span class="text-text-secondary text-[13px] font-medium">Tequila</span>
-      </div>
-      <div class="flex items-center gap-2.5">
-        <div class="w-6 h-6 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-[8px] text-text-dim">C</div>
-        <span class="text-text-secondary text-[13px] font-medium">Cognac</span>
-      </div>
-      <div class="flex items-center gap-2.5">
-        <div class="w-6 h-6 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-[8px] text-text-dim">W</div>
-        <span class="text-text-secondary text-[13px] font-medium">Whiskey</span>
-      </div>
-      <div class="flex items-center gap-2.5">
-        <div class="w-6 h-6 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-[8px] text-text-dim">V</div>
-        <span class="text-text-secondary text-[13px] font-medium">Vodka</span>
+          <!-- Set B (duplicate for seamless loop) -->
+          <a href="#inventory" onclick="quickFilter('Tequila')" class="cat-circle">
+            <div class="cat-orb">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M24 42 L24 26" />
+                <path d="M24 26 L13 14" />
+                <path d="M24 26 L35 14" />
+                <path d="M24 26 L19 8" />
+                <path d="M24 26 L29 8" />
+                <path d="M24 26 L8 22" />
+                <path d="M24 26 L40 22" />
+                <path d="M24 26 L11 30" />
+                <path d="M24 26 L37 30" />
+              </svg>
+            </div>
+            <span class="cat-orb-label">Tequila</span>
+          </a>
+          <a href="#inventory" onclick="quickFilter('Wine')" class="cat-circle">
+            <div class="cat-orb">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M16 6 L32 6 L31 20 C31 25 28 29 24 29 C20 29 17 25 17 20 Z" />
+                <path d="M17 13 C20 15 24 13 27 14 C29 14 31 13 31 13" />
+                <path d="M24 29 L24 40" />
+                <path d="M18 41 L30 41" />
+              </svg>
+            </div>
+            <span class="cat-orb-label">Wine</span>
+          </a>
+          <a href="#inventory" onclick="quickFilter('Whiskey', 'Bourbon')" class="cat-circle">
+            <div class="cat-orb">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round">
+                <ellipse cx="24" cy="24" rx="13" ry="18" />
+                <path d="M11 16 L37 16" />
+                <path d="M11 32 L37 32" />
+                <path d="M24 6 L24 42" />
+              </svg>
+            </div>
+            <span class="cat-orb-label">Bourbon</span>
+          </a>
+          <a href="#inventory" onclick="quickFilter('Whiskey')" class="cat-circle">
+            <div class="cat-orb">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M14 12 L34 12 L32 40 L16 40 Z" />
+                <path d="M14 22 L34 22" />
+                <circle cx="20" cy="30" r="2.5" />
+                <circle cx="27" cy="33" r="2" />
+              </svg>
+            </div>
+            <span class="cat-orb-label">Whiskey</span>
+          </a>
+          <a href="#inventory" onclick="quickFilter('Vodka')" class="cat-circle">
+            <div class="cat-orb">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M24 6 L24 42" />
+                <path d="M9 14 L39 34" />
+                <path d="M9 34 L39 14" />
+                <path d="M20 10 L24 14 L28 10" />
+                <path d="M20 38 L24 34 L28 38" />
+                <path d="M11 18 L15 16 L13 12" />
+                <path d="M37 18 L33 16 L35 12" />
+                <path d="M11 30 L15 32 L13 36" />
+                <path d="M37 30 L33 32 L35 36" />
+              </svg>
+            </div>
+            <span class="cat-orb-label">Vodka</span>
+          </a>
+          <a href="#inventory" onclick="quickFilter('Cognac')" class="cat-circle">
+            <div class="cat-orb">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M13 13 C13 24 18 32 24 32 C30 32 35 24 35 13 Z" />
+                <path d="M14 20 C18 22 22 20 24 21 C28 22 32 20 34 19" />
+                <path d="M24 32 L24 40" />
+                <path d="M18 41 L30 41" />
+              </svg>
+            </div>
+            <span class="cat-orb-label">Cognac</span>
+          </a>
+          <a href="#inventory" onclick="quickFilter('Rum')" class="cat-circle">
+            <div class="cat-orb">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="24" cy="9" r="3" />
+                <path d="M24 12 L24 40" />
+                <path d="M18 18 L30 18" />
+                <path d="M12 30 C12 36 17 41 24 41 C31 41 36 36 36 30" />
+                <path d="M12 30 L8 28 L8 33" />
+                <path d="M36 30 L40 28 L40 33" />
+              </svg>
+            </div>
+            <span class="cat-orb-label">Rum</span>
+          </a>
+          <a href="#inventory" onclick="quickFilter('Champagne')" class="cat-circle">
+            <div class="cat-orb">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M19 6 L29 6 L28 28 C28 31 26 33 24 33 C22 33 20 31 20 28 Z" />
+                <path d="M24 33 L24 41" />
+                <path d="M19 42 L29 42" />
+                <circle cx="22" cy="14" r="0.9" fill="currentColor" />
+                <circle cx="26" cy="18" r="0.9" fill="currentColor" />
+                <circle cx="23" cy="22" r="0.9" fill="currentColor" />
+                <circle cx="25" cy="10" r="0.7" fill="currentColor" />
+              </svg>
+            </div>
+            <span class="cat-orb-label">Champagne</span>
+          </a>
+          <a href="#inventory" onclick="quickFilter('Gin')" class="cat-circle">
+            <div class="cat-orb">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M24 8 L24 42" />
+                <path d="M24 14 C20 14 17 16 16 19" />
+                <path d="M24 14 C28 14 31 16 32 19" />
+                <path d="M24 24 C19 24 15 26 14 30" />
+                <path d="M24 24 C29 24 33 26 34 30" />
+                <circle cx="16" cy="20" r="1.5" fill="currentColor" />
+                <circle cx="32" cy="20" r="1.5" fill="currentColor" />
+                <circle cx="14" cy="31" r="1.5" fill="currentColor" />
+                <circle cx="34" cy="31" r="1.5" fill="currentColor" />
+              </svg>
+            </div>
+            <span class="cat-orb-label">Gin</span>
+          </a>
+          <a href="#inventory" onclick="quickFilter('Beer')" class="cat-circle">
+            <div class="cat-orb">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M14 14 L32 14 L30 41 L16 41 Z" />
+                <path d="M32 18 L37 18 L37 30 L32 30" />
+                <path d="M14 14 C14 10 17 8 20 10" />
+                <path d="M20 10 C20 7 24 6 26 9" />
+                <path d="M26 9 C28 7 32 8 32 14" />
+                <path d="M19 22 L19 36" />
+                <path d="M24 22 L24 36" />
+                <path d="M28 22 L28 36" />
+              </svg>
+            </div>
+            <span class="cat-orb-label">Beer</span>
+          </a>
+          <a href="#inventory" onclick="quickFilter('Smokes')" class="cat-circle">
+            <div class="cat-orb">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect x="6" y="22" width="28" height="6" rx="3" />
+                <path d="M12 22 L12 28" />
+                <path d="M18 22 L18 28" />
+                <circle cx="37" cy="25" r="2.5" fill="currentColor" />
+                <path d="M39 17 C41 14 40 12 42 9" />
+                <path d="M35 16 C36 13 34 11 36 8" />
+                <path d="M32 15 C33 12 31 10 33 7" />
+              </svg>
+            </div>
+            <span class="cat-orb-label">Smokes</span>
+          </a>
+        </div>
       </div>
     </div>
 
@@ -385,10 +937,14 @@
   <section id="hot-items" class="relative py-24 px-6">
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-4 reveal">
-        <span class="inline-block text-purple-accent text-xs font-semibold uppercase tracking-[0.15em] mb-4 px-3 py-1 rounded-full border border-purple-accent/20 bg-purple-accent/5">What's Moving</span>
+        <span
+          class="inline-block text-purple-accent text-xs font-semibold uppercase tracking-[0.15em] mb-4 px-3 py-1 rounded-full border border-purple-accent/20 bg-purple-accent/5">What's
+          Moving</span>
       </div>
-      <h2 class="text-center text-[40px] leading-[48px] tracking-[-0.02em] mb-1 reveal" style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400;">Hot Items</h2>
-      <h2 class="text-center text-[40px] leading-[48px] tracking-[-0.02em] mb-16 reveal" style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400;">This Week</h2>
+      <h2 class="text-center text-[40px] leading-[48px] tracking-[-0.02em] mb-1 reveal"
+        style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400;">Hot Items</h2>
+      <h2 class="text-center text-[40px] leading-[48px] tracking-[-0.02em] mb-16 reveal"
+        style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400;">This Week</h2>
 
       <div class="space-y-8">
         <!-- Hot Item 1 - Hennessy -->
@@ -397,42 +953,72 @@
             <h3 class="text-xl font-bold mb-2">Hennessy VS</h3>
             <h3 class="text-xl font-bold mb-4 text-purple-accent">· Best Seller</h3>
             <p class="text-text-secondary text-sm leading-6 max-w-sm">
-              The classic cognac that needs no introduction. Smooth, versatile, and always in demand. 750ml bottle at an unbeatable price.
+              The world's most recognized cognac. Bold, fragrant, and remarkably well-balanced — toasted oak, vanilla,
+              and
+              warm spice in every pour. A timeless 750ml essential.
             </p>
             <p class="mt-4 text-2xl font-bold">$38.99</p>
           </div>
-          <div class="rounded-xl overflow-hidden border border-border-subtle">
-            <div class="w-full h-[300px] bg-[#08081a] rounded-lg" style="background: linear-gradient(135deg, #0a0a2e 0%, #0d0d24 50%, #08081a 100%);"></div>
+          <div class="rounded-xl overflow-hidden border border-border-subtle"
+            style="background: linear-gradient(135deg, #2a1406 0%, #3d1f0a 50%, #1a0c03 100%);">
+            <img src="https://placehold.co/800x600/3d1f0a/e8c48a?text=Hennessy+VS&font=playfair"
+              alt="Hennessy VS Cognac" class="w-full h-[300px] object-cover" loading="lazy" />
           </div>
         </div>
 
-        <!-- Hot Item 2 - Casamigos -->
+        <!-- Hot Item 2 - Casamigos Reposado -->
         <div class="feature-card p-8 grid grid-cols-2 gap-8 items-center reveal">
-          <div class="rounded-xl overflow-hidden border border-border-subtle">
-            <div class="w-full h-[300px] bg-[#08081a] rounded-lg" style="background: linear-gradient(135deg, #0a0a2e 0%, #0d0d24 50%, #08081a 100%);"></div>
+          <div class="rounded-xl overflow-hidden border border-border-subtle"
+            style="background: linear-gradient(135deg, #2f1a0a 0%, #4a2e15 50%, #1c0f05 100%);">
+            <img src="https://placehold.co/800x600/4a2e15/e6c48a?text=Casamigos+Reposado&font=playfair"
+              alt="Casamigos Reposado Tequila" class="w-full h-[300px] object-cover" loading="lazy" />
           </div>
           <div>
             <h3 class="text-xl font-bold mb-2">Casamigos Reposado</h3>
             <h3 class="text-xl font-bold mb-4 text-purple-accent">· Fan Favorite</h3>
             <p class="text-text-secondary text-sm leading-6 max-w-sm">
-              Ultra-smooth reposado with notes of caramel and cocoa. Perfect for sipping or mixing. One of our most requested bottles.
+              Aged seven months in American white oak barrels. Soft caramel, cocoa, and a whisper of vanilla — sip it
+              neat,
+              shoot it cold, or mix it bold. Always in demand.
             </p>
             <p class="mt-4 text-2xl font-bold">$49.99</p>
           </div>
         </div>
 
-        <!-- Hot Item 3 - Don Julio -->
+        <!-- Hot Item 3 - Don Julio 1942 -->
         <div class="feature-card p-8 grid grid-cols-2 gap-8 items-center reveal">
           <div>
             <h3 class="text-xl font-bold mb-2">Don Julio 1942</h3>
             <h3 class="text-xl font-bold mb-4 text-purple-accent">· Premium Pick</h3>
             <p class="text-text-secondary text-sm leading-6 max-w-sm">
-              The gold standard of premium tequila. Rich, warm, and luxurious. Celebrate right with the best on the shelf.
+              Hand-crafted, small-batch añejo aged a minimum of two and a half years. Warm agave, rich caramel, and
+              toasted
+              oak. The bottle that turns any night into an occasion.
             </p>
             <p class="mt-4 text-2xl font-bold">$154.99</p>
           </div>
-          <div class="rounded-xl overflow-hidden border border-border-subtle">
-            <div class="w-full h-[300px] bg-[#08081a] rounded-lg" style="background: linear-gradient(135deg, #0a0a2e 0%, #0d0d24 50%, #08081a 100%);"></div>
+          <div class="rounded-xl overflow-hidden border border-border-subtle"
+            style="background: linear-gradient(135deg, #050505 0%, #1a1605 50%, #000 100%);">
+            <img src="https://placehold.co/800x600/0a0805/d4af37?text=Don+Julio+1942&font=playfair"
+              alt="Don Julio 1942 Añejo Tequila" class="w-full h-[300px] object-cover" loading="lazy" />
+          </div>
+        </div>
+
+        <!-- Hot Item 4 - Grey Goose -->
+        <div class="feature-card p-8 grid grid-cols-2 gap-8 items-center reveal">
+          <div class="rounded-xl overflow-hidden border border-border-subtle"
+            style="background: linear-gradient(135deg, #0a1525 0%, #1a2945 50%, #060d1a 100%);">
+            <img src="https://placehold.co/800x600/152340/dde5f0?text=Grey+Goose&font=playfair" alt="Grey Goose Vodka"
+              class="w-full h-[300px] object-cover" loading="lazy" />
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-2">Grey Goose</h3>
+            <h3 class="text-xl font-bold mb-4 text-purple-accent">· Top Shelf Vodka</h3>
+            <p class="text-text-secondary text-sm leading-6 max-w-sm">
+              Distilled in France from soft winter wheat and pristine spring water. Exceptionally clean, smooth, and
+              dangerously easy to mix. The benchmark for premium vodka.
+            </p>
+            <p class="mt-4 text-2xl font-bold">$29.99</p>
           </div>
         </div>
       </div>
@@ -443,10 +1029,14 @@
   <section id="deals" class="relative py-24 px-6">
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-4 reveal">
-        <span class="inline-block text-purple-accent text-xs font-semibold uppercase tracking-[0.15em] mb-4 px-3 py-1 rounded-full border border-purple-accent/20 bg-purple-accent/5">Save Big</span>
+        <span
+          class="inline-block text-purple-accent text-xs font-semibold uppercase tracking-[0.15em] mb-4 px-3 py-1 rounded-full border border-purple-accent/20 bg-purple-accent/5">Save
+          Big</span>
       </div>
-      <h2 class="text-center text-[40px] leading-[48px] tracking-[-0.02em] mb-1 reveal" style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400;">Today's Deals</h2>
-      <h2 class="text-center text-[40px] leading-[48px] tracking-[-0.02em] mb-16 reveal" style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400;">& New Arrivals</h2>
+      <h2 class="text-center text-[40px] leading-[48px] tracking-[-0.02em] mb-1 reveal"
+        style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400;">Today's Deals</h2>
+      <h2 class="text-center text-[40px] leading-[48px] tracking-[-0.02em] mb-16 reveal"
+        style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400;">& New Arrivals</h2>
 
       <!-- Deals table -->
       <div class="rounded-xl overflow-hidden border border-border-subtle reveal" style="background: #08081a;">
@@ -467,28 +1057,32 @@
                 <td class="py-3 px-4 text-text-secondary">Vodka</td>
                 <td class="py-3 px-4 text-text-dim line-through">$19.99</td>
                 <td class="py-3 px-4 text-green-400 font-bold">$14.99</td>
-                <td class="py-3 px-4"><span class="bg-green-400/10 text-green-400 text-xs font-bold px-2 py-1 rounded-full">25% OFF</span></td>
+                <td class="py-3 px-4"><span
+                    class="bg-green-400/10 text-green-400 text-xs font-bold px-2 py-1 rounded-full">25% OFF</span></td>
               </tr>
               <tr class="border-b border-white/[0.03]">
                 <td class="py-3 px-4 text-text-secondary font-medium">Patron Silver</td>
                 <td class="py-3 px-4 text-text-secondary">Tequila</td>
                 <td class="py-3 px-4 text-text-dim line-through">$44.99</td>
                 <td class="py-3 px-4 text-green-400 font-bold">$37.99</td>
-                <td class="py-3 px-4"><span class="bg-green-400/10 text-green-400 text-xs font-bold px-2 py-1 rounded-full">15% OFF</span></td>
+                <td class="py-3 px-4"><span
+                    class="bg-green-400/10 text-green-400 text-xs font-bold px-2 py-1 rounded-full">15% OFF</span></td>
               </tr>
               <tr class="border-b border-white/[0.03]">
                 <td class="py-3 px-4 text-text-secondary font-medium">Jack Daniel's 1L</td>
                 <td class="py-3 px-4 text-text-secondary">Whiskey</td>
                 <td class="py-3 px-4 text-text-dim line-through">$29.99</td>
                 <td class="py-3 px-4 text-green-400 font-bold">$23.99</td>
-                <td class="py-3 px-4"><span class="bg-green-400/10 text-green-400 text-xs font-bold px-2 py-1 rounded-full">20% OFF</span></td>
+                <td class="py-3 px-4"><span
+                    class="bg-green-400/10 text-green-400 text-xs font-bold px-2 py-1 rounded-full">20% OFF</span></td>
               </tr>
               <tr>
                 <td class="py-3 px-4 text-text-secondary font-medium">Crown Royal</td>
                 <td class="py-3 px-4 text-text-secondary">Whiskey</td>
                 <td class="py-3 px-4 text-text-dim line-through">$27.99</td>
                 <td class="py-3 px-4 text-green-400 font-bold">$22.99</td>
-                <td class="py-3 px-4"><span class="bg-green-400/10 text-green-400 text-xs font-bold px-2 py-1 rounded-full">18% OFF</span></td>
+                <td class="py-3 px-4"><span
+                    class="bg-green-400/10 text-green-400 text-xs font-bold px-2 py-1 rounded-full">18% OFF</span></td>
               </tr>
             </tbody>
           </table>
@@ -501,20 +1095,39 @@
   <section id="inventory" class="relative py-24 px-6">
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-4 reveal">
-        <span class="inline-block text-purple-accent text-xs font-semibold uppercase tracking-[0.15em] mb-4 px-3 py-1 rounded-full border border-purple-accent/20 bg-purple-accent/5">Full Selection</span>
+        <span
+          class="inline-block text-purple-accent text-xs font-semibold uppercase tracking-[0.15em] mb-4 px-3 py-1 rounded-full border border-purple-accent/20 bg-purple-accent/5">Full
+          Selection</span>
       </div>
-      <h2 class="text-center text-[40px] leading-[48px] tracking-[-0.02em] mb-16 reveal" style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400;">Browse Inventory</h2>
+      <h2 class="text-center text-[40px] leading-[48px] tracking-[-0.02em] mb-16 reveal"
+        style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400;">Browse Inventory</h2>
 
       <!-- Search & Filter -->
       <div class="flex flex-wrap gap-3 mb-6 reveal">
-        <input type="text" id="search-input" placeholder="Search products..." class="flex-1 min-w-[200px] px-4 py-2.5 bg-surface border border-border-subtle rounded-lg text-text-primary text-sm font-inter outline-none focus:border-purple-accent transition-colors" />
+        <input type="text" id="search-input" placeholder="Search products..."
+          class="flex-1 min-w-[200px] px-4 py-2.5 bg-surface border border-border-subtle rounded-lg text-text-primary text-sm font-inter outline-none focus:border-purple-accent transition-colors" />
         <div class="flex gap-2 flex-wrap" id="filter-buttons">
-          <button class="filter-btn active px-4 py-2 rounded-full border border-border-subtle text-sm font-medium transition-all cursor-pointer" data-filter="all" onclick="filterInventory(this)">All</button>
-          <button class="filter-btn px-4 py-2 rounded-full border border-border-subtle text-text-secondary text-sm font-medium transition-all cursor-pointer" data-filter="Cognac" onclick="filterInventory(this)">Cognac</button>
-          <button class="filter-btn px-4 py-2 rounded-full border border-border-subtle text-text-secondary text-sm font-medium transition-all cursor-pointer" data-filter="Tequila" onclick="filterInventory(this)">Tequila</button>
-          <button class="filter-btn px-4 py-2 rounded-full border border-border-subtle text-text-secondary text-sm font-medium transition-all cursor-pointer" data-filter="Whiskey" onclick="filterInventory(this)">Whiskey</button>
-          <button class="filter-btn px-4 py-2 rounded-full border border-border-subtle text-text-secondary text-sm font-medium transition-all cursor-pointer" data-filter="Vodka" onclick="filterInventory(this)">Vodka</button>
-          <button class="filter-btn px-4 py-2 rounded-full border border-border-subtle text-text-secondary text-sm font-medium transition-all cursor-pointer" data-filter="Rum" onclick="filterInventory(this)">Rum</button>
+          <button
+            class="filter-btn active px-4 py-2 rounded-full border border-border-subtle text-sm font-medium transition-all cursor-pointer"
+            data-filter="all" onclick="filterInventory(this)">All</button>
+          <button
+            class="filter-btn px-4 py-2 rounded-full border border-border-subtle text-text-secondary text-sm font-medium transition-all cursor-pointer"
+            data-filter="Cognac" onclick="filterInventory(this)">Cognac</button>
+          <button
+            class="filter-btn px-4 py-2 rounded-full border border-border-subtle text-text-secondary text-sm font-medium transition-all cursor-pointer"
+            data-filter="Tequila" onclick="filterInventory(this)">Tequila</button>
+          <button
+            class="filter-btn px-4 py-2 rounded-full border border-border-subtle text-text-secondary text-sm font-medium transition-all cursor-pointer"
+            data-filter="Whiskey" onclick="filterInventory(this)">Whiskey</button>
+          <button
+            class="filter-btn px-4 py-2 rounded-full border border-border-subtle text-text-secondary text-sm font-medium transition-all cursor-pointer"
+            data-filter="Vodka" onclick="filterInventory(this)">Vodka</button>
+          <button
+            class="filter-btn px-4 py-2 rounded-full border border-border-subtle text-text-secondary text-sm font-medium transition-all cursor-pointer"
+            data-filter="Rum" onclick="filterInventory(this)">Rum</button>
+          <button
+            class="filter-btn px-4 py-2 rounded-full border border-border-subtle text-text-secondary text-sm font-medium transition-all cursor-pointer"
+            data-filter="Smokes" onclick="filterInventory(this)">Smokes</button>
         </div>
       </div>
 
@@ -537,69 +1150,95 @@
     </div>
   </section>
 
-  <!-- FAQ Section -->
-  <section class="relative py-24 px-6">
-    <div class="max-w-2xl mx-auto">
-      <div class="text-center mb-4 reveal">
-        <span class="inline-block text-purple-accent text-xs font-semibold uppercase tracking-[0.15em] mb-4 px-3 py-1 rounded-full border border-purple-accent/20 bg-purple-accent/5">FAQ</span>
-      </div>
-      <h2 class="text-center text-[36px] leading-[44px] tracking-[-0.02em] mb-2 reveal" style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400;">Frequently asked questions</h2>
-      <p class="text-center text-text-secondary text-sm mb-12 reveal">
-        Have a question? <a href="tel:4145550199" class="text-purple-accent hover:underline">Give us a call</a>
-      </p>
-
-      <div class="border-t border-border-subtle reveal-stagger reveal">
-        <div class="faq-item py-5 px-2 flex items-center justify-between" onclick="toggleFaq(this)">
-          <span class="text-[15px] font-medium">What are your store hours?</span>
-          <svg class="faq-chevron w-4 h-4 text-text-dim transition-transform" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="faq-item py-5 px-2 flex items-center justify-between" onclick="toggleFaq(this)">
-          <span class="text-[15px] font-medium">Do you offer delivery?</span>
-          <svg class="faq-chevron w-4 h-4 text-text-dim transition-transform" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="faq-item py-5 px-2 flex items-center justify-between" onclick="toggleFaq(this)">
-          <span class="text-[15px] font-medium">Can I place a special order for a product you don't carry?</span>
-          <svg class="faq-chevron w-4 h-4 text-text-dim transition-transform" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="faq-item py-5 px-2 flex items-center justify-between" onclick="toggleFaq(this)">
-          <span class="text-[15px] font-medium">Do you price match with other stores?</span>
-          <svg class="faq-chevron w-4 h-4 text-text-dim transition-transform" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="faq-item py-5 px-2 flex items-center justify-between" onclick="toggleFaq(this)">
-          <span class="text-[15px] font-medium">What payment methods do you accept?</span>
-          <svg class="faq-chevron w-4 h-4 text-text-dim transition-transform" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Find Us / CTA -->
+  <!-- FAQ + Find Us combined -->
   <section id="find-us" class="relative py-24 px-6 overflow-hidden">
     <div class="cta-glow"></div>
-    <div class="relative z-10 max-w-2xl mx-auto text-center reveal">
-      <!-- Icon with glow ring -->
-      <div class="relative mx-auto mb-8 w-20 h-20">
-        <div class="absolute inset-0 rounded-2xl" style="background: conic-gradient(from 180deg, rgba(147,130,255,0.3), rgba(200,160,255,0.1), rgba(147,130,255,0.3)); filter: blur(12px);"></div>
-        <div class="relative w-full h-full rounded-2xl border border-purple-accent/30 bg-bg flex items-center justify-center" style="box-shadow: 0 0 50px rgba(147, 130, 255, 0.2), inset 0 0 30px rgba(147, 130, 255, 0.05);">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <path d="M16 4C11.58 4 8 7.58 8 12c0 6 8 16 8 16s8-10 8-16c0-4.42-3.58-8-8-8zm0 11a3 3 0 110-6 3 3 0 010 6z" stroke="url(#pinGrad)" stroke-width="1.5" fill="none"/>
-            <defs><linearGradient id="pinGrad" x1="8" y1="4" x2="24" y2="28"><stop stop-color="#b8a4ff"/><stop offset="1" stop-color="#7c6adf"/></linearGradient></defs>
-          </svg>
+    <div class="relative z-10 max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-start">
+
+      <!-- LEFT: FAQ -->
+      <div class="reveal">
+        <span
+          class="inline-block text-purple-accent text-xs font-semibold uppercase tracking-[0.15em] mb-4 px-3 py-1 rounded-full border border-purple-accent/20 bg-purple-accent/5">FAQ</span>
+        <h2 class="text-[36px] leading-[44px] tracking-[-0.02em] mb-2"
+          style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400;">Frequently asked
+          questions</h2>
+        <p class="text-text-secondary text-sm mb-8">
+          Have a question? <a href="tel:4145550199" class="text-purple-accent hover:underline">Give us a call</a>
+        </p>
+
+        <div class="border-t border-border-subtle">
+          <div class="faq-item py-5 px-2 flex items-center justify-between" onclick="toggleFaq(this)">
+            <span class="text-[15px] font-medium">What are your store hours?</span>
+            <svg class="faq-chevron w-4 h-4 text-text-dim transition-transform" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div class="faq-item py-5 px-2 flex items-center justify-between" onclick="toggleFaq(this)">
+            <span class="text-[15px] font-medium">Do you offer delivery?</span>
+            <svg class="faq-chevron w-4 h-4 text-text-dim transition-transform" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div class="faq-item py-5 px-2 flex items-center justify-between" onclick="toggleFaq(this)">
+            <span class="text-[15px] font-medium">Can I place a special order for a product you don't carry?</span>
+            <svg class="faq-chevron w-4 h-4 text-text-dim transition-transform" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div class="faq-item py-5 px-2 flex items-center justify-between" onclick="toggleFaq(this)">
+            <span class="text-[15px] font-medium">Do you price match with other stores?</span>
+            <svg class="faq-chevron w-4 h-4 text-text-dim transition-transform" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div class="faq-item py-5 px-2 flex items-center justify-between" onclick="toggleFaq(this)">
+            <span class="text-[15px] font-medium">What payment methods do you accept?</span>
+            <svg class="faq-chevron w-4 h-4 text-text-dim transition-transform" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
         </div>
       </div>
-      <h2 class="text-[40px] font-bold leading-[48px] tracking-[-0.02em] mb-4">
-        Come Through. We're Open.
-      </h2>
-      <p class="text-text-secondary text-base leading-7 mb-2">
-        6859 N Teutonia Ave, Milwaukee, WI
-      </p>
-      <p class="text-text-secondary text-base leading-7 mb-8">
-        Mon–Thu 9am–11pm &middot; Fri–Sat 9am–12am &middot; Sun 10am–10pm
-      </p>
-      <a href="https://maps.google.com/?q=6859+N+Teutonia+Ave+Milwaukee+WI" target="_blank" class="inline-flex items-center gap-2 bg-white text-bg text-sm font-semibold px-6 py-3 rounded-lg hover:bg-white/90 transition-colors">
-        Get Directions
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 12l4-4-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+
+      <!-- RIGHT: Find Us -->
+      <div class="reveal">
+        <span
+          class="inline-block text-purple-accent text-xs font-semibold uppercase tracking-[0.15em] mb-4 px-3 py-1 rounded-full border border-purple-accent/20 bg-purple-accent/5">Visit</span>
+        <h2 class="text-[36px] font-bold leading-[44px] tracking-[-0.02em] mb-4">
+          Come Through. We're Open.
+        </h2>
+        <p class="text-text-secondary text-base leading-7 mb-1">
+          6859 N Teutonia Ave, Milwaukee, WI
+        </p>
+        <p class="text-text-secondary text-base leading-7 mb-6">
+          Open 7 Days a Week &middot; 9:30 AM – 9:30 PM
+        </p>
+
+        <!-- Google Maps embed -->
+        <div class="rounded-xl overflow-hidden border border-purple-accent/20 mb-6"
+          style="box-shadow: 0 0 60px rgba(147, 130, 255, 0.18), 0 0 120px rgba(120, 60, 255, 0.08);">
+          <iframe
+            src="https://maps.google.com/maps?q=6859+N+Teutonia+Ave+Milwaukee+WI&t=&z=16&ie=UTF8&iwloc=&output=embed"
+            width="100%" height="340" style="border: 0; filter: invert(0.92) hue-rotate(180deg) saturate(0.7);"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            title="Express Liquor & Tobacco location map">
+          </iframe>
+        </div>
+
+        <a href="https://maps.google.com/?q=6859+N+Teutonia+Ave+Milwaukee+WI" target="_blank"
+          class="inline-flex items-center gap-2 bg-white text-bg text-sm font-semibold px-6 py-3 rounded-lg hover:bg-white/90 transition-colors">
+          Get Directions
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M6 12l4-4-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -608,11 +1247,11 @@
     <div class="max-w-6xl mx-auto flex items-center justify-between">
       <div class="flex items-center gap-2">
         <div class="w-6 h-6 rounded-md bg-purple-accent/20 flex items-center justify-center">
-          <span class="text-purple-accent text-[8px] font-bold">JP</span>
+          <span class="text-purple-accent text-[8px] font-bold">EL</span>
         </div>
-        <span class="text-white font-semibold text-sm">JP Food & Liquor</span>
+        <span class="text-white font-semibold text-sm">Express Liquor & Tobacco</span>
       </div>
-      <p class="text-text-dim text-xs">&copy; 2026 JP Food & Liquor. All rights reserved.</p>
+      <p class="text-text-dim text-xs">&copy; 2026 Express Liquor & Tobacco. All rights reserved.</p>
       <div class="flex items-center gap-2">
         <span class="text-text-dim text-xs">Get in touch</span>
         <a href="tel:4145550199" class="text-purple-accent text-xs hover:underline">(414) 555-0199</a>
@@ -622,7 +1261,7 @@
 
   <script>
     // ===== Smooth scroll for all anchor links =====
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
       const anchor = e.target.closest('a[href^="#"]');
       if (!anchor) return;
       const targetId = anchor.getAttribute('href');
@@ -635,6 +1274,45 @@
       window.scrollTo({ top: targetPosition, behavior: 'smooth' });
     });
 
+    // ===== Carousel: advance one circle at a time =====
+    function setupCarousel() {
+      const track = document.querySelector('.carousel-track');
+      if (!track) return;
+      const items = track.querySelectorAll('.cat-circle');
+      if (items.length < 2) return;
+
+      const stride = items[1].getBoundingClientRect().left - items[0].getBoundingClientRect().left;
+      const totalUnique = items.length / 2; // duplicate set follows
+      const slideMs = 900;
+      const pauseMs = 2200;
+      const transitionStyle = `transform ${slideMs}ms cubic-bezier(0.22, 1, 0.36, 1)`;
+
+      let step = 0;
+      track.style.transition = transitionStyle;
+
+      function tick() {
+        step++;
+        track.style.transform = `translateX(-${step * stride}px)`;
+
+        if (step >= totalUnique) {
+          // Snap back invisibly: position N is identical to position 0 (duplicate set)
+          setTimeout(() => {
+            track.style.transition = 'none';
+            track.style.transform = 'translateX(0)';
+            step = 0;
+            void track.offsetHeight; // force reflow
+            track.style.transition = transitionStyle;
+          }, slideMs + 20);
+        }
+      }
+
+      setInterval(tick, slideMs + pauseMs);
+    }
+
+    // Recompute stride on resize
+    let carouselReady = false;
+    window.addEventListener('load', () => { setupCarousel(); carouselReady = true; });
+
     // ===== Scroll reveal with IntersectionObserver =====
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -646,17 +1324,21 @@
 
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // ===== Quick filter from dropdown menu =====
+    // ===== Quick filter from dropdown / carousel =====
     function quickFilter(category, search) {
-      // Set the filter button active
-      activeFilter = category;
-      document.querySelectorAll('.filter-btn').forEach(b => {
-        b.classList.remove('active');
-        if (b.dataset.filter === category) b.classList.add('active');
-      });
-      // Set the search input if a specific product was chosen
-      const searchInput = document.getElementById('search-input');
-      searchInput.value = search || '';
+      const matchingBtn = document.querySelector(`.filter-btn[data-filter="${category}"]`);
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+
+      if (matchingBtn) {
+        activeFilter = category;
+        matchingBtn.classList.add('active');
+        document.getElementById('search-input').value = search || '';
+      } else {
+        // Unknown category (e.g. Wine, Beer) — fall back to All + search
+        activeFilter = 'all';
+        document.querySelector('.filter-btn[data-filter="all"]')?.classList.add('active');
+        document.getElementById('search-input').value = search || category;
+      }
       applyFilters();
     }
 
@@ -682,6 +1364,18 @@
       { name: "Bacardi Superior", category: "Rum", size: "750ml", price: 14.99 },
       { name: "Captain Morgan", category: "Rum", size: "1.75L", price: 24.99 },
       { name: "Malibu Coconut", category: "Rum", size: "750ml", price: 18.99 },
+      { name: "Newport 100s", category: "Smokes", size: "Pack", price: 12.49 },
+      { name: "Newport Shorts", category: "Smokes", size: "Pack", price: 12.49 },
+      { name: "Marlboro Red", category: "Smokes", size: "Pack", price: 11.99 },
+      { name: "Marlboro Gold", category: "Smokes", size: "Pack", price: 11.99 },
+      { name: "Camel Crush", category: "Smokes", size: "Pack", price: 11.49 },
+      { name: "Black & Mild Original", category: "Smokes", size: "5-Pack", price: 7.99 },
+      { name: "Black & Mild Wine", category: "Smokes", size: "5-Pack", price: 7.99 },
+      { name: "Swisher Sweets", category: "Smokes", size: "2-Pack", price: 1.99 },
+      { name: "Backwoods Honey", category: "Smokes", size: "5-Pack", price: 9.99 },
+      { name: "Backwoods Russian", category: "Smokes", size: "5-Pack", price: 9.99 },
+      { name: "White Owl Grape", category: "Smokes", size: "2-Pack", price: 1.79 },
+      { name: "Dutch Masters", category: "Smokes", size: "2-Pack", price: 1.99 },
     ];
 
     let activeFilter = 'all';
@@ -732,6 +1426,96 @@
     // Initial render
     renderInventory(inventory);
 
+    // ===== Navbar live product search =====
+    function setupNavSearch() {
+      const input = document.getElementById('nav-search');
+      const results = document.getElementById('nav-search-results');
+      if (!input || !results) return;
+
+      function render(matches) {
+        if (matches.length === 0) {
+          results.innerHTML =
+            '<div class="px-4 py-4 text-text-dim text-sm text-center">No matches found.</div>';
+        } else {
+          results.innerHTML = matches.map(item => `
+            <a href="#inventory" data-name="${item.name}" data-category="${item.category}"
+              class="nav-search-item block px-4 py-2.5 hover:bg-purple-accent/10 transition-colors border-b border-white/5 last:border-b-0">
+              <div class="text-sm font-medium text-white">${item.name}</div>
+              <div class="text-xs text-text-dim flex justify-between mt-0.5">
+                <span>${item.category} &middot; ${item.size}</span>
+                <span class="text-purple-accent font-semibold">$${item.price.toFixed(2)}</span>
+              </div>
+            </a>
+          `).join('');
+        }
+        results.classList.remove('hidden');
+      }
+
+      input.addEventListener('input', () => {
+        const q = input.value.toLowerCase().trim();
+        if (!q) { results.classList.add('hidden'); return; }
+        const matches = inventory.filter(item =>
+          item.name.toLowerCase().includes(q) || item.category.toLowerCase().includes(q)
+        ).slice(0, 6);
+        render(matches);
+      });
+
+      function jumpToInventory(searchTerm, categoryFilter) {
+        const invSearch = document.getElementById('search-input');
+        invSearch.value = searchTerm;
+        if (categoryFilter) {
+          activeFilter = categoryFilter;
+          document.querySelectorAll('.filter-btn').forEach(b => {
+            b.classList.remove('active');
+            if (b.dataset.filter === categoryFilter) b.classList.add('active');
+          });
+        } else {
+          activeFilter = 'all';
+          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          document.querySelector('.filter-btn[data-filter="all"]')?.classList.add('active');
+        }
+        applyFilters();
+        input.value = '';
+        results.classList.add('hidden');
+        const target = document.querySelector('#inventory');
+        if (target) {
+          const top = target.getBoundingClientRect().top + window.scrollY - 100;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      }
+
+      results.addEventListener('click', (e) => {
+        const item = e.target.closest('.nav-search-item');
+        if (!item) return;
+        e.preventDefault();
+        e.stopPropagation();
+        jumpToInventory(item.dataset.name, item.dataset.category);
+      });
+
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          const q = input.value.trim();
+          if (q) jumpToInventory(q, null);
+        } else if (e.key === 'Escape') {
+          input.value = '';
+          results.classList.add('hidden');
+          input.blur();
+        }
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('#nav-search-wrap')) {
+          results.classList.add('hidden');
+        }
+      });
+
+      input.addEventListener('focus', () => {
+        if (input.value.trim()) results.classList.remove('hidden');
+      });
+    }
+    setupNavSearch();
+
     // FAQ toggle
     function toggleFaq(el) {
       const chevron = el.querySelector('.faq-chevron');
@@ -752,4 +1536,5 @@
     }
   </style>
 </body>
+
 </html>
