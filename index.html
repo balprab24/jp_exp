@@ -105,11 +105,158 @@
       background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
       border: 1px solid rgba(255, 255, 255, 0.06);
       border-radius: 16px;
-      transition: border-color 0.3s;
+      transition: border-color 0.4s, box-shadow 0.4s, transform 0.4s;
+      position: relative;
     }
 
     .feature-card:hover {
-      border-color: rgba(255, 255, 255, 0.12);
+      border-color: rgba(147, 130, 255, 0.28);
+      box-shadow:
+        0 0 40px rgba(147, 130, 255, 0.18),
+        0 0 100px rgba(120, 60, 255, 0.08);
+      transform: translateY(-3px);
+    }
+
+    /* Section ambient aurora — sits behind Hot Items heading */
+    .section-aurora {
+      position: absolute;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1000px;
+      height: 500px;
+      background:
+        radial-gradient(ellipse 45% 40% at 50% 50%, rgba(147, 130, 255, 0.22), transparent 70%),
+        radial-gradient(ellipse 30% 30% at 25% 45%, rgba(180, 100, 255, 0.12), transparent 70%),
+        radial-gradient(ellipse 30% 30% at 75% 55%, rgba(255, 130, 220, 0.10), transparent 70%);
+      filter: blur(70px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Glowing horizontal divider — sits between cards / sections */
+    .glow-divider {
+      height: 1px;
+      width: 100%;
+      background: linear-gradient(90deg,
+          transparent 0%,
+          rgba(147, 130, 255, 0.25) 20%,
+          rgba(200, 160, 255, 0.7) 50%,
+          rgba(147, 130, 255, 0.25) 80%,
+          transparent 100%);
+      position: relative;
+    }
+
+    .glow-divider::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #c9b8ff;
+      box-shadow:
+        0 0 12px rgba(200, 180, 255, 0.9),
+        0 0 24px rgba(147, 130, 255, 0.6),
+        0 0 48px rgba(120, 60, 255, 0.3);
+    }
+
+    /* Vertical glowing divider — for 2-column layouts */
+    .glow-divider-v {
+      position: absolute;
+      top: 8%;
+      bottom: 8%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      background: linear-gradient(to bottom,
+          transparent 0%,
+          rgba(147, 130, 255, 0.25) 15%,
+          rgba(200, 160, 255, 0.6) 50%,
+          rgba(147, 130, 255, 0.25) 85%,
+          transparent 100%);
+      pointer-events: none;
+    }
+
+    .glow-divider-v::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #c9b8ff;
+      box-shadow:
+        0 0 12px rgba(200, 180, 255, 0.9),
+        0 0 24px rgba(147, 130, 255, 0.6),
+        0 0 48px rgba(120, 60, 255, 0.3);
+    }
+
+    /* Glowing container — gives tables/cards a breathing purple halo */
+    .glow-container {
+      position: relative;
+      box-shadow:
+        0 0 60px rgba(147, 130, 255, 0.12),
+        0 0 120px rgba(120, 60, 255, 0.06);
+    }
+
+    .glow-container::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg,
+          rgba(147, 130, 255, 0.3),
+          transparent 35%,
+          transparent 65%,
+          rgba(200, 160, 255, 0.25));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    /* Pulse for savings badges */
+    @keyframes badgePulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.35);
+      }
+
+      50% {
+        box-shadow: 0 0 0 6px rgba(74, 222, 128, 0);
+      }
+    }
+
+    .deal-badge {
+      animation: badgePulse 2.4s ease-in-out infinite;
+    }
+
+    /* Subtle shimmer across table header */
+    @keyframes shimmerSweep {
+      0% {
+        background-position: -200% 0;
+      }
+
+      100% {
+        background-position: 200% 0;
+      }
+    }
+
+    .shimmer-header {
+      background: linear-gradient(90deg,
+          transparent 0%,
+          rgba(147, 130, 255, 0.08) 50%,
+          transparent 100%);
+      background-size: 200% 100%;
+      animation: shimmerSweep 8s linear infinite;
     }
 
     /* FAQ items */
@@ -121,6 +268,51 @@
 
     .faq-item:hover {
       background: rgba(255, 255, 255, 0.02);
+    }
+
+    .faq-item.open {
+      background: rgba(147, 130, 255, 0.04);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Back to top */
+    #back-to-top {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 40;
+      width: 48px;
+      height: 48px;
+      border-radius: 9999px;
+      background: rgba(147, 130, 255, 0.18);
+      border: 1px solid rgba(147, 130, 255, 0.4);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: opacity 0.3s, visibility 0.3s, transform 0.3s, background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 30px rgba(147, 130, 255, 0.3), 0 0 60px rgba(120, 60, 255, 0.12);
+      cursor: pointer;
+    }
+
+    #back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    #back-to-top:hover {
+      background: rgba(147, 130, 255, 0.3);
+      box-shadow: 0 0 40px rgba(147, 130, 255, 0.55), 0 0 100px rgba(120, 60, 255, 0.2);
+      transform: translateY(-3px);
     }
 
     /* Bottom CTA glow */
@@ -605,26 +797,28 @@
           <!-- Set A -->
           <a href="#inventory" onclick="quickFilter('Tequila')" class="cat-circle">
             <div class="cat-orb">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
-                <path d="M24 42 L24 26" />
-                <path d="M24 26 L13 14" />
-                <path d="M24 26 L35 14" />
-                <path d="M24 26 L19 8" />
-                <path d="M24 26 L29 8" />
-                <path d="M24 26 L8 22" />
-                <path d="M24 26 L40 22" />
-                <path d="M24 26 L11 30" />
-                <path d="M24 26 L37 30" />
+                <path d="M16 40 L32 40" />
+                <path d="M24 40 L14 20" fill="currentColor" fill-opacity="0.16" />
+                <path d="M24 40 L34 20" fill="currentColor" fill-opacity="0.16" />
+                <path d="M24 40 L20 10" fill="currentColor" fill-opacity="0.22" />
+                <path d="M24 40 L28 10" fill="currentColor" fill-opacity="0.22" />
+                <path d="M24 40 L9 26" fill="currentColor" fill-opacity="0.12" />
+                <path d="M24 40 L39 26" fill="currentColor" fill-opacity="0.12" />
+                <path d="M24 40 L24 6" />
               </svg>
             </div>
             <span class="cat-orb-label">Tequila</span>
           </a>
           <a href="#inventory" onclick="quickFilter('Wine')" class="cat-circle">
             <div class="cat-orb">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
                 <path d="M16 6 L32 6 L31 20 C31 25 28 29 24 29 C20 29 17 25 17 20 Z" />
+                <path
+                  d="M17.4 15 C20 17 24 15 27 16 C29 16 30.6 15 30.8 15 L31 20 C31 25 28 29 24 29 C20 29 17 25 17 20 Z"
+                  fill="currentColor" fill-opacity="0.3" stroke="none" />
                 <path d="M17 13 C20 15 24 13 27 14 C29 14 31 13 31 13" />
                 <path d="M24 29 L24 40" />
                 <path d="M18 41 L30 41" />
@@ -634,31 +828,34 @@
           </a>
           <a href="#inventory" onclick="quickFilter('Whiskey', 'Bourbon')" class="cat-circle">
             <div class="cat-orb">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
-                <ellipse cx="24" cy="24" rx="13" ry="18" />
+                <ellipse cx="24" cy="24" rx="13" ry="18" fill="currentColor" fill-opacity="0.14" />
                 <path d="M11 16 L37 16" />
                 <path d="M11 32 L37 32" />
                 <path d="M24 6 L24 42" />
+                <path d="M17 7.2 L17 40.8" opacity="0.45" />
+                <path d="M31 7.2 L31 40.8" opacity="0.45" />
               </svg>
             </div>
             <span class="cat-orb-label">Bourbon</span>
           </a>
           <a href="#inventory" onclick="quickFilter('Whiskey')" class="cat-circle">
             <div class="cat-orb">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
                 <path d="M14 12 L34 12 L32 40 L16 40 Z" />
+                <path d="M14.3 22 L33.7 22 L32 40 L16 40 Z" fill="currentColor" fill-opacity="0.25" stroke="none" />
                 <path d="M14 22 L34 22" />
-                <circle cx="20" cy="30" r="2.5" />
-                <circle cx="27" cy="33" r="2" />
+                <rect x="17.5" y="26" width="6" height="6" rx="1" fill="currentColor" fill-opacity="0.4" />
+                <rect x="25" y="30" width="5" height="5" rx="1" fill="currentColor" fill-opacity="0.4" />
               </svg>
             </div>
             <span class="cat-orb-label">Whiskey</span>
           </a>
           <a href="#inventory" onclick="quickFilter('Vodka')" class="cat-circle">
             <div class="cat-orb">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
                 <path d="M24 6 L24 42" />
                 <path d="M9 14 L39 34" />
@@ -669,15 +866,18 @@
                 <path d="M37 18 L33 16 L35 12" />
                 <path d="M11 30 L15 32 L13 36" />
                 <path d="M37 30 L33 32 L35 36" />
+                <circle cx="24" cy="24" r="2.6" fill="currentColor" />
               </svg>
             </div>
             <span class="cat-orb-label">Vodka</span>
           </a>
           <a href="#inventory" onclick="quickFilter('Cognac')" class="cat-circle">
             <div class="cat-orb">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
                 <path d="M13 13 C13 24 18 32 24 32 C30 32 35 24 35 13 Z" />
+                <path d="M14.3 21 C18 23 22 21 24 22 C28 23 32 21 33.7 20 C33 25 29 32 24 32 C19 32 15 25 14.3 21 Z"
+                  fill="currentColor" fill-opacity="0.3" stroke="none" />
                 <path d="M14 20 C18 22 22 20 24 21 C28 22 32 20 34 19" />
                 <path d="M24 32 L24 40" />
                 <path d="M18 41 L30 41" />
@@ -687,9 +887,10 @@
           </a>
           <a href="#inventory" onclick="quickFilter('Rum')" class="cat-circle">
             <div class="cat-orb">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
-                <circle cx="24" cy="9" r="3" />
+                <circle cx="24" cy="9" r="3.2" fill="currentColor" fill-opacity="0.3" />
+                <circle cx="24" cy="9" r="1.3" fill="currentColor" />
                 <path d="M24 12 L24 40" />
                 <path d="M18 18 L30 18" />
                 <path d="M12 30 C12 36 17 41 24 41 C31 41 36 36 36 30" />
@@ -701,60 +902,71 @@
           </a>
           <a href="#inventory" onclick="quickFilter('Champagne')" class="cat-circle">
             <div class="cat-orb">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
                 <path d="M19 6 L29 6 L28 28 C28 31 26 33 24 33 C22 33 20 31 20 28 Z" />
+                <path d="M20.3 22 L27.7 22 L28 28 C28 31 26 33 24 33 C22 33 20 31 20 28 Z" fill="currentColor"
+                  fill-opacity="0.3" stroke="none" />
                 <path d="M24 33 L24 41" />
                 <path d="M19 42 L29 42" />
-                <circle cx="22" cy="14" r="0.9" fill="currentColor" />
-                <circle cx="26" cy="18" r="0.9" fill="currentColor" />
-                <circle cx="23" cy="22" r="0.9" fill="currentColor" />
-                <circle cx="25" cy="10" r="0.7" fill="currentColor" />
+                <circle cx="22" cy="14" r="1.2" fill="currentColor" />
+                <circle cx="26" cy="18" r="1.2" fill="currentColor" />
+                <circle cx="23" cy="24" r="1.2" fill="currentColor" />
+                <circle cx="26" cy="28" r="1" fill="currentColor" />
+                <circle cx="25" cy="10" r="0.9" fill="currentColor" />
               </svg>
             </div>
             <span class="cat-orb-label">Champagne</span>
           </a>
           <a href="#inventory" onclick="quickFilter('Gin')" class="cat-circle">
             <div class="cat-orb">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
                 <path d="M24 8 L24 42" />
                 <path d="M24 14 C20 14 17 16 16 19" />
                 <path d="M24 14 C28 14 31 16 32 19" />
                 <path d="M24 24 C19 24 15 26 14 30" />
                 <path d="M24 24 C29 24 33 26 34 30" />
-                <circle cx="16" cy="20" r="1.5" fill="currentColor" />
-                <circle cx="32" cy="20" r="1.5" fill="currentColor" />
-                <circle cx="14" cy="31" r="1.5" fill="currentColor" />
-                <circle cx="34" cy="31" r="1.5" fill="currentColor" />
+                <path d="M24 34 C21 34 18.5 35 17.5 37" />
+                <path d="M24 34 C27 34 29.5 35 30.5 37" />
+                <circle cx="16" cy="20" r="2.3" fill="currentColor" />
+                <circle cx="32" cy="20" r="2.3" fill="currentColor" />
+                <circle cx="14" cy="31" r="2.3" fill="currentColor" />
+                <circle cx="34" cy="31" r="2.3" fill="currentColor" />
+                <circle cx="24" cy="38" r="2" fill="currentColor" />
               </svg>
             </div>
             <span class="cat-orb-label">Gin</span>
           </a>
           <a href="#inventory" onclick="quickFilter('Beer')" class="cat-circle">
             <div class="cat-orb">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
+                <path d="M14.3 18 L31.7 18 L30 41 L16 41 Z" fill="currentColor" fill-opacity="0.25" stroke="none" />
+                <path d="M14 14 C14 10 17 8 20 10 C20 7 24 6 26 9 C28 7 32 8 32 14 Z" fill="currentColor"
+                  fill-opacity="0.35" stroke="none" />
                 <path d="M14 14 L32 14 L30 41 L16 41 Z" />
                 <path d="M32 18 L37 18 L37 30 L32 30" />
                 <path d="M14 14 C14 10 17 8 20 10" />
                 <path d="M20 10 C20 7 24 6 26 9" />
                 <path d="M26 9 C28 7 32 8 32 14" />
-                <path d="M19 22 L19 36" />
-                <path d="M24 22 L24 36" />
-                <path d="M28 22 L28 36" />
+                <path d="M19 22 L19 36" opacity="0.55" />
+                <path d="M24 22 L24 36" opacity="0.55" />
+                <path d="M28 22 L28 36" opacity="0.55" />
               </svg>
             </div>
             <span class="cat-orb-label">Beer</span>
           </a>
           <a href="#inventory" onclick="quickFilter('Smokes')" class="cat-circle">
             <div class="cat-orb">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
-                <rect x="6" y="22" width="28" height="6" rx="3" />
-                <path d="M12 22 L12 28" />
-                <path d="M18 22 L18 28" />
-                <circle cx="37" cy="25" r="2.5" fill="currentColor" />
+                <rect x="6" y="22" width="28" height="6" rx="3" fill="currentColor" fill-opacity="0.18" />
+                <rect x="10" y="22" width="6" height="6" fill="currentColor" fill-opacity="0.45" stroke="none" />
+                <path d="M10 22 L10 28" />
+                <path d="M16 22 L16 28" />
+                <circle cx="37" cy="25" r="3.2" fill="currentColor" />
+                <circle cx="37" cy="25" r="1.5" fill="currentColor" opacity="0.45" />
                 <path d="M39 17 C41 14 40 12 42 9" />
                 <path d="M35 16 C36 13 34 11 36 8" />
                 <path d="M32 15 C33 12 31 10 33 7" />
@@ -766,26 +978,28 @@
           <!-- Set B (duplicate for seamless loop) -->
           <a href="#inventory" onclick="quickFilter('Tequila')" class="cat-circle">
             <div class="cat-orb">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
-                <path d="M24 42 L24 26" />
-                <path d="M24 26 L13 14" />
-                <path d="M24 26 L35 14" />
-                <path d="M24 26 L19 8" />
-                <path d="M24 26 L29 8" />
-                <path d="M24 26 L8 22" />
-                <path d="M24 26 L40 22" />
-                <path d="M24 26 L11 30" />
-                <path d="M24 26 L37 30" />
+                <path d="M16 40 L32 40" />
+                <path d="M24 40 L14 20" fill="currentColor" fill-opacity="0.16" />
+                <path d="M24 40 L34 20" fill="currentColor" fill-opacity="0.16" />
+                <path d="M24 40 L20 10" fill="currentColor" fill-opacity="0.22" />
+                <path d="M24 40 L28 10" fill="currentColor" fill-opacity="0.22" />
+                <path d="M24 40 L9 26" fill="currentColor" fill-opacity="0.12" />
+                <path d="M24 40 L39 26" fill="currentColor" fill-opacity="0.12" />
+                <path d="M24 40 L24 6" />
               </svg>
             </div>
             <span class="cat-orb-label">Tequila</span>
           </a>
           <a href="#inventory" onclick="quickFilter('Wine')" class="cat-circle">
             <div class="cat-orb">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
                 <path d="M16 6 L32 6 L31 20 C31 25 28 29 24 29 C20 29 17 25 17 20 Z" />
+                <path
+                  d="M17.4 15 C20 17 24 15 27 16 C29 16 30.6 15 30.8 15 L31 20 C31 25 28 29 24 29 C20 29 17 25 17 20 Z"
+                  fill="currentColor" fill-opacity="0.3" stroke="none" />
                 <path d="M17 13 C20 15 24 13 27 14 C29 14 31 13 31 13" />
                 <path d="M24 29 L24 40" />
                 <path d="M18 41 L30 41" />
@@ -795,31 +1009,34 @@
           </a>
           <a href="#inventory" onclick="quickFilter('Whiskey', 'Bourbon')" class="cat-circle">
             <div class="cat-orb">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
-                <ellipse cx="24" cy="24" rx="13" ry="18" />
+                <ellipse cx="24" cy="24" rx="13" ry="18" fill="currentColor" fill-opacity="0.14" />
                 <path d="M11 16 L37 16" />
                 <path d="M11 32 L37 32" />
                 <path d="M24 6 L24 42" />
+                <path d="M17 7.2 L17 40.8" opacity="0.45" />
+                <path d="M31 7.2 L31 40.8" opacity="0.45" />
               </svg>
             </div>
             <span class="cat-orb-label">Bourbon</span>
           </a>
           <a href="#inventory" onclick="quickFilter('Whiskey')" class="cat-circle">
             <div class="cat-orb">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
                 <path d="M14 12 L34 12 L32 40 L16 40 Z" />
+                <path d="M14.3 22 L33.7 22 L32 40 L16 40 Z" fill="currentColor" fill-opacity="0.25" stroke="none" />
                 <path d="M14 22 L34 22" />
-                <circle cx="20" cy="30" r="2.5" />
-                <circle cx="27" cy="33" r="2" />
+                <rect x="17.5" y="26" width="6" height="6" rx="1" fill="currentColor" fill-opacity="0.4" />
+                <rect x="25" y="30" width="5" height="5" rx="1" fill="currentColor" fill-opacity="0.4" />
               </svg>
             </div>
             <span class="cat-orb-label">Whiskey</span>
           </a>
           <a href="#inventory" onclick="quickFilter('Vodka')" class="cat-circle">
             <div class="cat-orb">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
                 <path d="M24 6 L24 42" />
                 <path d="M9 14 L39 34" />
@@ -830,15 +1047,18 @@
                 <path d="M37 18 L33 16 L35 12" />
                 <path d="M11 30 L15 32 L13 36" />
                 <path d="M37 30 L33 32 L35 36" />
+                <circle cx="24" cy="24" r="2.6" fill="currentColor" />
               </svg>
             </div>
             <span class="cat-orb-label">Vodka</span>
           </a>
           <a href="#inventory" onclick="quickFilter('Cognac')" class="cat-circle">
             <div class="cat-orb">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
                 <path d="M13 13 C13 24 18 32 24 32 C30 32 35 24 35 13 Z" />
+                <path d="M14.3 21 C18 23 22 21 24 22 C28 23 32 21 33.7 20 C33 25 29 32 24 32 C19 32 15 25 14.3 21 Z"
+                  fill="currentColor" fill-opacity="0.3" stroke="none" />
                 <path d="M14 20 C18 22 22 20 24 21 C28 22 32 20 34 19" />
                 <path d="M24 32 L24 40" />
                 <path d="M18 41 L30 41" />
@@ -848,9 +1068,10 @@
           </a>
           <a href="#inventory" onclick="quickFilter('Rum')" class="cat-circle">
             <div class="cat-orb">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
-                <circle cx="24" cy="9" r="3" />
+                <circle cx="24" cy="9" r="3.2" fill="currentColor" fill-opacity="0.3" />
+                <circle cx="24" cy="9" r="1.3" fill="currentColor" />
                 <path d="M24 12 L24 40" />
                 <path d="M18 18 L30 18" />
                 <path d="M12 30 C12 36 17 41 24 41 C31 41 36 36 36 30" />
@@ -862,60 +1083,71 @@
           </a>
           <a href="#inventory" onclick="quickFilter('Champagne')" class="cat-circle">
             <div class="cat-orb">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
                 <path d="M19 6 L29 6 L28 28 C28 31 26 33 24 33 C22 33 20 31 20 28 Z" />
+                <path d="M20.3 22 L27.7 22 L28 28 C28 31 26 33 24 33 C22 33 20 31 20 28 Z" fill="currentColor"
+                  fill-opacity="0.3" stroke="none" />
                 <path d="M24 33 L24 41" />
                 <path d="M19 42 L29 42" />
-                <circle cx="22" cy="14" r="0.9" fill="currentColor" />
-                <circle cx="26" cy="18" r="0.9" fill="currentColor" />
-                <circle cx="23" cy="22" r="0.9" fill="currentColor" />
-                <circle cx="25" cy="10" r="0.7" fill="currentColor" />
+                <circle cx="22" cy="14" r="1.2" fill="currentColor" />
+                <circle cx="26" cy="18" r="1.2" fill="currentColor" />
+                <circle cx="23" cy="24" r="1.2" fill="currentColor" />
+                <circle cx="26" cy="28" r="1" fill="currentColor" />
+                <circle cx="25" cy="10" r="0.9" fill="currentColor" />
               </svg>
             </div>
             <span class="cat-orb-label">Champagne</span>
           </a>
           <a href="#inventory" onclick="quickFilter('Gin')" class="cat-circle">
             <div class="cat-orb">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
                 <path d="M24 8 L24 42" />
                 <path d="M24 14 C20 14 17 16 16 19" />
                 <path d="M24 14 C28 14 31 16 32 19" />
                 <path d="M24 24 C19 24 15 26 14 30" />
                 <path d="M24 24 C29 24 33 26 34 30" />
-                <circle cx="16" cy="20" r="1.5" fill="currentColor" />
-                <circle cx="32" cy="20" r="1.5" fill="currentColor" />
-                <circle cx="14" cy="31" r="1.5" fill="currentColor" />
-                <circle cx="34" cy="31" r="1.5" fill="currentColor" />
+                <path d="M24 34 C21 34 18.5 35 17.5 37" />
+                <path d="M24 34 C27 34 29.5 35 30.5 37" />
+                <circle cx="16" cy="20" r="2.3" fill="currentColor" />
+                <circle cx="32" cy="20" r="2.3" fill="currentColor" />
+                <circle cx="14" cy="31" r="2.3" fill="currentColor" />
+                <circle cx="34" cy="31" r="2.3" fill="currentColor" />
+                <circle cx="24" cy="38" r="2" fill="currentColor" />
               </svg>
             </div>
             <span class="cat-orb-label">Gin</span>
           </a>
           <a href="#inventory" onclick="quickFilter('Beer')" class="cat-circle">
             <div class="cat-orb">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
+                <path d="M14.3 18 L31.7 18 L30 41 L16 41 Z" fill="currentColor" fill-opacity="0.25" stroke="none" />
+                <path d="M14 14 C14 10 17 8 20 10 C20 7 24 6 26 9 C28 7 32 8 32 14 Z" fill="currentColor"
+                  fill-opacity="0.35" stroke="none" />
                 <path d="M14 14 L32 14 L30 41 L16 41 Z" />
                 <path d="M32 18 L37 18 L37 30 L32 30" />
                 <path d="M14 14 C14 10 17 8 20 10" />
                 <path d="M20 10 C20 7 24 6 26 9" />
                 <path d="M26 9 C28 7 32 8 32 14" />
-                <path d="M19 22 L19 36" />
-                <path d="M24 22 L24 36" />
-                <path d="M28 22 L28 36" />
+                <path d="M19 22 L19 36" opacity="0.55" />
+                <path d="M24 22 L24 36" opacity="0.55" />
+                <path d="M28 22 L28 36" opacity="0.55" />
               </svg>
             </div>
             <span class="cat-orb-label">Beer</span>
           </a>
           <a href="#inventory" onclick="quickFilter('Smokes')" class="cat-circle">
             <div class="cat-orb">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
-                <rect x="6" y="22" width="28" height="6" rx="3" />
-                <path d="M12 22 L12 28" />
-                <path d="M18 22 L18 28" />
-                <circle cx="37" cy="25" r="2.5" fill="currentColor" />
+                <rect x="6" y="22" width="28" height="6" rx="3" fill="currentColor" fill-opacity="0.18" />
+                <rect x="10" y="22" width="6" height="6" fill="currentColor" fill-opacity="0.45" stroke="none" />
+                <path d="M10 22 L10 28" />
+                <path d="M16 22 L16 28" />
+                <circle cx="37" cy="25" r="3.2" fill="currentColor" />
+                <circle cx="37" cy="25" r="1.5" fill="currentColor" opacity="0.45" />
                 <path d="M39 17 C41 14 40 12 42 9" />
                 <path d="M35 16 C36 13 34 11 36 8" />
                 <path d="M32 15 C33 12 31 10 33 7" />
@@ -934,8 +1166,9 @@
   </section>
 
   <!-- Hot Items Section -->
-  <section id="hot-items" class="relative py-24 px-6">
-    <div class="max-w-6xl mx-auto">
+  <section id="hot-items" class="relative py-24 px-6 overflow-hidden">
+    <div class="section-aurora"></div>
+    <div class="relative z-10 max-w-6xl mx-auto">
       <div class="text-center mb-4 reveal">
         <span
           class="inline-block text-purple-accent text-xs font-semibold uppercase tracking-[0.15em] mb-4 px-3 py-1 rounded-full border border-purple-accent/20 bg-purple-accent/5">What's
@@ -961,7 +1194,8 @@
           </div>
           <div class="rounded-xl overflow-hidden border border-border-subtle"
             style="background: linear-gradient(135deg, #2a1406 0%, #3d1f0a 50%, #1a0c03 100%);">
-            <img src="https://placehold.co/800x600/3d1f0a/e8c48a?text=Hennessy+VS&font=playfair"
+            <img
+              src="https://www.hennessy.com/sites/hennessy_us/files/styles/landscape_2880x1540/public/2024-07/hennessy_vsop_bottle-design-giftbox_2880x1540.jpg?itok=6SKvBtKZ"
               alt="Hennessy VS Cognac" class="w-full h-[300px] object-cover" loading="lazy" />
           </div>
         </div>
@@ -970,7 +1204,8 @@
         <div class="feature-card p-8 grid grid-cols-2 gap-8 items-center reveal">
           <div class="rounded-xl overflow-hidden border border-border-subtle"
             style="background: linear-gradient(135deg, #2f1a0a 0%, #4a2e15 50%, #1c0f05 100%);">
-            <img src="https://placehold.co/800x600/4a2e15/e6c48a?text=Casamigos+Reposado&font=playfair"
+            <img
+              src="https://cove27.co.nz/cdn/shop/files/Casamigos-Anejo-Tequila-lifestyle-cocktail-old-fashioned.jpg?v=1747194300"
               alt="Casamigos Reposado Tequila" class="w-full h-[300px] object-cover" loading="lazy" />
           </div>
           <div>
@@ -985,22 +1220,21 @@
           </div>
         </div>
 
-        <!-- Hot Item 3 - Don Julio 1942 -->
+        <!-- Hot Item 3 - Crown Royal -->
         <div class="feature-card p-8 grid grid-cols-2 gap-8 items-center reveal">
           <div>
-            <h3 class="text-xl font-bold mb-2">Don Julio 1942</h3>
-            <h3 class="text-xl font-bold mb-4 text-purple-accent">· Premium Pick</h3>
+            <h3 class="text-xl font-bold mb-2">Crown Royal</h3>
+            <h3 class="text-xl font-bold mb-4 text-purple-accent">· House Favorite</h3>
             <p class="text-text-secondary text-sm leading-6 max-w-sm">
-              Hand-crafted, small-batch añejo aged a minimum of two and a half years. Warm agave, rich caramel, and
-              toasted
-              oak. The bottle that turns any night into an occasion.
+              The smooth Canadian whisky in the iconic purple bag. Light vanilla, soft oak, and a clean finish &mdash;
+              just as easy on the rocks as it is in a Crown &amp; Coke. A go-to for any night.
             </p>
-            <p class="mt-4 text-2xl font-bold">$154.99</p>
+            <p class="mt-4 text-2xl font-bold">$27.99</p>
           </div>
           <div class="rounded-xl overflow-hidden border border-border-subtle"
-            style="background: linear-gradient(135deg, #050505 0%, #1a1605 50%, #000 100%);">
-            <img src="https://placehold.co/800x600/0a0805/d4af37?text=Don+Julio+1942&font=playfair"
-              alt="Don Julio 1942 Añejo Tequila" class="w-full h-[300px] object-cover" loading="lazy" />
+            style="background: linear-gradient(135deg, #1a0a2a 0%, #2c1545 50%, #0a0418 100%);">
+            <img src="https://mma.prnewswire.com/media/2676945/Crown_Royal___Marquis_Rocks_Neat.jpg?p=twitter"
+              alt="Crown Royal Canadian Whisky" class="w-full h-[300px] object-cover" loading="lazy" />
           </div>
         </div>
 
@@ -1008,8 +1242,9 @@
         <div class="feature-card p-8 grid grid-cols-2 gap-8 items-center reveal">
           <div class="rounded-xl overflow-hidden border border-border-subtle"
             style="background: linear-gradient(135deg, #0a1525 0%, #1a2945 50%, #060d1a 100%);">
-            <img src="https://placehold.co/800x600/152340/dde5f0?text=Grey+Goose&font=playfair" alt="Grey Goose Vodka"
-              class="w-full h-[300px] object-cover" loading="lazy" />
+            <img
+              src="https://www.greygoose.com/binaries/content/gallery/greygoose/faqs/is-botanically-infused-vodka-gin-desktop.jpg"
+              alt="Grey Goose Vodka" class="w-full h-[300px] object-cover" loading="lazy" />
           </div>
           <div>
             <h3 class="text-xl font-bold mb-2">Grey Goose</h3>
@@ -1026,8 +1261,9 @@
   </section>
 
   <!-- New Listings / Deals combined -->
-  <section id="deals" class="relative py-24 px-6">
-    <div class="max-w-6xl mx-auto">
+  <section id="deals" class="relative py-24 px-6 overflow-hidden">
+    <div class="section-aurora"></div>
+    <div class="relative z-10 max-w-6xl mx-auto">
       <div class="text-center mb-4 reveal">
         <span
           class="inline-block text-purple-accent text-xs font-semibold uppercase tracking-[0.15em] mb-4 px-3 py-1 rounded-full border border-purple-accent/20 bg-purple-accent/5">Save
@@ -1039,8 +1275,9 @@
         style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400;">& New Arrivals</h2>
 
       <!-- Deals table -->
-      <div class="rounded-xl overflow-hidden border border-border-subtle reveal" style="background: #08081a;">
-        <div class="p-6">
+      <div class="rounded-xl overflow-hidden border border-border-subtle reveal glow-container"
+        style="background: #08081a;">
+        <div class="shimmer-header px-6 pt-6 pb-2">
           <table class="w-full text-left text-sm">
             <thead>
               <tr class="border-b border-white/5">
@@ -1051,38 +1288,46 @@
                 <th class="py-3 px-4 text-text-dim font-medium text-xs uppercase tracking-wider">Savings</th>
               </tr>
             </thead>
+          </table>
+        </div>
+        <div class="px-6 pb-6">
+          <table class="w-full text-left text-sm">
             <tbody>
-              <tr class="border-b border-white/[0.03]">
+              <tr class="border-b border-white/[0.03] hover:bg-purple-accent/[0.04] transition-colors">
                 <td class="py-3 px-4 text-text-secondary font-medium">Amsterdam Vodka 1.75L</td>
                 <td class="py-3 px-4 text-text-secondary">Vodka</td>
                 <td class="py-3 px-4 text-text-dim line-through">$19.99</td>
                 <td class="py-3 px-4 text-green-400 font-bold">$14.99</td>
                 <td class="py-3 px-4"><span
-                    class="bg-green-400/10 text-green-400 text-xs font-bold px-2 py-1 rounded-full">25% OFF</span></td>
+                    class="deal-badge bg-green-400/10 text-green-400 text-xs font-bold px-2 py-1 rounded-full">25%
+                    OFF</span></td>
               </tr>
-              <tr class="border-b border-white/[0.03]">
+              <tr class="border-b border-white/[0.03] hover:bg-purple-accent/[0.04] transition-colors">
                 <td class="py-3 px-4 text-text-secondary font-medium">Patron Silver</td>
                 <td class="py-3 px-4 text-text-secondary">Tequila</td>
                 <td class="py-3 px-4 text-text-dim line-through">$44.99</td>
                 <td class="py-3 px-4 text-green-400 font-bold">$37.99</td>
                 <td class="py-3 px-4"><span
-                    class="bg-green-400/10 text-green-400 text-xs font-bold px-2 py-1 rounded-full">15% OFF</span></td>
+                    class="deal-badge bg-green-400/10 text-green-400 text-xs font-bold px-2 py-1 rounded-full">15%
+                    OFF</span></td>
               </tr>
-              <tr class="border-b border-white/[0.03]">
+              <tr class="border-b border-white/[0.03] hover:bg-purple-accent/[0.04] transition-colors">
                 <td class="py-3 px-4 text-text-secondary font-medium">Jack Daniel's 1L</td>
                 <td class="py-3 px-4 text-text-secondary">Whiskey</td>
                 <td class="py-3 px-4 text-text-dim line-through">$29.99</td>
                 <td class="py-3 px-4 text-green-400 font-bold">$23.99</td>
                 <td class="py-3 px-4"><span
-                    class="bg-green-400/10 text-green-400 text-xs font-bold px-2 py-1 rounded-full">20% OFF</span></td>
+                    class="deal-badge bg-green-400/10 text-green-400 text-xs font-bold px-2 py-1 rounded-full">20%
+                    OFF</span></td>
               </tr>
-              <tr>
+              <tr class="hover:bg-purple-accent/[0.04] transition-colors">
                 <td class="py-3 px-4 text-text-secondary font-medium">Crown Royal</td>
                 <td class="py-3 px-4 text-text-secondary">Whiskey</td>
                 <td class="py-3 px-4 text-text-dim line-through">$27.99</td>
                 <td class="py-3 px-4 text-green-400 font-bold">$22.99</td>
                 <td class="py-3 px-4"><span
-                    class="bg-green-400/10 text-green-400 text-xs font-bold px-2 py-1 rounded-full">18% OFF</span></td>
+                    class="deal-badge bg-green-400/10 text-green-400 text-xs font-bold px-2 py-1 rounded-full">18%
+                    OFF</span></td>
               </tr>
             </tbody>
           </table>
@@ -1092,8 +1337,9 @@
   </section>
 
   <!-- Full Inventory -->
-  <section id="inventory" class="relative py-24 px-6">
-    <div class="max-w-6xl mx-auto">
+  <section id="inventory" class="relative py-24 px-6 overflow-hidden">
+    <div class="section-aurora"></div>
+    <div class="relative z-10 max-w-6xl mx-auto">
       <div class="text-center mb-4 reveal">
         <span
           class="inline-block text-purple-accent text-xs font-semibold uppercase tracking-[0.15em] mb-4 px-3 py-1 rounded-full border border-purple-accent/20 bg-purple-accent/5">Full
@@ -1132,14 +1378,15 @@
       </div>
 
       <!-- Inventory table -->
-      <div class="rounded-xl overflow-hidden border border-border-subtle reveal" style="background: #08081a;">
+      <div class="rounded-xl overflow-hidden border border-border-subtle reveal glow-container"
+        style="background: #08081a;">
         <table class="w-full text-left text-sm">
-          <thead>
+          <thead class="shimmer-header">
             <tr class="border-b border-white/5">
-              <th class="py-3 px-5 text-text-dim font-medium text-xs uppercase tracking-wider bg-surface">Product</th>
-              <th class="py-3 px-5 text-text-dim font-medium text-xs uppercase tracking-wider bg-surface">Category</th>
-              <th class="py-3 px-5 text-text-dim font-medium text-xs uppercase tracking-wider bg-surface">Size</th>
-              <th class="py-3 px-5 text-text-dim font-medium text-xs uppercase tracking-wider bg-surface">Price</th>
+              <th class="py-3 px-5 text-text-dim font-medium text-xs uppercase tracking-wider">Product</th>
+              <th class="py-3 px-5 text-text-dim font-medium text-xs uppercase tracking-wider">Category</th>
+              <th class="py-3 px-5 text-text-dim font-medium text-xs uppercase tracking-wider">Size</th>
+              <th class="py-3 px-5 text-text-dim font-medium text-xs uppercase tracking-wider">Price</th>
             </tr>
           </thead>
           <tbody id="inventory-body">
@@ -1152,8 +1399,9 @@
 
   <!-- FAQ + Find Us combined -->
   <section id="find-us" class="relative py-24 px-6 overflow-hidden">
-    <div class="cta-glow"></div>
     <div class="relative z-10 max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-start">
+      <!-- Vertical glowing divider between FAQ (left) and map (right) -->
+      <div class="glow-divider-v hidden lg:block"></div>
 
       <!-- LEFT: FAQ -->
       <div class="reveal">
@@ -1167,40 +1415,85 @@
         </p>
 
         <div class="border-t border-border-subtle">
-          <div class="faq-item py-5 px-2 flex items-center justify-between" onclick="toggleFaq(this)">
-            <span class="text-[15px] font-medium">What are your store hours?</span>
-            <svg class="faq-chevron w-4 h-4 text-text-dim transition-transform" viewBox="0 0 16 16" fill="none">
-              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="py-5 px-2 flex items-center justify-between">
+              <span class="text-[15px] font-medium">What are your store hours?</span>
+              <svg class="faq-chevron w-4 h-4 text-text-dim transition-transform" viewBox="0 0 16 16" fill="none">
+                <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div class="faq-answer">
+              <p class="text-text-secondary text-sm leading-6 pb-5 px-2">
+                We're open every single day, 9:30 AM to 9:30 PM. No holidays off, no weekend weirdness &mdash; same
+                hours, 7 days a week.
+              </p>
+            </div>
           </div>
-          <div class="faq-item py-5 px-2 flex items-center justify-between" onclick="toggleFaq(this)">
-            <span class="text-[15px] font-medium">Do you offer delivery?</span>
-            <svg class="faq-chevron w-4 h-4 text-text-dim transition-transform" viewBox="0 0 16 16" fill="none">
-              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
+
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="py-5 px-2 flex items-center justify-between">
+              <span class="text-[15px] font-medium">Do you offer delivery?</span>
+              <svg class="faq-chevron w-4 h-4 text-text-dim transition-transform" viewBox="0 0 16 16" fill="none">
+                <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div class="faq-answer">
+              <p class="text-text-secondary text-sm leading-6 pb-5 px-2">
+                We're in-store pickup only for now. Swing by 6859 N Teutonia Ave &mdash; it's quick, we know the
+                regulars by name, and you walk out with exactly what you came for.
+              </p>
+            </div>
           </div>
-          <div class="faq-item py-5 px-2 flex items-center justify-between" onclick="toggleFaq(this)">
-            <span class="text-[15px] font-medium">Can I place a special order for a product you don't carry?</span>
-            <svg class="faq-chevron w-4 h-4 text-text-dim transition-transform" viewBox="0 0 16 16" fill="none">
-              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
+
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="py-5 px-2 flex items-center justify-between">
+              <span class="text-[15px] font-medium">Can I place a special order for a product you don't carry?</span>
+              <svg class="faq-chevron w-4 h-4 text-text-dim transition-transform" viewBox="0 0 16 16" fill="none">
+                <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div class="faq-answer">
+              <p class="text-text-secondary text-sm leading-6 pb-5 px-2">
+                Absolutely. Call us at <a href="tel:4145550199" class="text-purple-accent hover:underline">(414)
+                  555-0199</a> with the product details and we'll try to bring it in. Most special orders land within a
+                week.
+              </p>
+            </div>
           </div>
-          <div class="faq-item py-5 px-2 flex items-center justify-between" onclick="toggleFaq(this)">
-            <span class="text-[15px] font-medium">Do you price match with other stores?</span>
-            <svg class="faq-chevron w-4 h-4 text-text-dim transition-transform" viewBox="0 0 16 16" fill="none">
-              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
+
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="py-5 px-2 flex items-center justify-between">
+              <span class="text-[15px] font-medium">Do you price match with other stores?</span>
+              <svg class="faq-chevron w-4 h-4 text-text-dim transition-transform" viewBox="0 0 16 16" fill="none">
+                <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div class="faq-answer">
+              <p class="text-text-secondary text-sm leading-6 pb-5 px-2">
+                Yes &mdash; bring in a printed or in-app price from any local Milwaukee competitor on the exact same
+                product and size, and we'll match it at the register.
+              </p>
+            </div>
           </div>
-          <div class="faq-item py-5 px-2 flex items-center justify-between" onclick="toggleFaq(this)">
-            <span class="text-[15px] font-medium">What payment methods do you accept?</span>
-            <svg class="faq-chevron w-4 h-4 text-text-dim transition-transform" viewBox="0 0 16 16" fill="none">
-              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
+
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="py-5 px-2 flex items-center justify-between">
+              <span class="text-[15px] font-medium">What payment methods do you accept?</span>
+              <svg class="faq-chevron w-4 h-4 text-text-dim transition-transform" viewBox="0 0 16 16" fill="none">
+                <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div class="faq-answer">
+              <p class="text-text-secondary text-sm leading-6 pb-5 px-2">
+                Cash, debit, all major credit cards (Visa, Mastercard, Amex, Discover), plus Apple Pay and Google Pay.
+                Minimum $10 on card purchases.
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -1258,6 +1551,14 @@
       </div>
     </div>
   </footer>
+
+  <!-- Back to top -->
+  <button id="back-to-top" aria-label="Back to top" onclick="scrollToTop()">
+    <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
+      <path d="M8 13V3M4 7l4-4 4 4" stroke="#e8e4ff" stroke-width="1.8" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </svg>
+  </button>
 
   <script>
     // ===== Smooth scroll for all anchor links =====
@@ -1516,15 +1817,45 @@
     }
     setupNavSearch();
 
-    // FAQ toggle
+    // FAQ toggle — expand/collapse the answer
     function toggleFaq(el) {
-      const chevron = el.querySelector('.faq-chevron');
-      const isOpen = chevron.style.transform === 'rotate(180deg)';
-      document.querySelectorAll('.faq-chevron').forEach(c => c.style.transform = '');
-      if (!isOpen) {
-        chevron.style.transform = 'rotate(180deg)';
+      const wasOpen = el.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll('.faq-item').forEach(item => {
+        item.classList.remove('open');
+        const ans = item.querySelector('.faq-answer');
+        const chev = item.querySelector('.faq-chevron');
+        if (ans) ans.style.maxHeight = '0';
+        if (chev) chev.style.transform = '';
+      });
+
+      // Open this one if it was closed
+      if (!wasOpen) {
+        el.classList.add('open');
+        const ans = el.querySelector('.faq-answer');
+        const chev = el.querySelector('.faq-chevron');
+        if (ans) ans.style.maxHeight = ans.scrollHeight + 'px';
+        if (chev) chev.style.transform = 'rotate(180deg)';
       }
     }
+
+    // ===== Back to top =====
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    (function setupBackToTop() {
+      const btn = document.getElementById('back-to-top');
+      if (!btn) return;
+      const threshold = 500;
+      const toggle = () => {
+        if (window.scrollY > threshold) btn.classList.add('visible');
+        else btn.classList.remove('visible');
+      };
+      window.addEventListener('scroll', toggle, { passive: true });
+      toggle();
+    })();
   </script>
 
   <style>
