@@ -575,8 +575,8 @@
   <nav class="fixed top-0 left-0 w-full z-50 grid grid-cols-3 items-center px-6 py-3 gap-4"
     style="background: rgba(3, 0, 20, 0.7); backdrop-filter: blur(20px);">
 
-    <!-- Left: Logo -->
-    <div class="flex items-center gap-2 justify-self-start">
+    <!-- Left: Logo (clickable to return home) -->
+    <a href="#" id="logo-home" class="flex items-center gap-2 justify-self-start hover:opacity-90 transition-opacity cursor-pointer">
       <div class="w-7 h-7 rounded-lg bg-purple-accent/20 flex items-center justify-center">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
           <rect width="16" height="16" rx="3" fill="#9382ff" fill-opacity="0.3" />
@@ -585,44 +585,17 @@
       </div>
       <span class="text-white font-semibold text-lg tracking-tight whitespace-nowrap">Express <span
           class="text-text-secondary font-normal text-sm">Liquor & Tobacco</span></span>
-    </div>
+    </a>
 
     <!-- Center: Primary nav links (sit directly above the category bar) -->
     <div class="flex items-center gap-8 justify-self-center">
-      <a href="#hot-items" class="text-text-secondary text-sm font-medium hover:text-white transition-colors">Hot
-        Items</a>
-      <a href="#deals" class="text-text-secondary text-sm font-medium hover:text-white transition-colors">Deals</a>
-      <a href="#inventory"
-        class="text-text-secondary text-sm font-medium hover:text-white transition-colors">Inventory</a>
+      <a href="#" class="nav-home-link text-text-secondary text-sm font-medium hover:text-white transition-colors">Home</a>
+      <a href="#hot-items" class="text-text-secondary text-sm font-medium hover:text-white transition-colors">Hot Items</a>
+      <a href="#weekly-savings" class="text-text-secondary text-sm font-medium hover:text-white transition-colors">Deals</a>
     </div>
 
-    <!-- Right: Categories dropdown | Live search | Find Us -->
+    <!-- Right: Live search | Contact | Find Us -->
     <div class="flex items-center gap-2 justify-self-end">
-
-      <!-- Categories quick-jump dropdown -->
-      <div class="cat-item">
-        <button
-          class="px-3 py-2 text-sm font-medium text-text-secondary hover:text-white transition-colors rounded-lg hover:bg-white/5 flex items-center gap-1.5 whitespace-nowrap">
-          Categories
-          <svg class="w-3 h-3 opacity-60" viewBox="0 0 12 12" fill="none">
-            <path d="M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round" />
-          </svg>
-        </button>
-        <div class="cat-dropdown">
-          <a href="#inventory" onclick="quickFilter('Cognac')">Cognac</a>
-          <a href="#inventory" onclick="quickFilter('Tequila')">Tequila</a>
-          <a href="#inventory" onclick="quickFilter('Whiskey')">Whiskey</a>
-          <a href="#inventory" onclick="quickFilter('Bourbon')">Bourbon</a>
-          <a href="#inventory" onclick="quickFilter('Vodka')">Vodka</a>
-          <a href="#inventory" onclick="quickFilter('Rum')">Rum</a>
-          <a href="#inventory" onclick="quickFilter('Wine')">Wine</a>
-          <a href="#inventory" onclick="quickFilter('Champagne')">Champagne</a>
-          <a href="#inventory" onclick="quickFilter('Gin')">Gin</a>
-          <a href="#inventory" onclick="quickFilter('Beer')">Beer</a>
-          <a href="#inventory" onclick="quickFilter('Smokes')">Smokes &amp; Cigars</a>
-        </div>
-      </div>
 
       <!-- Live search with autocomplete -->
       <div id="nav-search-wrap" class="relative">
@@ -637,6 +610,10 @@
           class="absolute top-full right-0 mt-2 w-80 max-h-80 overflow-y-auto rounded-xl border border-white/10 hidden"
           style="background: #0c0c22; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5); z-index: 60;"></div>
       </div>
+
+      <!-- Contact -->
+      <a href="#contact"
+        class="hidden sm:inline-flex text-text-secondary text-sm font-medium hover:text-white transition-colors px-3 py-2 whitespace-nowrap">Contact</a>
 
       <!-- Find Us -->
       <a href="#find-us"
@@ -658,10 +635,12 @@
           </svg>
         </button>
         <div class="cat-dropdown">
-          <a href="#inventory" onclick="quickFilter('Cognac')">View All Cognac</a>
-          <a href="#inventory" onclick="quickFilter('Cognac', 'Hennessy')">Hennessy</a>
-          <a href="#inventory" onclick="quickFilter('Cognac', 'Remy')">Remy Martin</a>
-          <a href="#inventory" onclick="quickFilter('Cognac', 'Dusse')">Dusse</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Cognac')">View All Cognac</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Cognac', 'Hennessy')">Hennessy</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Cognac', 'Remy Martin')">Remy Martin</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Cognac', 'Dusse')">Dusse</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Cognac', 'Courvoisier')">Courvoisier</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Cognac', 'Martell')">Martell</a>
         </div>
       </div>
       <div class="cat-item">
@@ -674,11 +653,13 @@
           </svg>
         </button>
         <div class="cat-dropdown">
-          <a href="#inventory" onclick="quickFilter('Tequila')">View All Tequila</a>
-          <a href="#inventory" onclick="quickFilter('Tequila', 'Casamigos')">Casamigos</a>
-          <a href="#inventory" onclick="quickFilter('Tequila', 'Don Julio')">Don Julio</a>
-          <a href="#inventory" onclick="quickFilter('Tequila', 'Patron')">Patron</a>
-          <a href="#inventory" onclick="quickFilter('Tequila', 'Clase Azul')">Clase Azul</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Tequila')">View All Tequila</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Tequila', 'Casamigos')">Casamigos</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Tequila', 'Don Julio')">Don Julio</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Tequila', 'Patron')">Patron</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Tequila', 'Clase Azul')">Clase Azul</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Tequila', '1800')">1800</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Tequila', 'Jose Cuervo')">Jose Cuervo</a>
         </div>
       </div>
       <div class="cat-item">
@@ -691,10 +672,12 @@
           </svg>
         </button>
         <div class="cat-dropdown">
-          <a href="#inventory" onclick="quickFilter('Whiskey')">View All Whiskey</a>
-          <a href="#inventory" onclick="quickFilter('Whiskey', 'Jack')">Jack Daniel's</a>
-          <a href="#inventory" onclick="quickFilter('Whiskey', 'Buchanan')">Buchanan's</a>
-          <a href="#inventory" onclick="quickFilter('Whiskey', 'Crown')">Crown Royal</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Whiskey')">View All Whiskey</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Whiskey', 'Jack Daniel')">Jack Daniel's</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Whiskey', 'Buchanan')">Buchanan's</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Whiskey', 'Crown Royal')">Crown Royal</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Whiskey', 'Jameson')">Jameson</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Whiskey', 'Fireball')">Fireball</a>
         </div>
       </div>
       <div class="cat-item">
@@ -707,11 +690,13 @@
           </svg>
         </button>
         <div class="cat-dropdown">
-          <a href="#inventory" onclick="quickFilter('Vodka')">View All Vodka</a>
-          <a href="#inventory" onclick="quickFilter('Vodka', 'Ciroc')">Ciroc</a>
-          <a href="#inventory" onclick="quickFilter('Vodka', 'Grey Goose')">Grey Goose</a>
-          <a href="#inventory" onclick="quickFilter('Vodka', 'Tito')">Tito's</a>
-          <a href="#inventory" onclick="quickFilter('Vodka', 'Amsterdam')">Amsterdam</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Vodka')">View All Vodka</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Vodka', 'Ciroc')">Ciroc</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Vodka', 'Grey Goose')">Grey Goose</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Vodka', 'Tito')">Tito's</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Vodka', 'New Amsterdam')">New Amsterdam</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Vodka', 'Smirnoff')">Smirnoff</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Vodka', 'Absolut')">Absolut</a>
         </div>
       </div>
       <div class="cat-item">
@@ -724,10 +709,11 @@
           </svg>
         </button>
         <div class="cat-dropdown">
-          <a href="#inventory" onclick="quickFilter('Rum')">View All Rum</a>
-          <a href="#inventory" onclick="quickFilter('Rum', 'Bacardi')">Bacardi</a>
-          <a href="#inventory" onclick="quickFilter('Rum', 'Captain')">Captain Morgan</a>
-          <a href="#inventory" onclick="quickFilter('Rum', 'Malibu')">Malibu</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Rum')">View All Rum</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Rum', 'Bacardi')">Bacardi</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Rum', 'Captain Morgan')">Captain Morgan</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Rum', 'Malibu')">Malibu</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Rum', 'Kraken')">Kraken</a>
         </div>
       </div>
       <div class="cat-item">
@@ -740,15 +726,15 @@
           </svg>
         </button>
         <div class="cat-dropdown">
-          <a href="#inventory" onclick="quickFilter('Smokes')">View All Smokes</a>
-          <a href="#inventory" onclick="quickFilter('Smokes', 'Newport')">Newport</a>
-          <a href="#inventory" onclick="quickFilter('Smokes', 'Marlboro')">Marlboro</a>
-          <a href="#inventory" onclick="quickFilter('Smokes', 'Black')">Black &amp; Mild</a>
-          <a href="#inventory" onclick="quickFilter('Smokes', 'Swisher')">Swisher Sweets</a>
-          <a href="#inventory" onclick="quickFilter('Smokes', 'Backwoods')">Backwoods</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Smokes')">View All Smokes</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Smokes', 'Newport')">Newport</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Smokes', 'Marlboro')">Marlboro</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Smokes', 'Black & Mild')">Black &amp; Mild</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Smokes', 'Swisher')">Swisher Sweets</a>
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Smokes', 'Backwoods')">Backwoods</a>
         </div>
       </div>
-      <a href="#deals"
+      <a href="#weekly-savings"
         class="px-4 py-2 text-sm font-semibold text-purple-accent hover:text-white transition-colors rounded-lg hover:bg-purple-accent/10 flex items-center gap-1.5">
         Best Deals
         <svg class="w-3 h-3" viewBox="0 0 12 12" fill="none">
@@ -773,7 +759,7 @@
         in Milwaukee.
       </p>
       <div class="flex items-center justify-center gap-4">
-        <a href="#deals"
+        <a href="#weekly-savings"
           class="inline-flex items-center gap-2 bg-white text-bg text-sm font-semibold px-6 py-3 rounded-lg hover:bg-white/90 transition-colors">
           See Today's Deals
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -781,9 +767,9 @@
               stroke-linejoin="round" />
           </svg>
         </a>
-        <a href="#inventory"
+        <a href="#hot-items"
           class="inline-flex items-center gap-2 text-text-secondary text-sm font-semibold px-6 py-3 rounded-lg border border-border-subtle hover:border-border-hover transition-colors">
-          Browse Inventory
+          Hot Items
         </a>
       </div>
     </div>
@@ -795,7 +781,7 @@
         <div class="carousel-fade right"></div>
         <div class="carousel-track">
           <!-- Set A -->
-          <a href="#inventory" onclick="quickFilter('Tequila')" class="cat-circle">
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Tequila')" class="cat-circle">
             <div class="cat-orb">
               <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
@@ -811,7 +797,7 @@
             </div>
             <span class="cat-orb-label">Tequila</span>
           </a>
-          <a href="#inventory" onclick="quickFilter('Wine')" class="cat-circle">
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Wine')" class="cat-circle">
             <div class="cat-orb">
               <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
@@ -826,7 +812,7 @@
             </div>
             <span class="cat-orb-label">Wine</span>
           </a>
-          <a href="#inventory" onclick="quickFilter('Whiskey', 'Bourbon')" class="cat-circle">
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Whiskey', 'Bourbon')" class="cat-circle">
             <div class="cat-orb">
               <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
@@ -840,7 +826,7 @@
             </div>
             <span class="cat-orb-label">Bourbon</span>
           </a>
-          <a href="#inventory" onclick="quickFilter('Whiskey')" class="cat-circle">
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Whiskey')" class="cat-circle">
             <div class="cat-orb">
               <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
@@ -853,7 +839,7 @@
             </div>
             <span class="cat-orb-label">Whiskey</span>
           </a>
-          <a href="#inventory" onclick="quickFilter('Vodka')" class="cat-circle">
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Vodka')" class="cat-circle">
             <div class="cat-orb">
               <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
@@ -871,7 +857,7 @@
             </div>
             <span class="cat-orb-label">Vodka</span>
           </a>
-          <a href="#inventory" onclick="quickFilter('Cognac')" class="cat-circle">
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Cognac')" class="cat-circle">
             <div class="cat-orb">
               <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
@@ -885,7 +871,7 @@
             </div>
             <span class="cat-orb-label">Cognac</span>
           </a>
-          <a href="#inventory" onclick="quickFilter('Rum')" class="cat-circle">
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Rum')" class="cat-circle">
             <div class="cat-orb">
               <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
@@ -900,7 +886,7 @@
             </div>
             <span class="cat-orb-label">Rum</span>
           </a>
-          <a href="#inventory" onclick="quickFilter('Champagne')" class="cat-circle">
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Champagne')" class="cat-circle">
             <div class="cat-orb">
               <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
@@ -918,7 +904,7 @@
             </div>
             <span class="cat-orb-label">Champagne</span>
           </a>
-          <a href="#inventory" onclick="quickFilter('Gin')" class="cat-circle">
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Gin')" class="cat-circle">
             <div class="cat-orb">
               <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
@@ -938,7 +924,7 @@
             </div>
             <span class="cat-orb-label">Gin</span>
           </a>
-          <a href="#inventory" onclick="quickFilter('Beer')" class="cat-circle">
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Beer')" class="cat-circle">
             <div class="cat-orb">
               <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
@@ -957,7 +943,7 @@
             </div>
             <span class="cat-orb-label">Beer</span>
           </a>
-          <a href="#inventory" onclick="quickFilter('Smokes')" class="cat-circle">
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Smokes')" class="cat-circle">
             <div class="cat-orb">
               <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
@@ -976,7 +962,7 @@
           </a>
 
           <!-- Set B (duplicate for seamless loop) -->
-          <a href="#inventory" onclick="quickFilter('Tequila')" class="cat-circle">
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Tequila')" class="cat-circle">
             <div class="cat-orb">
               <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
@@ -992,7 +978,7 @@
             </div>
             <span class="cat-orb-label">Tequila</span>
           </a>
-          <a href="#inventory" onclick="quickFilter('Wine')" class="cat-circle">
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Wine')" class="cat-circle">
             <div class="cat-orb">
               <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
@@ -1007,7 +993,7 @@
             </div>
             <span class="cat-orb-label">Wine</span>
           </a>
-          <a href="#inventory" onclick="quickFilter('Whiskey', 'Bourbon')" class="cat-circle">
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Whiskey', 'Bourbon')" class="cat-circle">
             <div class="cat-orb">
               <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
@@ -1021,7 +1007,7 @@
             </div>
             <span class="cat-orb-label">Bourbon</span>
           </a>
-          <a href="#inventory" onclick="quickFilter('Whiskey')" class="cat-circle">
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Whiskey')" class="cat-circle">
             <div class="cat-orb">
               <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
@@ -1034,7 +1020,7 @@
             </div>
             <span class="cat-orb-label">Whiskey</span>
           </a>
-          <a href="#inventory" onclick="quickFilter('Vodka')" class="cat-circle">
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Vodka')" class="cat-circle">
             <div class="cat-orb">
               <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
@@ -1052,7 +1038,7 @@
             </div>
             <span class="cat-orb-label">Vodka</span>
           </a>
-          <a href="#inventory" onclick="quickFilter('Cognac')" class="cat-circle">
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Cognac')" class="cat-circle">
             <div class="cat-orb">
               <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
@@ -1066,7 +1052,7 @@
             </div>
             <span class="cat-orb-label">Cognac</span>
           </a>
-          <a href="#inventory" onclick="quickFilter('Rum')" class="cat-circle">
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Rum')" class="cat-circle">
             <div class="cat-orb">
               <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
@@ -1081,7 +1067,7 @@
             </div>
             <span class="cat-orb-label">Rum</span>
           </a>
-          <a href="#inventory" onclick="quickFilter('Champagne')" class="cat-circle">
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Champagne')" class="cat-circle">
             <div class="cat-orb">
               <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
@@ -1099,7 +1085,7 @@
             </div>
             <span class="cat-orb-label">Champagne</span>
           </a>
-          <a href="#inventory" onclick="quickFilter('Gin')" class="cat-circle">
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Gin')" class="cat-circle">
             <div class="cat-orb">
               <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
@@ -1119,7 +1105,7 @@
             </div>
             <span class="cat-orb-label">Gin</span>
           </a>
-          <a href="#inventory" onclick="quickFilter('Beer')" class="cat-circle">
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Beer')" class="cat-circle">
             <div class="cat-orb">
               <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
@@ -1138,7 +1124,7 @@
             </div>
             <span class="cat-orb-label">Beer</span>
           </a>
-          <a href="#inventory" onclick="quickFilter('Smokes')" class="cat-circle">
+          <a href="#inventory" onclick="event.preventDefault(); quickFilter('Smokes')" class="cat-circle">
             <div class="cat-orb">
               <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
                 stroke-linejoin="round">
@@ -1165,7 +1151,27 @@
     </div>
   </section>
 
-  <!-- Hot Items Section -->
+  <!-- Weekly Savings (curated deals, owner updates every few weeks) -->
+  <section id="weekly-savings" class="relative py-24 px-6 overflow-hidden">
+    <div class="section-aurora"></div>
+    <div class="relative z-10 max-w-6xl mx-auto">
+      <div class="text-center mb-4 reveal">
+        <span
+          class="inline-block text-purple-accent text-xs font-semibold uppercase tracking-[0.15em] mb-4 px-3 py-1 rounded-full border border-purple-accent/20 bg-purple-accent/5">Save Big</span>
+      </div>
+      <h2 class="text-center text-[40px] leading-[48px] tracking-[-0.02em] mb-4 reveal"
+        style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400;">Weekly Savings</h2>
+      <p class="text-center text-text-secondary text-base mb-16 reveal max-w-xl mx-auto">
+        Come through for this week's best prices — updated regularly.
+      </p>
+
+      <div id="weekly-savings-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 reveal">
+        <!-- Populated by JS from data/inventory.json deals[] -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Hot Items Section (curated feature-card layout with alternating image/text sides) -->
   <section id="hot-items" class="relative py-24 px-6 overflow-hidden">
     <div class="section-aurora"></div>
     <div class="relative z-10 max-w-6xl mx-auto">
@@ -1187,8 +1193,7 @@
             <h3 class="text-xl font-bold mb-4 text-purple-accent">· Best Seller</h3>
             <p class="text-text-secondary text-sm leading-6 max-w-sm">
               The world's most recognized cognac. Bold, fragrant, and remarkably well-balanced — toasted oak, vanilla,
-              and
-              warm spice in every pour. A timeless 750ml essential.
+              and warm spice in every pour. A timeless 750ml essential.
             </p>
             <p class="mt-4 text-2xl font-bold">$38.99</p>
           </div>
@@ -1213,8 +1218,7 @@
             <h3 class="text-xl font-bold mb-4 text-purple-accent">· Fan Favorite</h3>
             <p class="text-text-secondary text-sm leading-6 max-w-sm">
               Aged seven months in American white oak barrels. Soft caramel, cocoa, and a whisper of vanilla — sip it
-              neat,
-              shoot it cold, or mix it bold. Always in demand.
+              neat, shoot it cold, or mix it bold. Always in demand.
             </p>
             <p class="mt-4 text-2xl font-bold">$49.99</p>
           </div>
@@ -1256,143 +1260,151 @@
             <p class="mt-4 text-2xl font-bold">$29.99</p>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- New Listings / Deals combined -->
-  <section id="deals" class="relative py-24 px-6 overflow-hidden">
-    <div class="section-aurora"></div>
-    <div class="relative z-10 max-w-6xl mx-auto">
-      <div class="text-center mb-4 reveal">
-        <span
-          class="inline-block text-purple-accent text-xs font-semibold uppercase tracking-[0.15em] mb-4 px-3 py-1 rounded-full border border-purple-accent/20 bg-purple-accent/5">Save
-          Big</span>
-      </div>
-      <h2 class="text-center text-[40px] leading-[48px] tracking-[-0.02em] mb-1 reveal"
-        style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400;">Today's Deals</h2>
-      <h2 class="text-center text-[40px] leading-[48px] tracking-[-0.02em] mb-16 reveal"
-        style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400;">& New Arrivals</h2>
-
-      <!-- Deals table -->
-      <div class="rounded-xl overflow-hidden border border-border-subtle reveal glow-container"
-        style="background: #08081a;">
-        <div class="shimmer-header px-6 pt-6 pb-2">
-          <table class="w-full text-left text-sm">
-            <thead>
-              <tr class="border-b border-white/5">
-                <th class="py-3 px-4 text-text-dim font-medium text-xs uppercase tracking-wider">Product</th>
-                <th class="py-3 px-4 text-text-dim font-medium text-xs uppercase tracking-wider">Category</th>
-                <th class="py-3 px-4 text-text-dim font-medium text-xs uppercase tracking-wider">Was</th>
-                <th class="py-3 px-4 text-text-dim font-medium text-xs uppercase tracking-wider">Now</th>
-                <th class="py-3 px-4 text-text-dim font-medium text-xs uppercase tracking-wider">Savings</th>
-              </tr>
-            </thead>
-          </table>
+        <!-- Hot Item 5 - Patron Silver -->
+        <div class="feature-card p-8 grid grid-cols-2 gap-8 items-center reveal">
+          <div>
+            <h3 class="text-xl font-bold mb-2">Patron Silver</h3>
+            <h3 class="text-xl font-bold mb-4 text-purple-accent">· Crowd Pleaser</h3>
+            <p class="text-text-secondary text-sm leading-6 max-w-sm">
+              Hand-crafted from 100% Weber Blue Agave. Crisp, citrus-forward, and silky smooth — the gold standard for
+              margaritas and shots that don't need lime to chase.
+            </p>
+            <p class="mt-4 text-2xl font-bold">$44.99</p>
+          </div>
+          <div class="rounded-xl overflow-hidden border border-border-subtle"
+            style="background: linear-gradient(135deg, #1a2a1a 0%, #2c4528 50%, #0a180a 100%);">
+            <img
+              src="https://images.unsplash.com/photo-1600467577801-0815cedbb1b7?w=800&h=600&fit=crop"
+              alt="Patron Silver Tequila" class="w-full h-[300px] object-cover" loading="lazy"
+              onerror="this.src='https://images.unsplash.com/photo-1569529465841-dfecdab7503b?w=800&h=600&fit=crop'" />
+          </div>
         </div>
-        <div class="px-6 pb-6">
-          <table class="w-full text-left text-sm">
-            <tbody>
-              <tr class="border-b border-white/[0.03] hover:bg-purple-accent/[0.04] transition-colors">
-                <td class="py-3 px-4 text-text-secondary font-medium">Amsterdam Vodka 1.75L</td>
-                <td class="py-3 px-4 text-text-secondary">Vodka</td>
-                <td class="py-3 px-4 text-text-dim line-through">$19.99</td>
-                <td class="py-3 px-4 text-green-400 font-bold">$14.99</td>
-                <td class="py-3 px-4"><span
-                    class="deal-badge bg-green-400/10 text-green-400 text-xs font-bold px-2 py-1 rounded-full">25%
-                    OFF</span></td>
-              </tr>
-              <tr class="border-b border-white/[0.03] hover:bg-purple-accent/[0.04] transition-colors">
-                <td class="py-3 px-4 text-text-secondary font-medium">Patron Silver</td>
-                <td class="py-3 px-4 text-text-secondary">Tequila</td>
-                <td class="py-3 px-4 text-text-dim line-through">$44.99</td>
-                <td class="py-3 px-4 text-green-400 font-bold">$37.99</td>
-                <td class="py-3 px-4"><span
-                    class="deal-badge bg-green-400/10 text-green-400 text-xs font-bold px-2 py-1 rounded-full">15%
-                    OFF</span></td>
-              </tr>
-              <tr class="border-b border-white/[0.03] hover:bg-purple-accent/[0.04] transition-colors">
-                <td class="py-3 px-4 text-text-secondary font-medium">Jack Daniel's 1L</td>
-                <td class="py-3 px-4 text-text-secondary">Whiskey</td>
-                <td class="py-3 px-4 text-text-dim line-through">$29.99</td>
-                <td class="py-3 px-4 text-green-400 font-bold">$23.99</td>
-                <td class="py-3 px-4"><span
-                    class="deal-badge bg-green-400/10 text-green-400 text-xs font-bold px-2 py-1 rounded-full">20%
-                    OFF</span></td>
-              </tr>
-              <tr class="hover:bg-purple-accent/[0.04] transition-colors">
-                <td class="py-3 px-4 text-text-secondary font-medium">Crown Royal</td>
-                <td class="py-3 px-4 text-text-secondary">Whiskey</td>
-                <td class="py-3 px-4 text-text-dim line-through">$27.99</td>
-                <td class="py-3 px-4 text-green-400 font-bold">$22.99</td>
-                <td class="py-3 px-4"><span
-                    class="deal-badge bg-green-400/10 text-green-400 text-xs font-bold px-2 py-1 rounded-full">18%
-                    OFF</span></td>
-              </tr>
-            </tbody>
-          </table>
+
+        <!-- Hot Item 6 - Bacardi Gold -->
+        <div class="feature-card p-8 grid grid-cols-2 gap-8 items-center reveal">
+          <div class="rounded-xl overflow-hidden border border-border-subtle"
+            style="background: linear-gradient(135deg, #2a1a06 0%, #4a3015 50%, #180c03 100%);">
+            <img
+              src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&h=600&fit=crop"
+              alt="Bacardi Gold Rum" class="w-full h-[300px] object-cover" loading="lazy"
+              onerror="this.src='https://images.unsplash.com/photo-1527281400683-1aae777175f8?w=800&h=600&fit=crop'" />
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-2">Bacardi Gold</h3>
+            <h3 class="text-xl font-bold mb-4 text-purple-accent">· Mixer's Choice</h3>
+            <p class="text-text-secondary text-sm leading-6 max-w-sm">
+              Mellowed in oak for two years, charcoal-filtered for clarity. Notes of vanilla, almond, and tropical
+              fruit — perfect for a Cuba Libre or a long evening with friends.
+            </p>
+            <p class="mt-4 text-2xl font-bold">$15.99</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Full Inventory -->
-  <section id="inventory" class="relative py-24 px-6 overflow-hidden">
+  <!-- Category Page (hidden by default; shown via hash routing like #/tequila) -->
+  <section id="category-page" class="hidden relative pt-32 pb-16 px-6 overflow-hidden">
     <div class="section-aurora"></div>
-    <div class="relative z-10 max-w-6xl mx-auto">
-      <div class="text-center mb-4 reveal">
-        <span
-          class="inline-block text-purple-accent text-xs font-semibold uppercase tracking-[0.15em] mb-4 px-3 py-1 rounded-full border border-purple-accent/20 bg-purple-accent/5">Full
-          Selection</span>
+    <div class="relative z-10 max-w-7xl mx-auto">
+      <!-- Header -->
+      <div class="mb-10 flex items-center gap-5 flex-wrap">
+        <button type="button" id="category-back"
+          class="inline-flex items-center gap-1.5 text-sm text-text-dim hover:text-purple-accent transition-colors cursor-pointer">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Back to home
+        </button>
+        <div id="category-page-icon" class="ml-auto sm:ml-0 text-purple-accent"></div>
+        <h1 id="category-page-title"
+          class="text-[44px] leading-[52px] tracking-[-0.02em]"
+          style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400;">Category</h1>
       </div>
-      <h2 class="text-center text-[40px] leading-[48px] tracking-[-0.02em] mb-16 reveal"
-        style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400;">Browse Inventory</h2>
 
-      <!-- Search & Filter -->
-      <div class="flex flex-wrap gap-3 mb-6 reveal">
-        <input type="text" id="search-input" placeholder="Search products..."
-          class="flex-1 min-w-[200px] px-4 py-2.5 bg-surface border border-border-subtle rounded-lg text-text-primary text-sm font-inter outline-none focus:border-purple-accent transition-colors" />
-        <div class="flex gap-2 flex-wrap" id="filter-buttons">
-          <button
-            class="filter-btn active px-4 py-2 rounded-full border border-border-subtle text-sm font-medium transition-all cursor-pointer"
-            data-filter="all" onclick="filterInventory(this)">All</button>
-          <button
-            class="filter-btn px-4 py-2 rounded-full border border-border-subtle text-text-secondary text-sm font-medium transition-all cursor-pointer"
-            data-filter="Cognac" onclick="filterInventory(this)">Cognac</button>
-          <button
-            class="filter-btn px-4 py-2 rounded-full border border-border-subtle text-text-secondary text-sm font-medium transition-all cursor-pointer"
-            data-filter="Tequila" onclick="filterInventory(this)">Tequila</button>
-          <button
-            class="filter-btn px-4 py-2 rounded-full border border-border-subtle text-text-secondary text-sm font-medium transition-all cursor-pointer"
-            data-filter="Whiskey" onclick="filterInventory(this)">Whiskey</button>
-          <button
-            class="filter-btn px-4 py-2 rounded-full border border-border-subtle text-text-secondary text-sm font-medium transition-all cursor-pointer"
-            data-filter="Vodka" onclick="filterInventory(this)">Vodka</button>
-          <button
-            class="filter-btn px-4 py-2 rounded-full border border-border-subtle text-text-secondary text-sm font-medium transition-all cursor-pointer"
-            data-filter="Rum" onclick="filterInventory(this)">Rum</button>
-          <button
-            class="filter-btn px-4 py-2 rounded-full border border-border-subtle text-text-secondary text-sm font-medium transition-all cursor-pointer"
-            data-filter="Smokes" onclick="filterInventory(this)">Smokes</button>
+      <div class="grid lg:grid-cols-[260px_1fr] gap-10">
+        <!-- LEFT: filter sidebar (wrapped in a visible panel) -->
+        <aside class="lg:sticky lg:top-28 lg:self-start">
+          <div class="rounded-xl border border-border-subtle p-6 space-y-6"
+            style="background: rgba(12, 12, 34, 0.7);">
+            <!-- Price filter -->
+            <div>
+              <h3 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Price</h3>
+              <div class="space-y-3" id="price-filter-group">
+                <label class="flex items-center gap-3 cursor-pointer group">
+                  <input type="checkbox" value="0-20" class="price-filter sr-only peer" />
+                  <span class="w-5 h-5 rounded border-2 border-white/30 peer-checked:bg-purple-accent peer-checked:border-purple-accent transition-colors flex items-center justify-center shrink-0">
+                    <svg class="w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  </span>
+                  <span class="text-sm font-medium text-white group-hover:text-purple-accent transition-colors">Under $20</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer group">
+                  <input type="checkbox" value="20-50" class="price-filter sr-only peer" />
+                  <span class="w-5 h-5 rounded border-2 border-white/30 peer-checked:bg-purple-accent peer-checked:border-purple-accent transition-colors flex items-center justify-center shrink-0">
+                    <svg class="w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  </span>
+                  <span class="text-sm font-medium text-white group-hover:text-purple-accent transition-colors">$20 – $50</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer group">
+                  <input type="checkbox" value="50-100" class="price-filter sr-only peer" />
+                  <span class="w-5 h-5 rounded border-2 border-white/30 peer-checked:bg-purple-accent peer-checked:border-purple-accent transition-colors flex items-center justify-center shrink-0">
+                    <svg class="w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  </span>
+                  <span class="text-sm font-medium text-white group-hover:text-purple-accent transition-colors">$50 – $100</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer group">
+                  <input type="checkbox" value="100-" class="price-filter sr-only peer" />
+                  <span class="w-5 h-5 rounded border-2 border-white/30 peer-checked:bg-purple-accent peer-checked:border-purple-accent transition-colors flex items-center justify-center shrink-0">
+                    <svg class="w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  </span>
+                  <span class="text-sm font-medium text-white group-hover:text-purple-accent transition-colors">$100 and up</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="border-t border-white/10"></div>
+
+            <!-- Brand filter (populated by JS per category) -->
+            <div id="brand-filter-block">
+              <h3 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Brand</h3>
+              <div class="space-y-3" id="brand-filter-group">
+                <!-- brand checkboxes injected by JS -->
+              </div>
+            </div>
+
+            <button type="button" id="clear-filters"
+              class="text-sm font-medium text-text-dim hover:text-purple-accent transition-colors cursor-pointer">
+              Clear all filters
+            </button>
+          </div>
+        </aside>
+
+        <!-- RIGHT: results grid -->
+        <div>
+          <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
+            <p id="category-result-count" class="text-sm text-text-dim"></p>
+            <label class="inline-flex items-center gap-2 cursor-pointer group text-sm">
+              <input type="checkbox" id="show-all-toggle" class="sr-only peer" />
+              <span class="w-5 h-5 rounded border-2 border-white/30 peer-checked:bg-purple-accent peer-checked:border-purple-accent transition-colors flex items-center justify-center shrink-0">
+                <svg class="w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              </span>
+              <span class="text-text-secondary group-hover:text-white transition-colors">Show all variants</span>
+            </label>
+          </div>
+          <div id="category-grid" class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
+            <!-- Product cards populated by JS -->
+          </div>
+          <div id="category-empty" class="hidden text-center py-16 text-text-dim">
+            No products match these filters.
+          </div>
+          <div id="category-load-more-wrap" class="mt-8 text-center hidden">
+            <button type="button" id="category-load-more"
+              class="px-6 py-2.5 rounded-full border border-purple-accent/40 bg-purple-accent/10 text-purple-accent text-sm font-semibold hover:bg-purple-accent/20 transition-colors cursor-pointer">
+              Show 12 more <span id="category-load-more-remaining" class="text-text-dim font-normal"></span>
+            </button>
+          </div>
         </div>
-      </div>
-
-      <!-- Inventory table -->
-      <div class="rounded-xl overflow-hidden border border-border-subtle reveal glow-container"
-        style="background: #08081a;">
-        <table class="w-full text-left text-sm">
-          <thead class="shimmer-header">
-            <tr class="border-b border-white/5">
-              <th class="py-3 px-5 text-text-dim font-medium text-xs uppercase tracking-wider">Product</th>
-              <th class="py-3 px-5 text-text-dim font-medium text-xs uppercase tracking-wider">Category</th>
-              <th class="py-3 px-5 text-text-dim font-medium text-xs uppercase tracking-wider">Size</th>
-              <th class="py-3 px-5 text-text-dim font-medium text-xs uppercase tracking-wider">Price</th>
-            </tr>
-          </thead>
-          <tbody id="inventory-body">
-            <!-- Populated by JS -->
-          </tbody>
-        </table>
       </div>
     </div>
   </section>
@@ -1535,6 +1547,89 @@
     </div>
   </section>
 
+  <!-- Contact Us -->
+  <section id="contact" class="relative py-24 px-6 overflow-hidden">
+    <div class="section-aurora"></div>
+    <div class="relative z-10 max-w-6xl mx-auto">
+      <div class="text-center mb-4 reveal">
+        <span
+          class="inline-block text-purple-accent text-xs font-semibold uppercase tracking-[0.15em] mb-4 px-3 py-1 rounded-full border border-purple-accent/20 bg-purple-accent/5">Contact</span>
+      </div>
+      <h2 class="text-center text-[40px] leading-[48px] tracking-[-0.02em] mb-3 reveal"
+        style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400;">Get in Touch</h2>
+      <p class="text-center text-text-secondary text-base mb-16 reveal max-w-xl mx-auto">
+        Message us anytime — we read everything and respond during store hours.
+      </p>
+
+      <div class="grid lg:grid-cols-5 gap-10 items-start">
+        <!-- LEFT: contact form -->
+        <form id="contact-form" class="lg:col-span-3 reveal space-y-5" novalidate>
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label for="contact-name" class="block text-xs font-medium text-text-dim uppercase tracking-wider mb-2">Name <span class="text-purple-accent">*</span></label>
+              <input type="text" id="contact-name" name="name" required autocomplete="name"
+                class="w-full px-4 py-3 bg-surface border border-border-subtle rounded-lg text-text-primary text-sm font-inter outline-none focus:border-purple-accent transition-colors" />
+            </div>
+            <div>
+              <label for="contact-email" class="block text-xs font-medium text-text-dim uppercase tracking-wider mb-2">Email <span class="text-purple-accent">*</span></label>
+              <input type="email" id="contact-email" name="email" required autocomplete="email"
+                class="w-full px-4 py-3 bg-surface border border-border-subtle rounded-lg text-text-primary text-sm font-inter outline-none focus:border-purple-accent transition-colors" />
+            </div>
+          </div>
+          <div>
+            <label for="contact-phone" class="block text-xs font-medium text-text-dim uppercase tracking-wider mb-2">Phone <span class="text-text-dim font-normal normal-case">(optional)</span></label>
+            <input type="tel" id="contact-phone" name="phone" autocomplete="tel"
+              class="w-full px-4 py-3 bg-surface border border-border-subtle rounded-lg text-text-primary text-sm font-inter outline-none focus:border-purple-accent transition-colors" />
+          </div>
+          <div>
+            <label for="contact-message" class="block text-xs font-medium text-text-dim uppercase tracking-wider mb-2">Message <span class="text-purple-accent">*</span></label>
+            <textarea id="contact-message" name="message" required rows="6"
+              class="w-full px-4 py-3 bg-surface border border-border-subtle rounded-lg text-text-primary text-sm font-inter outline-none focus:border-purple-accent transition-colors resize-y min-h-[140px]"></textarea>
+          </div>
+          <div class="flex items-center gap-4 flex-wrap">
+            <button type="submit"
+              class="inline-flex items-center gap-2 bg-purple-accent text-white text-sm font-semibold px-6 py-3 rounded-lg hover:bg-purple-accent/90 transition-colors cursor-pointer">
+              Send Message
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M6 12l4-4-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+            <p id="contact-form-note" class="text-xs text-text-dim"></p>
+          </div>
+        </form>
+
+        <!-- RIGHT: contact info panel -->
+        <div class="lg:col-span-2 reveal">
+          <div class="rounded-xl border border-purple-accent/20 p-6 space-y-5"
+            style="background: linear-gradient(180deg, rgba(147, 130, 255, 0.05), rgba(147, 130, 255, 0.02));">
+            <div>
+              <div class="text-xs font-semibold text-text-dim uppercase tracking-wider mb-2">Store</div>
+              <div class="text-sm text-text-primary font-medium">Express Liquor &amp; Tobacco</div>
+              <a href="https://maps.google.com/?q=6859+N+Teutonia+Ave+Milwaukee+WI" target="_blank"
+                class="text-sm text-text-secondary hover:text-purple-accent transition-colors">
+                6859 N Teutonia Ave<br />Milwaukee, WI
+              </a>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div>
+              <div class="text-xs font-semibold text-text-dim uppercase tracking-wider mb-2">Email</div>
+              <a href="mailto:jattsingh4621@gmail.com"
+                class="text-sm text-purple-accent hover:underline break-all">jattsingh4621@gmail.com</a>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div>
+              <div class="text-xs font-semibold text-text-dim uppercase tracking-wider mb-2">Availability</div>
+              <div class="text-sm text-text-primary font-medium">Reach us 24/7</div>
+              <p class="text-xs text-text-secondary mt-1 leading-5">
+                Messages arrive instantly. We reply during store hours, 9:30 AM – 9:30 PM every day.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer class="border-t border-border-subtle py-8 px-8">
     <div class="max-w-6xl mx-auto flex items-center justify-between">
@@ -1625,107 +1720,479 @@
 
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // ===== Quick filter from dropdown / carousel =====
-    function quickFilter(category, search) {
-      const matchingBtn = document.querySelector(`.filter-btn[data-filter="${category}"]`);
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    // ===== Category navigation & Weekly Savings =====
+    const CATEGORY_ORDER = ['Cognac', 'Tequila', 'Whiskey', 'Vodka', 'Rum', 'Liquor', 'Wine', 'Beer', 'Smokes'];
 
-      if (matchingBtn) {
-        activeFilter = category;
-        matchingBtn.classList.add('active');
-        document.getElementById('search-input').value = search || '';
-      } else {
-        // Unknown category (e.g. Wine, Beer) — fall back to All + search
-        activeFilter = 'all';
-        document.querySelector('.filter-btn[data-filter="all"]')?.classList.add('active');
-        document.getElementById('search-input').value = search || category;
-      }
-      applyFilters();
+    // Category icons, same visual language as the homepage carousel.
+    const CATEGORY_ICONS = {
+      Cognac: '<path d="M13 13 C13 24 18 32 24 32 C30 32 35 24 35 13 Z" /><path d="M14.3 21 C18 23 22 21 24 22 C28 23 32 21 33.7 20 C33 25 29 32 24 32 C19 32 15 25 14.3 21 Z" fill="currentColor" fill-opacity="0.3" stroke="none" /><path d="M14 20 C18 22 22 20 24 21 C28 22 32 20 34 19" /><path d="M24 32 L24 40" /><path d="M18 41 L30 41" />',
+      Tequila: '<path d="M16 40 L32 40" /><path d="M24 40 L14 20" fill="currentColor" fill-opacity="0.16" /><path d="M24 40 L34 20" fill="currentColor" fill-opacity="0.16" /><path d="M24 40 L20 10" fill="currentColor" fill-opacity="0.22" /><path d="M24 40 L28 10" fill="currentColor" fill-opacity="0.22" /><path d="M24 40 L9 26" fill="currentColor" fill-opacity="0.12" /><path d="M24 40 L39 26" fill="currentColor" fill-opacity="0.12" /><path d="M24 40 L24 6" />',
+      Whiskey: '<path d="M14 12 L34 12 L32 40 L16 40 Z" /><path d="M14.3 22 L33.7 22 L32 40 L16 40 Z" fill="currentColor" fill-opacity="0.25" stroke="none" /><path d="M14 22 L34 22" /><rect x="17.5" y="26" width="6" height="6" rx="1" fill="currentColor" fill-opacity="0.4" /><rect x="25" y="30" width="5" height="5" rx="1" fill="currentColor" fill-opacity="0.4" />',
+      Vodka: '<path d="M24 6 L24 42" /><path d="M9 14 L39 34" /><path d="M9 34 L39 14" /><path d="M20 10 L24 14 L28 10" /><path d="M20 38 L24 34 L28 38" /><path d="M11 18 L15 16 L13 12" /><path d="M37 18 L33 16 L35 12" /><path d="M11 30 L15 32 L13 36" /><path d="M37 30 L33 32 L35 36" /><circle cx="24" cy="24" r="2.6" fill="currentColor" />',
+      Rum: '<circle cx="24" cy="9" r="3.2" fill="currentColor" fill-opacity="0.3" /><circle cx="24" cy="9" r="1.3" fill="currentColor" /><path d="M24 12 L24 40" /><path d="M18 18 L30 18" /><path d="M12 30 C12 36 17 41 24 41 C31 41 36 36 36 30" /><path d="M12 30 L8 28 L8 33" /><path d="M36 30 L40 28 L40 33" />',
+      Liquor: '<path d="M20 6 L28 6 L28 13 L30 16 L30 41 L18 41 L18 16 L20 13 Z" /><path d="M18 22 L30 22 L30 34 L18 34 Z" fill="currentColor" fill-opacity="0.3" stroke="none" /><path d="M18 22 L30 22" /><path d="M18 34 L30 34" /><path d="M21 8 L27 8" />',
+      Wine: '<path d="M16 6 L32 6 L31 20 C31 25 28 29 24 29 C20 29 17 25 17 20 Z" /><path d="M17.4 15 C20 17 24 15 27 16 C29 16 30.6 15 30.8 15 L31 20 C31 25 28 29 24 29 C20 29 17 25 17 20 Z" fill="currentColor" fill-opacity="0.3" stroke="none" /><path d="M17 13 C20 15 24 13 27 14 C29 14 31 13 31 13" /><path d="M24 29 L24 40" /><path d="M18 41 L30 41" />',
+      Beer: '<path d="M14.3 18 L31.7 18 L30 41 L16 41 Z" fill="currentColor" fill-opacity="0.25" stroke="none" /><path d="M14 14 C14 10 17 8 20 10 C20 7 24 6 26 9 C28 7 32 8 32 14 Z" fill="currentColor" fill-opacity="0.35" stroke="none" /><path d="M14 14 L32 14 L30 41 L16 41 Z" /><path d="M32 18 L37 18 L37 30 L32 30" /><path d="M14 14 C14 10 17 8 20 10" /><path d="M20 10 C20 7 24 6 26 9" /><path d="M26 9 C28 7 32 8 32 14" /><path d="M19 22 L19 36" opacity="0.55" /><path d="M24 22 L24 36" opacity="0.55" /><path d="M28 22 L28 36" opacity="0.55" />',
+      Smokes: '<rect x="6" y="22" width="28" height="6" rx="3" fill="currentColor" fill-opacity="0.18" /><rect x="10" y="22" width="6" height="6" fill="currentColor" fill-opacity="0.45" stroke="none" /><path d="M10 22 L10 28" /><path d="M16 22 L16 28" /><circle cx="37" cy="25" r="3.2" fill="currentColor" /><circle cx="37" cy="25" r="1.5" fill="currentColor" opacity="0.45" /><path d="M39 17 C41 14 40 12 42 9" /><path d="M35 16 C36 13 34 11 36 8" /><path d="M32 15 C33 12 31 10 33 7" />',
+    };
+
+    function iconSvg(cat, sizeClasses = 'w-11 h-11') {
+      const paths = CATEGORY_ICONS[cat] || '';
+      return `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" class="${sizeClasses} text-purple-accent">${paths}</svg>`;
     }
 
-    // Inventory data — kept separate for easy updates
-    const inventory = [
-      { name: "Hennessy VS", category: "Cognac", size: "750ml", price: 38.99 },
-      { name: "Hennessy VSOP", category: "Cognac", size: "750ml", price: 54.99 },
-      { name: "Remy Martin VSOP", category: "Cognac", size: "750ml", price: 45.99 },
-      { name: "Dusse VSOP", category: "Cognac", size: "750ml", price: 54.99 },
-      { name: "Casamigos Blanco", category: "Tequila", size: "750ml", price: 44.99 },
-      { name: "Casamigos Reposado", category: "Tequila", size: "750ml", price: 49.99 },
-      { name: "Don Julio 1942", category: "Tequila", size: "750ml", price: 154.99 },
-      { name: "Patron Silver", category: "Tequila", size: "750ml", price: 44.99 },
-      { name: "Clase Azul Reposado", category: "Tequila", size: "750ml", price: 169.99 },
-      { name: "Jack Daniel's", category: "Whiskey", size: "1L", price: 29.99 },
-      { name: "Buchanan's 18yr", category: "Whiskey", size: "750ml", price: 79.99 },
-      { name: "Crown Royal", category: "Whiskey", size: "750ml", price: 27.99 },
-      { name: "Ciroc", category: "Vodka", size: "750ml", price: 29.99 },
-      { name: "Ciroc Summer Colada", category: "Vodka", size: "750ml", price: 32.99 },
-      { name: "Amsterdam Vodka", category: "Vodka", size: "1.75L", price: 14.99 },
-      { name: "Grey Goose", category: "Vodka", size: "750ml", price: 29.99 },
-      { name: "Tito's Handmade", category: "Vodka", size: "1.75L", price: 32.99 },
-      { name: "Bacardi Superior", category: "Rum", size: "750ml", price: 14.99 },
-      { name: "Captain Morgan", category: "Rum", size: "1.75L", price: 24.99 },
-      { name: "Malibu Coconut", category: "Rum", size: "750ml", price: 18.99 },
-      { name: "Newport 100s", category: "Smokes", size: "Pack", price: 12.49 },
-      { name: "Newport Shorts", category: "Smokes", size: "Pack", price: 12.49 },
-      { name: "Marlboro Red", category: "Smokes", size: "Pack", price: 11.99 },
-      { name: "Marlboro Gold", category: "Smokes", size: "Pack", price: 11.99 },
-      { name: "Camel Crush", category: "Smokes", size: "Pack", price: 11.49 },
-      { name: "Black & Mild Original", category: "Smokes", size: "5-Pack", price: 7.99 },
-      { name: "Black & Mild Wine", category: "Smokes", size: "5-Pack", price: 7.99 },
-      { name: "Swisher Sweets", category: "Smokes", size: "2-Pack", price: 1.99 },
-      { name: "Backwoods Honey", category: "Smokes", size: "5-Pack", price: 9.99 },
-      { name: "Backwoods Russian", category: "Smokes", size: "5-Pack", price: 9.99 },
-      { name: "White Owl Grape", category: "Smokes", size: "2-Pack", price: 1.79 },
-      { name: "Dutch Masters", category: "Smokes", size: "2-Pack", price: 1.99 },
-    ];
+    // Curated top-name brand filters per category. Owner can add/remove entries
+    // here as the store lineup changes. Match is case-insensitive substring on item name.
+    const CATEGORY_BRANDS = {
+      Cognac: ['Hennessy', 'Remy Martin', 'Courvoisier', "D'Usse", 'Dusse', 'Martell'],
+      Tequila: ['Casamigos', 'Don Julio', 'Patron', 'Clase Azul', '1800', 'Jose Cuervo', 'Cazadores', 'Hornitos'],
+      Whiskey: ["Jack Daniel", 'Crown Royal', "Buchanan", 'Jameson', 'Jim Beam', 'Bulleit', "Maker's Mark", 'Fireball', 'Johnnie Walker'],
+      Vodka: ['Ciroc', 'Grey Goose', 'Belvedere', 'Absolut', "Tito", 'Smirnoff', 'New Amsterdam', 'Svedka', 'Ketel One'],
+      Rum: ['Bacardi', 'Captain Morgan', 'Malibu', 'Kraken', 'Mount Gay', "Don Q"],
+      Liquor: [],
+      Wine: ['Barefoot', 'Yellow Tail', 'Sutter Home', 'Apothic', "Josh Cellars", 'Kendall-Jackson'],
+      Beer: ['Bud Light', 'Budweiser', 'Coors', 'Miller', 'Corona', 'Heineken', 'Modelo', 'Michelob', 'Stella', 'Blue Moon'],
+      Smokes: ['Newport', 'Marlboro', 'Camel', 'Black & Mild', 'Swisher', 'Backwoods', 'Dutch', 'White Owl'],
+    };
 
-    let activeFilter = 'all';
+    let inventory = [];
+    const CATEGORY_PAGE_SIZE = 12;
+    const catState = {
+      current: null,
+      priceRanges: new Set(),
+      brands: new Set(),
+      showAll: false,          // false = main-brand items only (the default)
+      renderedCount: 0,
+    };
 
-    function renderInventory(items) {
-      const tbody = document.getElementById('inventory-body');
-      if (items.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="4" class="py-8 px-5 text-center text-text-dim">No products found.</td></tr>';
+    function curatedImageSettings(name, section = 'hot') {
+      const normalized = String(name || '').toLowerCase();
+      const darkMedia = 'bg-gradient-to-b from-white/[0.04] to-transparent';
+      const packshotBase = 'w-auto h-auto object-contain drop-shadow-[0_18px_40px_rgba(0,0,0,0.35)]';
+      const whiteBlendBase = `${packshotBase} mix-blend-multiply contrast-110 saturate-110`;
+
+      if (normalized.includes('casamigos reposado') || normalized.includes('don julio 1942')) {
+        return {
+          mediaClass: darkMedia,
+          imageClass: 'w-full h-full object-cover',
+        };
+      }
+
+      if (normalized.includes("jack daniel")) {
+        return {
+          mediaClass: darkMedia,
+          imageClass: `${whiteBlendBase} max-w-[74%] max-h-[88%]`,
+        };
+      }
+
+      if (normalized.includes('hennessy') || normalized.includes('rémy') || normalized.includes('remy')) {
+        return {
+          mediaClass: darkMedia,
+          imageClass: `${whiteBlendBase} max-w-[76%] max-h-[88%]`,
+        };
+      }
+
+      if (normalized.includes('grey goose')) {
+        return {
+          mediaClass: darkMedia,
+          imageClass: `${packshotBase} ${section === 'weekly' ? 'max-w-[30%] max-h-[72%]' : 'max-w-[24%] max-h-[68%]'}`,
+        };
+      }
+
+      if (normalized.includes("tito")) {
+        return {
+          mediaClass: darkMedia,
+          imageClass: `${packshotBase} ${section === 'weekly' ? 'max-w-[40%] max-h-[76%]' : 'max-w-[32%] max-h-[72%]'}`,
+        };
+      }
+
+      if (normalized.includes('patron')) {
+        return {
+          mediaClass: darkMedia,
+          imageClass: `${packshotBase} ${section === 'weekly' ? 'max-w-[72%] max-h-[88%]' : 'max-w-[82%] max-h-[92%]'}`,
+        };
+      }
+
+      if (normalized.includes('crown royal')) {
+        return {
+          mediaClass: darkMedia,
+          imageClass: `${packshotBase} ${section === 'weekly' ? 'max-w-[76%] max-h-[88%]' : 'max-w-[86%] max-h-[92%]'}`,
+        };
+      }
+
+      if (normalized.includes('amsterdam vodka') || normalized.includes('new amsterdam')) {
+        return {
+          mediaClass: darkMedia,
+          imageClass: `${packshotBase} max-w-[64%] max-h-[86%]`,
+        };
+      }
+
+      return {
+        mediaClass: darkMedia,
+        imageClass: `${packshotBase} max-w-[64%] max-h-[84%]`,
+      };
+    }
+
+    // ---- Weekly Savings (hero carousel's biggest hook) ----
+    function renderWeeklySavings(deals) {
+      const grid = document.getElementById('weekly-savings-grid');
+      if (!grid) return;
+      if (!Array.isArray(deals) || deals.length === 0) {
+        grid.innerHTML = '<div class="col-span-full text-center text-text-dim py-8">No sales this week — check back soon.</div>';
         return;
       }
-      tbody.innerHTML = items.map(item => `
-        <tr class="border-b border-white/[0.03] hover:bg-white/[0.02] transition-colors">
-          <td class="py-3 px-5 text-text-secondary font-medium">${item.name}</td>
-          <td class="py-3 px-5 text-text-dim">${item.category}</td>
-          <td class="py-3 px-5 text-text-secondary">${item.size}</td>
-          <td class="py-3 px-5 text-purple-accent font-bold">$${item.price.toFixed(2)}</td>
-        </tr>
+      grid.innerHTML = deals.map(d => {
+        const fallbackSvg = iconSvg(d.category, 'w-28 h-28').replace('class="', 'class="opacity-60 ');
+        const imgSettings = curatedImageSettings(d.name, 'weekly');
+        return `
+        <div class="product-card rounded-xl overflow-hidden border border-border-subtle bg-surface/60 hover:border-purple-accent/50 transition-colors">
+          <div class="aspect-square overflow-hidden ${imgSettings.mediaClass} flex items-center justify-center">
+            <img src="${d.image}" alt="${d.name}" loading="lazy"
+              class="${imgSettings.imageClass}"
+              onerror="this.style.display='none'; this.parentElement.innerHTML='${fallbackSvg.replace(/'/g, '&#39;').replace(/"/g, '&quot;')}';" />
+          </div>
+          <div class="p-6">
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <div class="min-w-0">
+                <p class="text-xs text-text-dim uppercase tracking-wider mb-1.5">${d.category}</p>
+                <h3 class="text-lg font-semibold text-white leading-snug truncate">${d.name}</h3>
+              </div>
+              <span class="shrink-0 bg-green-400/10 text-green-400 text-[11px] font-bold px-2 py-1 rounded-full whitespace-nowrap">${d.discount}</span>
+            </div>
+            <div class="flex items-baseline gap-2 mt-4">
+              <span class="text-text-dim text-sm line-through">$${d.originalPrice.toFixed(2)}</span>
+              <span class="text-green-400 text-2xl font-bold">$${d.salePrice.toFixed(2)}</span>
+            </div>
+          </div>
+        </div>
+      `;
+      }).join('');
+    }
+
+    // ---- Product card (silhouette-based) ----
+    function productCard(item) {
+      const inStock = item.inStock !== false;
+      const statusPill = inStock
+        ? '<span class="inline-block px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/25">In Stock</span>'
+        : '<span class="inline-block px-2 py-0.5 rounded-full text-[10px] font-semibold bg-white/5 text-text-dim border border-white/10">Out</span>';
+      return `
+        <div class="rounded-xl border border-border-subtle bg-surface/60 overflow-hidden hover:border-purple-accent/50 transition-colors flex flex-col">
+          <div class="aspect-[4/5] flex items-center justify-center bg-gradient-to-b from-white/[0.03] to-transparent border-b border-white/[0.04]">
+            ${iconSvg(item.category, 'w-16 h-16')}
+          </div>
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="text-sm font-medium text-white leading-snug mb-1 line-clamp-2 min-h-[2.5em]">${item.name}</h3>
+            <div class="text-xs text-text-dim mb-3">${item.size || '—'}</div>
+            <div class="mt-auto flex items-center justify-between gap-2">
+              <span class="text-purple-accent font-bold">$${item.price.toFixed(2)}</span>
+              ${statusPill}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // ---- Brand filter checkboxes for the active category ----
+    function renderBrandFilter(category) {
+      const group = document.getElementById('brand-filter-group');
+      const block = document.getElementById('brand-filter-block');
+      const brands = CATEGORY_BRANDS[category] || [];
+      if (brands.length === 0) {
+        block.classList.add('hidden');
+        group.innerHTML = '';
+        return;
+      }
+      block.classList.remove('hidden');
+      group.innerHTML = brands.map(b => `
+        <label class="flex items-center gap-3 cursor-pointer group">
+          <input type="checkbox" value="${b}" class="brand-filter sr-only peer" />
+          <span class="w-5 h-5 rounded border-2 border-white/30 peer-checked:bg-purple-accent peer-checked:border-purple-accent transition-colors flex items-center justify-center shrink-0">
+            <svg class="w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+          </span>
+          <span class="text-sm font-medium text-white group-hover:text-purple-accent transition-colors">${b}</span>
+        </label>
       `).join('');
     }
 
-    function filterInventory(btn) {
-      // Update active button styles
-      document.querySelectorAll('.filter-btn').forEach(b => {
-        b.classList.remove('active');
-        b.style.background = '';
-        b.style.color = '';
-        b.style.borderColor = '';
-      });
-      btn.classList.add('active');
+    // Spirit categories are pre-curated at build time (scripts/curation.js drops
+    // non-brand noise, fixes mis-categorizations). Everything in inventory.json
+    // for these categories is already a main-brand item.
+    const CURATED_SPIRITS = new Set(['Cognac', 'Tequila', 'Whiskey', 'Vodka', 'Rum']);
 
-      activeFilter = btn.dataset.filter;
-      applyFilters();
+    // CATEGORY_BRANDS here drives the brand-checkbox UI for each category
+    // (featured brands the user can click to filter further). For non-curated
+    // categories (Wine, Beer, Smokes) it also gates the default grid — items
+    // whose name matches one of the featured brands count as "main items", the
+    // rest are hidden until the user toggles "Show all variants".
+    function isMainItem(item) {
+      if (CURATED_SPIRITS.has(item.category)) return true;
+      const brands = CATEGORY_BRANDS[item.category] || [];
+      if (brands.length === 0) return true; // Liquor (catch-all) shows everything
+      const n = item.name.toLowerCase();
+      for (const b of brands) {
+        if (n.includes(b.toLowerCase())) return true;
+      }
+      return false;
     }
 
-    function applyFilters() {
-      const query = document.getElementById('search-input').value.toLowerCase().trim();
-      const filtered = inventory.filter(item => {
-        const matchesFilter = activeFilter === 'all' || item.category === activeFilter;
-        const matchesSearch = item.name.toLowerCase().includes(query) || item.category.toLowerCase().includes(query);
-        return matchesFilter && matchesSearch;
-      });
-      renderInventory(filtered);
+    function filterInCategory() {
+      const cat = catState.current;
+      if (!cat) return [];
+      let items = inventory.filter(i => i.category === cat);
+      // Default: only show main-brand items. Toggle "Show all variants" to see everything.
+      if (!catState.showAll) {
+        items = items.filter(isMainItem);
+      }
+      if (catState.priceRanges.size > 0) {
+        items = items.filter(i => {
+          for (const r of catState.priceRanges) {
+            const [lo, hi] = r.split('-').map(n => n === '' ? Infinity : Number(n));
+            if (i.price >= lo && i.price < (hi || Infinity)) return true;
+          }
+          return false;
+        });
+      }
+      if (catState.brands.size > 0) {
+        items = items.filter(i => {
+          const n = i.name.toLowerCase();
+          for (const b of catState.brands) {
+            if (n.includes(b.toLowerCase())) return true;
+          }
+          return false;
+        });
+      }
+      return items;
     }
 
-    // Search listener
-    document.getElementById('search-input').addEventListener('input', applyFilters);
+    function refreshCategoryGrid() {
+      const items = filterInCategory();
+      catState.renderedCount = Math.min(CATEGORY_PAGE_SIZE, items.length);
+      const grid = document.getElementById('category-grid');
+      const empty = document.getElementById('category-empty');
+      const count = document.getElementById('category-result-count');
+      const lmWrap = document.getElementById('category-load-more-wrap');
+      if (items.length === 0) {
+        grid.innerHTML = '';
+        empty.classList.remove('hidden');
+        lmWrap.classList.add('hidden');
+      } else {
+        empty.classList.add('hidden');
+        grid.innerHTML = items.slice(0, catState.renderedCount).map(productCard).join('');
+        const remaining = items.length - catState.renderedCount;
+        if (remaining > 0) {
+          lmWrap.classList.remove('hidden');
+          document.getElementById('category-load-more-remaining').textContent = `(${remaining} remaining)`;
+        } else {
+          lmWrap.classList.add('hidden');
+        }
+      }
+      count.textContent = `Showing ${Math.min(catState.renderedCount, items.length)} of ${items.length} product${items.length === 1 ? '' : 's'}`;
+    }
 
-    // Initial render
-    renderInventory(inventory);
+    function loadMoreCategory() {
+      const items = filterInCategory();
+      const nextCount = Math.min(catState.renderedCount + CATEGORY_PAGE_SIZE, items.length);
+      const nextSlice = items.slice(catState.renderedCount, nextCount);
+      document.getElementById('category-grid').insertAdjacentHTML('beforeend', nextSlice.map(productCard).join(''));
+      catState.renderedCount = nextCount;
+      const remaining = items.length - catState.renderedCount;
+      const lmWrap = document.getElementById('category-load-more-wrap');
+      if (remaining > 0) {
+        document.getElementById('category-load-more-remaining').textContent = `(${remaining} remaining)`;
+      } else {
+        lmWrap.classList.add('hidden');
+      }
+      const count = document.getElementById('category-result-count');
+      count.textContent = `Showing ${catState.renderedCount} of ${items.length} product${items.length === 1 ? '' : 's'}`;
+    }
+
+    // ---- Routing ----
+    const HOMEPAGE_SECTIONS = ['weekly-savings', 'hot-items', 'find-us', 'contact'];
+    const HERO_SECTION_SELECTOR = 'section.min-h-screen';
+
+    function showHome() {
+      document.getElementById('category-page').classList.add('hidden');
+      HOMEPAGE_SECTIONS.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.remove('hidden');
+      });
+      const hero = document.querySelector(HERO_SECTION_SELECTOR);
+      if (hero) hero.classList.remove('hidden');
+      document.querySelector('.category-bar')?.classList.remove('hidden');
+    }
+
+    function showCategoryPage(category, brand) {
+      if (!CATEGORY_ORDER.includes(category)) { showHome(); return; }
+      catState.current = category;
+      catState.priceRanges.clear();
+      catState.brands.clear();
+      catState.showAll = false;
+
+      // Hide everything else
+      HOMEPAGE_SECTIONS.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.add('hidden');
+      });
+      const hero = document.querySelector(HERO_SECTION_SELECTOR);
+      if (hero) hero.classList.add('hidden');
+
+      const page = document.getElementById('category-page');
+      document.getElementById('category-page-title').textContent = category;
+      document.getElementById('category-page-icon').innerHTML = iconSvg(category, 'w-10 h-10');
+      renderBrandFilter(category);
+      page.classList.remove('hidden');
+
+      // Reset any checked filter boxes from previous views
+      document.querySelectorAll('.price-filter, .brand-filter').forEach(cb => cb.checked = false);
+      const showAllCb = document.getElementById('show-all-toggle');
+      if (showAllCb) showAllCb.checked = false;
+
+      // Apply brand deep-link if one was passed in the hash. We prefer the
+      // checkbox value that matches (case-insensitive) so the UI reflects the
+      // filter, but we also register the raw brand string in catState so the
+      // grid still filters correctly even when there's no matching checkbox.
+      if (brand) {
+        const brandLower = brand.toLowerCase();
+        const cb = [...document.querySelectorAll('.brand-filter')].find(c =>
+          c.value.toLowerCase() === brandLower ||
+          c.value.toLowerCase().includes(brandLower) ||
+          brandLower.includes(c.value.toLowerCase())
+        );
+        if (cb) {
+          cb.checked = true;
+          catState.brands.add(cb.value);
+        } else {
+          catState.brands.add(brand);
+        }
+      }
+      refreshCategoryGrid();
+
+      window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+    }
+
+    function parseHash() {
+      const h = window.location.hash;
+      const m = h.match(/^#\/([^/?]+)(?:\/([^/?]+))?/);
+      if (!m) return null;
+      const slug = decodeURIComponent(m[1]).toLowerCase();
+      const cat = CATEGORY_ORDER.find(c => c.toLowerCase() === slug) || null;
+      if (!cat) return null;
+      return { category: cat, brand: m[2] ? decodeURIComponent(m[2]) : null };
+    }
+
+    function handleRoute() {
+      const parsed = parseHash();
+      if (parsed) showCategoryPage(parsed.category, parsed.brand);
+      else showHome();
+    }
+
+    window.addEventListener('hashchange', handleRoute);
+
+    // ---- Entry point used by nav dropdowns / carousel / nav-search ----
+    // Second arg deep-links to a pre-filtered brand view (e.g. Vodka → Grey Goose).
+    function quickFilter(category, brand) {
+      const fallback = { Bourbon: 'Whiskey', Champagne: 'Wine', Gin: 'Liquor' };
+      const target = CATEGORY_ORDER.includes(category) ? category : (fallback[category] || null);
+      if (!target) return;
+      const base = '#/' + target.toLowerCase();
+      window.location.hash = brand ? base + '/' + encodeURIComponent(brand.toLowerCase()) : base;
+    }
+
+    // ---- Filter checkbox listeners ----
+    document.addEventListener('change', (e) => {
+      if (e.target.id === 'show-all-toggle') {
+        catState.showAll = e.target.checked;
+        refreshCategoryGrid();
+      } else if (e.target.classList.contains('price-filter')) {
+        if (e.target.checked) catState.priceRanges.add(e.target.value);
+        else catState.priceRanges.delete(e.target.value);
+        refreshCategoryGrid();
+      } else if (e.target.classList.contains('brand-filter')) {
+        if (e.target.checked) catState.brands.add(e.target.value);
+        else catState.brands.delete(e.target.value);
+        refreshCategoryGrid();
+      }
+    });
+
+    document.getElementById('category-back').addEventListener('click', () => {
+      // Clearing the hash triggers handleRoute → showHome.
+      if (window.location.hash) {
+        window.location.hash = '';
+      } else {
+        showHome();
+      }
+    });
+
+    document.getElementById('clear-filters').addEventListener('click', () => {
+      catState.priceRanges.clear();
+      catState.brands.clear();
+      catState.showAll = false;
+      document.querySelectorAll('.price-filter, .brand-filter').forEach(cb => cb.checked = false);
+      const showAllCb = document.getElementById('show-all-toggle');
+      if (showAllCb) showAllCb.checked = false;
+      refreshCategoryGrid();
+    });
+
+    document.getElementById('category-load-more').addEventListener('click', loadMoreCategory);
+
+    // ---- Load inventory, kick off initial route ----
+    fetch('data/inventory.json')
+      .then(res => res.json())
+      .then(data => {
+        inventory = Array.isArray(data.fullInventory) ? data.fullInventory : [];
+        renderWeeklySavings(Array.isArray(data.deals) ? data.deals : []);
+        handleRoute();
+      })
+      .catch(err => {
+        console.error('Failed to load inventory:', err);
+      });
+
+    // ===== Contact form: build a mailto and open it =====
+    (function setupContactForm() {
+      const form = document.getElementById('contact-form');
+      if (!form) return;
+      const note = document.getElementById('contact-form-note');
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = form.elements.name.value.trim();
+        const email = form.elements.email.value.trim();
+        const phone = form.elements.phone.value.trim();
+        const message = form.elements.message.value.trim();
+
+        if (!name || !email || !message) {
+          note.textContent = 'Please fill in your name, email, and message.';
+          note.classList.add('text-red-400');
+          return;
+        }
+        // Basic email sanity check (HTML5 validation is the real gate via `type="email"`).
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          note.textContent = 'That email address doesn\'t look right.';
+          note.classList.add('text-red-400');
+          return;
+        }
+
+        const subject = `Website message from ${name}`;
+        const bodyLines = [
+          `Name: ${name}`,
+          `Email: ${email}`,
+          phone ? `Phone: ${phone}` : null,
+          '',
+          message,
+        ].filter(l => l !== null);
+        const body = bodyLines.join('\n');
+
+        const mailtoUrl = 'mailto:jattsingh4621@gmail.com'
+          + '?subject=' + encodeURIComponent(subject)
+          + '&body=' + encodeURIComponent(body);
+
+        note.classList.remove('text-red-400');
+        note.textContent = 'Opening your email app…';
+        window.location.href = mailtoUrl;
+        // Clear after a short delay so the user gets a chance to see the message land.
+        setTimeout(() => { note.textContent = 'If nothing opened, email us directly at jattsingh4621@gmail.com.'; }, 2500);
+      });
+    })();
 
     // ===== Navbar live product search =====
     function setupNavSearch() {
@@ -1752,37 +2219,89 @@
         results.classList.remove('hidden');
       }
 
+      // Edit distance ≤ 1 between two strings (one substitution, insertion, or
+      // deletion). Early-exits if the length gap is already > 1.
+      function editDistanceLE1(a, b) {
+        if (a === b) return true;
+        const la = a.length, lb = b.length;
+        if (Math.abs(la - lb) > 1) return false;
+        // Align the shorter string against the longer one.
+        const [s, l] = la <= lb ? [a, b] : [b, a];
+        let i = 0, j = 0, edits = 0;
+        while (i < s.length && j < l.length) {
+          if (s[i] === l[j]) { i++; j++; continue; }
+          if (++edits > 1) return false;
+          if (s.length === l.length) { i++; j++; }  // substitution
+          else j++;                                 // insertion in longer
+        }
+        return true;
+      }
+
+      // Fuzzy match: any token (word) in the item name is within edit distance 1
+      // of the query. Used only as a fallback when the exact substring pass
+      // finds nothing, to keep the fast path fast. Gated to queries ≥ 5 chars
+      // so short queries don't blow up with false matches.
+      function fuzzyMatch(item, q) {
+        if (q.length < 5) return false;
+        const tokens = item.name.toLowerCase().split(/[^a-z0-9]+/).filter(Boolean);
+        for (const t of tokens) {
+          if (editDistanceLE1(q, t)) return true;
+        }
+        return false;
+      }
+
+      // Relevance score for an item vs query. Lower = better. Returns null if
+      // the item doesn't match at all (caller can fall through to fuzzy).
+      //   0: name equals the query exactly
+      //   1: name starts with the query
+      //   2: a whitespace-separated word in the name starts with the query
+      //   3: name contains the query anywhere as a substring
+      //   4: category matches the query (weakest exact match)
+      // Ties broken by shorter name first (more "specific" to what user typed),
+      // then alphabetically.
+      function scoreMatch(item, q) {
+        const n = item.name.toLowerCase();
+        if (n === q) return 0;
+        if (n.startsWith(q)) return 1;
+        const words = n.split(/\s+/);
+        for (const w of words) if (w.startsWith(q)) return 2;
+        if (n.includes(q)) return 3;
+        if (item.category.toLowerCase().includes(q)) return 4;
+        return null;
+      }
+
       input.addEventListener('input', () => {
         const q = input.value.toLowerCase().trim();
         if (!q) { results.classList.add('hidden'); return; }
-        const matches = inventory.filter(item =>
-          item.name.toLowerCase().includes(q) || item.category.toLowerCase().includes(q)
-        ).slice(0, 6);
-        render(matches);
+        // Only surface "main items" in search results — avoids flooding the
+        // dropdown with employee-typo / non-brand entries.
+        const pool = inventory.filter(isMainItem);
+
+        const scored = [];
+        for (const item of pool) {
+          const s = scoreMatch(item, q);
+          if (s !== null) scored.push({ item, score: s });
+        }
+        scored.sort((a, b) =>
+          a.score - b.score ||
+          a.item.name.length - b.item.name.length ||
+          a.item.name.localeCompare(b.item.name)
+        );
+
+        let matches = scored.map(x => x.item);
+        // Typo fallback only if the exact pass found nothing.
+        if (matches.length === 0) {
+          matches = pool.filter(item => fuzzyMatch(item, q));
+        }
+        render(matches.slice(0, 6));
       });
 
-      function jumpToInventory(searchTerm, categoryFilter) {
-        const invSearch = document.getElementById('search-input');
-        invSearch.value = searchTerm;
-        if (categoryFilter) {
-          activeFilter = categoryFilter;
-          document.querySelectorAll('.filter-btn').forEach(b => {
-            b.classList.remove('active');
-            if (b.dataset.filter === categoryFilter) b.classList.add('active');
-          });
-        } else {
-          activeFilter = 'all';
-          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-          document.querySelector('.filter-btn[data-filter="all"]')?.classList.add('active');
-        }
-        applyFilters();
+      function jumpToInventory(_searchTerm, categoryFilter) {
+        // Category pages live at #/<category>. Nav-search free text (no category)
+        // falls back to the generic Liquor page; owner can refine later.
+        quickFilter(categoryFilter || 'Liquor');
         input.value = '';
         results.classList.add('hidden');
-        const target = document.querySelector('#inventory');
-        if (target) {
-          const top = target.getBoundingClientRect().top + window.scrollY - 100;
-          window.scrollTo({ top, behavior: 'smooth' });
-        }
       }
 
       results.addEventListener('click', (e) => {
@@ -1858,14 +2377,6 @@
     })();
   </script>
 
-  <style>
-    .filter-btn.active {
-      background: #9382ff !important;
-      color: #030014 !important;
-      border-color: #9382ff !important;
-      font-weight: 700;
-    }
-  </style>
 </body>
 
 </html>

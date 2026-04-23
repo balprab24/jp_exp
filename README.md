@@ -53,6 +53,8 @@ This repo is built around that idea.
 │   └── clover-export.xlsx     # Local-only Clover export, gitignored
 ├── scripts/
 │   ├── sync-inventory.js      # XLSX to inventory JSON sync script
+│   ├── reprocess-inventory.js # Re-curate inventory.json without re-importing xlsx
+│   ├── curation.js            # Brand whitelist, typo aliases, size normalization
 │   └── category-map.json      # Clover category mapping
 ├── .github/workflows/
 │   └── deploy.yml             # GitHub Pages deploy workflow
@@ -137,6 +139,25 @@ Check the generated changes before committing:
 git diff data/inventory.json
 ```
 
+### 5. Re-curate without re-importing
+
+If you only change the curation rules (`scripts/curation.js` — brand whitelist, typo aliases, size normalization) and want to apply them to the already-committed `inventory.json` without needing the original `.xlsx`:
+
+```bash
+npm run sync:reprocess -- --dry-run   # preview the drops / category moves
+npm run sync:reprocess                # write it
+```
+
+## Curation
+
+Both `sync` and `sync:reprocess` pipe every item through `scripts/curation.js`, which does three things:
+
+- **Brand aliases** — canonicalize common misspellings (`Hennesy → Hennessy`, `Crow Royal → Crown Royal`, `Caymanjack → Cayman Jack`, etc.). See `BRAND_ALIASES`.
+- **Category re-tagging** — move mis-categorized items based on the brand in the name (e.g. `Hennesy VS 100 ml` tagged Liquor in Clover → Cognac).
+- **Main-brand whitelist** — drop items whose name doesn't match a curated brand for their category. See `CURATED_BRANDS`. Keeps employee-shorthand junk out of the grid.
+
+When adding a new brand to the whitelist, also add it to `CATEGORY_BRANDS` in `index.html` so the brand-checkbox UI picks it up.
+
 ## Data Model
 
 The main inventory payload in `data/inventory.json` uses this shape:
@@ -194,6 +215,8 @@ It is a static site, but it should not feel like a plain static site.
 npm install
 npm run sync -- --dry-run
 npm run sync
+npm run sync:reprocess -- --dry-run
+npm run sync:reprocess
 npx puppeteer screenshot index.html --fullpage
 python3 -m http.server 8000
 ```
