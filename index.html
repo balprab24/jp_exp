@@ -328,6 +328,25 @@
       pointer-events: none;
     }
 
+    /* ===== Category grid / page swap transitions ===== */
+    #category-grid {
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+
+    #category-grid.grid-swapping {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    #category-page .cat-page-header {
+      transition: opacity 0.28s ease, transform 0.28s ease;
+    }
+
+    #category-page.page-entering .cat-page-header {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+
     /* ===== Scroll reveal animations ===== */
     .reveal {
       opacity: 0;
@@ -1309,7 +1328,7 @@
     <div class="section-aurora"></div>
     <div class="relative z-10 max-w-7xl mx-auto">
       <!-- Header -->
-      <div class="mb-10 flex items-center gap-5 flex-wrap">
+      <div class="cat-page-header mb-10 flex items-center gap-5 flex-wrap">
         <button type="button" id="category-back"
           class="inline-flex items-center gap-1.5 text-sm text-text-dim hover:text-purple-accent transition-colors cursor-pointer">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1665,9 +1684,27 @@
       const target = document.querySelector(targetId);
       if (!target) return;
       e.preventDefault();
-      const navHeight = 100; // navbar + category bar
-      const targetPosition = target.getBoundingClientRect().top + window.scrollY - navHeight;
-      window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+
+      // If we're on a category page and the link targets a homepage section,
+      // return home first so the target is actually visible before scrolling.
+      const catPage = document.getElementById('category-page');
+      const onCategoryPage = catPage && !catPage.classList.contains('hidden');
+      const targetIsHomeSection = HOMEPAGE_SECTIONS.some(id => '#' + id === targetId);
+      const scrollToTarget = () => {
+        const navHeight = 100; // navbar + category bar
+        const el = document.querySelector(targetId);
+        if (!el) return;
+        const top = el.getBoundingClientRect().top + window.scrollY - navHeight;
+        window.scrollTo({ top, behavior: 'smooth' });
+      };
+      if (onCategoryPage && targetIsHomeSection) {
+        showHome();
+        // Clear the #/category hash without firing hashchange (which would re-route).
+        history.replaceState(null, '', location.pathname + location.search);
+        requestAnimationFrame(scrollToTarget);
+        return;
+      }
+      scrollToTarget();
     });
 
     // ===== Carousel: advance one circle at a time =====
@@ -1893,10 +1930,16 @@
     }
 
     // ---- Brand filter checkboxes for the active category ----
+    function brandHasItems(category, brand) {
+      if (!brand) return false;
+      const b = brand.toLowerCase();
+      return inventory.some(i => i.category === category && i.name.toLowerCase().includes(b));
+    }
+
     function renderBrandFilter(category) {
       const group = document.getElementById('brand-filter-group');
       const block = document.getElementById('brand-filter-block');
-      const brands = CATEGORY_BRANDS[category] || [];
+      const brands = (CATEGORY_BRANDS[category] || []).filter(b => brandHasItems(category, b));
       if (brands.length === 0) {
         block.classList.add('hidden');
         group.innerHTML = '';
@@ -1964,29 +2007,38 @@
       return items;
     }
 
+    let gridSwapToken = 0;
     function refreshCategoryGrid() {
-      const items = filterInCategory();
-      catState.renderedCount = Math.min(CATEGORY_PAGE_SIZE, items.length);
       const grid = document.getElementById('category-grid');
       const empty = document.getElementById('category-empty');
       const count = document.getElementById('category-result-count');
       const lmWrap = document.getElementById('category-load-more-wrap');
-      if (items.length === 0) {
-        grid.innerHTML = '';
-        empty.classList.remove('hidden');
-        lmWrap.classList.add('hidden');
-      } else {
-        empty.classList.add('hidden');
-        grid.innerHTML = items.slice(0, catState.renderedCount).map(productCard).join('');
-        const remaining = items.length - catState.renderedCount;
-        if (remaining > 0) {
-          lmWrap.classList.remove('hidden');
-          document.getElementById('category-load-more-remaining').textContent = `(${remaining} remaining)`;
-        } else {
+
+      const token = ++gridSwapToken;
+      grid.classList.add('grid-swapping');
+
+      setTimeout(() => {
+        if (token !== gridSwapToken) return; // superseded by a newer refresh
+        const items = filterInCategory();
+        catState.renderedCount = Math.min(CATEGORY_PAGE_SIZE, items.length);
+        if (items.length === 0) {
+          grid.innerHTML = '';
+          empty.classList.remove('hidden');
           lmWrap.classList.add('hidden');
+        } else {
+          empty.classList.add('hidden');
+          grid.innerHTML = items.slice(0, catState.renderedCount).map(productCard).join('');
+          const remaining = items.length - catState.renderedCount;
+          if (remaining > 0) {
+            lmWrap.classList.remove('hidden');
+            document.getElementById('category-load-more-remaining').textContent = `(${remaining} remaining)`;
+          } else {
+            lmWrap.classList.add('hidden');
+          }
         }
-      }
-      count.textContent = `Showing ${Math.min(catState.renderedCount, items.length)} of ${items.length} product${items.length === 1 ? '' : 's'}`;
+        count.textContent = `Showing ${Math.min(catState.renderedCount, items.length)} of ${items.length} product${items.length === 1 ? '' : 's'}`;
+        requestAnimationFrame(() => grid.classList.remove('grid-swapping'));
+      }, 180);
     }
 
     function loadMoreCategory() {
@@ -2041,6 +2093,13 @@
       document.getElementById('category-page-icon').innerHTML = iconSvg(category, 'w-10 h-10');
       renderBrandFilter(category);
       page.classList.remove('hidden');
+
+      // Entrance animation: fade/slide the header in on every category switch
+      // so changing e.g. Smokes → Rum reads as a real navigation.
+      page.classList.add('page-entering');
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => page.classList.remove('page-entering'));
+      });
 
       // Reset any checked filter boxes from previous views
       document.querySelectorAll('.price-filter, .brand-filter').forEach(cb => cb.checked = false);
@@ -2135,12 +2194,25 @@
 
     document.getElementById('category-load-more').addEventListener('click', loadMoreCategory);
 
+    // Hide dropdown sub-category links whose brand has zero items in the current
+    // inventory (e.g. Dusse under Cognac when the store isn't carrying it). Runs
+    // once after the fetch resolves so it stays in sync with the latest sync.
+    function pruneEmptyBrands() {
+      document.querySelectorAll('.cat-dropdown a[onclick]').forEach(a => {
+        const m = a.getAttribute('onclick').match(/quickFilter\(\s*'([^']+)'\s*,\s*'([^']+)'/);
+        if (!m) return; // "View All X" links have only one arg — leave them
+        const [, cat, brand] = m;
+        if (!brandHasItems(cat, brand)) a.style.display = 'none';
+      });
+    }
+
     // ---- Load inventory, kick off initial route ----
     fetch('data/inventory.json')
       .then(res => res.json())
       .then(data => {
         inventory = Array.isArray(data.fullInventory) ? data.fullInventory : [];
         renderWeeklySavings(Array.isArray(data.deals) ? data.deals : []);
+        pruneEmptyBrands();
         handleRoute();
       })
       .catch(err => {
